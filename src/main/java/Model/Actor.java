@@ -1,6 +1,10 @@
+/*
+@author Michael Kowollik
+ */
+
 package Model;
 
-public class Actor {
+public class Actor implements UMLComponent {
     private String name;
 
     public void setName(String name) {

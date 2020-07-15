@@ -1,8 +1,12 @@
+/*
+@author Michael Kowollik
+ */
+
 package Model;
 
 import java.util.ArrayList;
 
-public class ExtensionPoint {
+public class ExtensionPoint implements UMLComponent {
     private String name;
     private ArrayList<String> extpoints;
 
