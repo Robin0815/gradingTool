@@ -33,4 +33,13 @@ public class System implements UMLComponent{
     public void removeContainedElement(UMLComponent element) {
         this.containedElements.remove(element);
     }
+
+    public Boolean noActorsContaines() {
+        for (UMLComponent containedElement : containedElements) {
+            if (containedElement instanceof Actor) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
