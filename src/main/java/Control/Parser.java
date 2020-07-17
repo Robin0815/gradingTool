@@ -35,9 +35,7 @@ public class Parser {
              */
 
             dia = new Diagram(doc.getDocumentElement().getNodeName());
-
             NodeList nList = doc.getElementsByTagName("element");
-
             for (int temp = 0; temp < nList.getLength(); temp++) {
 
                 Node nNode = nList.item(temp);
