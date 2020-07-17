@@ -4,11 +4,11 @@
 
 package Model;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class System implements UMLComponent{
     private String name;
-    private ArrayList<UMLComponent> containedElements;
+    private List<UMLComponent> containedElements;
 
     public String getName() {
         return name;
@@ -18,11 +18,11 @@ public class System implements UMLComponent{
         this.name = name;
     }
 
-    public ArrayList<UMLComponent> getContainedElements() {
+    public List<UMLComponent> getContainedElements() {
         return containedElements;
     }
 
-    public void setContainedElements(ArrayList<UMLComponent> containedElements) {
+    public void setContainedElements(List<UMLComponent> containedElements) {
         this.containedElements = containedElements;
     }
 
