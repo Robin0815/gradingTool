@@ -39,7 +39,7 @@ public class Parser {
 
                     Element eElement = (Element) nNode;
 
-                    System.out.println("id : " + eElement.getAttribute("id"));
+                    System.out.println("id : " + eElement.getElementsByTagName("id").item(0).getTextContent());
                     System.out.println("Content : " + eElement.getElementsByTagName("panel_attributes").item(0).getTextContent());
 
                 }
