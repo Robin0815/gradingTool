@@ -1,3 +1,4 @@
+import Control.IdType;
 import Control.Parser;
 
 public class ThinMain {

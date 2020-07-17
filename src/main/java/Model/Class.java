@@ -2,7 +2,7 @@ package Model;
 
 import java.util.List;
 
-public class Class implements UMLComponent{
+public class Class implements UMLComponent, ConnectableComp{
     private String name;
     private String stereotype;
     private List<UMLComponent> elements;
@@ -37,5 +37,10 @@ public class Class implements UMLComponent{
     public Class(String name, String stereotype) {
         this.name = name;
         this.stereotype = stereotype;
+    }
+
+    @Override
+    public boolean isConnectable() {
+        return true;
     }
 }

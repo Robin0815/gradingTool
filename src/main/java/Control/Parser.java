@@ -2,6 +2,7 @@
  * @author rfrank2s
  */
 package Control;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,12 +18,14 @@ import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 import java.io.File;
 
+import Control.IdType;
+
 public class Parser {
     private String InterfaceType = "interface";
     private String AbstractType = "abstract";
     public List<UMLComponent> parseFile(String file){
         UMLComponent dia;
-        List comp = new ArrayList();
+        List<TempComp> compPos = new ArrayList<>();
         try {
 
             File fXmlFile = new File(file);
@@ -41,12 +44,25 @@ public class Parser {
                 Node nNode = nList.item(temp);
 
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-
                     Element eElement = (Element) nNode;
+                    //-----
+                    String id = eElement.getElementsByTagName("id").item(0).getTextContent();
+                    String x = eElement.getElementsByTagName("x").item(0).getTextContent();
+                    String y = eElement.getElementsByTagName("y").item(0).getTextContent();
+                    String w = eElement.getElementsByTagName("w").item(0).getTextContent();
+                    String h = eElement.getElementsByTagName("h").item(0).getTextContent();
+                    String panel_attributes = eElement.getElementsByTagName("panel_attributes").item(0).getTextContent();
+                    if (id.equals(IdType.umlclass())){
 
-                    System.out.println("id : " + eElement.getElementsByTagName("id").item(0).getTextContent());
-                    System.out.println("Content : " + eElement.getElementsByTagName("panel_attributes").item(0).getTextContent());
+                    }
+                    //Weitere Komponenten erkennen
 
+
+
+
+                    if (id.equals(IdType.relation())){
+
+                    }
                 }
             }
         } catch (Exception e) {
@@ -54,7 +70,7 @@ public class Parser {
         }
         return null;
     }
-    private List<UMLComponent> panelPars(String panelAttr){
+    private List<UMLComponent> classParse(String panelAttr){
         List<UMLComponent> list = new ArrayList<>();
 
 

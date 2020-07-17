@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 public class Association  implements UMLComponent{
     private ArrayList<UMLComponent> connectedElements;
+    private String type = null;
 
     public ArrayList<UMLComponent> getConnectedElements() {
         return connectedElements;
@@ -29,6 +30,14 @@ public class Association  implements UMLComponent{
        return this.connectedElements.size()==2;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public Boolean isDifferentType() {
         UMLComponent priorElement = connectedElements.get(0);
         for (UMLComponent connectedElement : connectedElements) {
@@ -39,4 +48,5 @@ public class Association  implements UMLComponent{
         }
         return true;
     }
+
 }
