@@ -43,4 +43,13 @@ public class Class implements UMLComponent, ConnectableComp{
     public boolean isConnectable() {
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "Class{" +
+                "name='" + name + '\'' +
+                ", stereotype='" + stereotype + '\'' +
+                ", elements=" + elements.toString() +
+                '}';
+    }
 }

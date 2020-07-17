@@ -5,7 +5,15 @@ public class Method implements UMLComponent{
     private String inputType;
     private String outputType;
     private boolean isStatic;
-    private String visability;
+    private String visibility;
+
+    public Method(String name, String inputType, String outputType, boolean isStatic, String visibility) {
+        this.name = name;
+        this.inputType = inputType;
+        this.outputType = outputType;
+        this.isStatic = isStatic;
+        this.visibility = visibility;
+    }
 
     public String getName() {
         return name;
@@ -40,10 +48,21 @@ public class Method implements UMLComponent{
     }
 
     public String getVisability() {
-        return visability;
+        return visibility;
     }
 
     public void setVisability(String visability) {
-        this.visability = visability;
+        this.visibility = visability;
+    }
+
+    @Override
+    public String toString() {
+        return "Method{" +
+                "name='" + name + '\'' +
+                ", inputType='" + inputType + '\'' +
+                ", outputType='" + outputType + '\'' +
+                ", isStatic=" + isStatic +
+                ", visibility='" + visibility + '\'' +
+                '}';
     }
 }
