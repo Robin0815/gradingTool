@@ -137,7 +137,7 @@ public class Parser {
                     visibility = ""+am.charAt(0);
                 }
                 if (am.contains("(")){
-                    list.add(new Method(name, am.substring(am.indexOf('('),am.indexOf(')')), am.substring(am.indexOf(':')),isStatic,visibility);
+                    list.add(new Method(name, am.substring(am.indexOf('('),am.indexOf(')')), am.substring(am.indexOf(':')),isStatic,visibility));
 
                 }else{
 
