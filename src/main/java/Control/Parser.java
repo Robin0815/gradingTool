@@ -23,8 +23,6 @@ import java.io.File;
 import Control.IdType;
 
 public class Parser {
-    private String InterfaceType = "interface";
-    private String AbstractType = "abstract";
     public List<UMLComponent> parseFile(String file){
         UMLComponent dia;
         List<UMLComponent> diaList = new ArrayList<>();
@@ -85,6 +83,7 @@ public class Parser {
                     String w = eElement.getElementsByTagName("w").item(0).getTextContent();
                     String h = eElement.getElementsByTagName("h").item(0).getTextContent();
                     String panel_attributes = eElement.getElementsByTagName("panel_attributes").item(0).getTextContent();
+                    String additional_attributes = eElement.getElementsByTagName("additional_attributes").item(0).getTextContent();
                     System.out.print((StringEscapeUtils.escapeJava(panel_attributes)));
                     if (id.equals(IdType.relation())){
 
