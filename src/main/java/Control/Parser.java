@@ -1,6 +1,11 @@
+/**
+ * @author rfrank2s
+ */
 package Control;
 import java.util.ArrayList;
 import java.util.List;
+
+import Model.Diagram;
 import Model.UMLComponent;
 
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -13,27 +18,29 @@ import org.w3c.dom.Element;
 import java.io.File;
 
 public class Parser {
+    private String InterfaceType = "interface";
+    private String AbstractType = "abstract";
     public List<UMLComponent> parseFile(String file){
+        UMLComponent dia;
+        List comp = new ArrayList();
         try {
 
             File fXmlFile = new File(file);
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(fXmlFile);
-
             doc.getDocumentElement().normalize();
+            /*
+            https://www.codeflow.site/de/article/java__how-to-read-xml-file-in-java-dom-parser Quelle für die XML Pars Funktionen
+             */
 
-            System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
+            dia = new Diagram(doc.getDocumentElement().getNodeName());
 
             NodeList nList = doc.getElementsByTagName("element");
-
-            System.out.println("----------------------------");
 
             for (int temp = 0; temp < nList.getLength(); temp++) {
 
                 Node nNode = nList.item(temp);
-
-                System.out.println("\nCurrent Element :" + nNode.getNodeName());
 
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
@@ -49,6 +56,16 @@ public class Parser {
         }
         return null;
     }
+    private List<UMLComponent> panelPars(String panelAttr){
+        List<UMLComponent> list = new ArrayList<>();
+
+
+        return list;
+    }
+
+
+
+
     public List<UMLComponent> startParse(){
         return null;
     }
