@@ -5,22 +5,11 @@ import java.util.List;
 
 public class Relation implements UMLComponent{
     private String type;
-    private List<UMLComponent> list = new ArrayList<>();
-    private String info;
+    private UMLComponent start;
+    private UMLComponent end;
 
-    public Relation(String type, List<UMLComponent> list, String info) {
+    public Relation(String type) {
         this.type = type;
-        this.list = list;
-        this.info = info;
-    }
-
-    @Override
-    public String toString() {
-        return "Relation{" +
-                "type='" + type + '\'' +
-                ", list=" + list +
-                ", info='" + info + '\'' +
-                '}';
     }
 
     public String getType() {
@@ -31,19 +20,28 @@ public class Relation implements UMLComponent{
         this.type = type;
     }
 
-    public List<UMLComponent> getList() {
-        return list;
+    public UMLComponent getStart() {
+        return start;
     }
 
-    public void setList(List<UMLComponent> list) {
-        this.list = list;
+    public void setStart(UMLComponent start) {
+        this.start = start;
     }
 
-    public String getInfo() {
-        return info;
+    public UMLComponent getEnd() {
+        return end;
     }
 
-    public void setInfo(String info) {
-        this.info = info;
+    public void setEnd(UMLComponent end) {
+        this.end = end;
+    }
+
+    @Override
+    public String toString() {
+        return "Relation{" +
+                "type='" + type + '\'' +
+                ", start=" + start +
+                ", end=" + end +
+                '}';
     }
 }

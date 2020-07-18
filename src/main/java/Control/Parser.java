@@ -2,6 +2,8 @@
  * @author rfrank2s
  */
 package Control;
+
+import java.awt.*;
 import java.lang.System;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -18,15 +20,18 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
+
 import java.io.File;
 
 import Control.IdType;
 
 public class Parser {
-    public List<UMLComponent> parseFile(String file){
+    private List<TempComp> compPos = new ArrayList<>();
+
+    public List<UMLComponent> parseFile(String file) {
         UMLComponent dia;
         List<UMLComponent> diaList = new ArrayList<>();
-        List<TempComp> compPos = new ArrayList<>();
+
         try {
 
             File fXmlFile = new File(file);
@@ -41,123 +46,124 @@ public class Parser {
             dia = new Diagram(doc.getDocumentElement().getNodeName());
             NodeList nList = doc.getElementsByTagName("element");
             //erster Durchlauf für alle Elemente die keine Abhängikeiten von anderen haben
-            for (int temp = 0; temp < nList.getLength(); temp++) {
+            for (int runt = 0; runt < 2; runt++) {
+                for (int temp = 0; temp < nList.getLength(); temp++) {
+                    Node nNode = nList.item(temp);
+                    if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                        Element eElement = (Element) nNode;
+                        //-----
+                        UMLComponent a = null;
+                        String id = eElement.getElementsByTagName("id").item(0).getTextContent();
+                        String x = eElement.getElementsByTagName("x").item(0).getTextContent();
+                        String y = eElement.getElementsByTagName("y").item(0).getTextContent();
+                        String w = eElement.getElementsByTagName("w").item(0).getTextContent();
+                        String h = eElement.getElementsByTagName("h").item(0).getTextContent();
+                        String panel_attributes = eElement.getElementsByTagName("panel_attributes").item(0).getTextContent();
+                        if (id.equals(IdType.umlclass()) && runt == 0) {
+                            a = classParse(panel_attributes);
+                            diaList.add(a);
+                            if (a instanceof ConnectableComp) {
+                                compPos.add(new TempComp(a, Integer.parseInt(x), Integer.parseInt(y), Integer.parseInt(w), Integer.parseInt(h)));
+                            }
+                        }
+                        //Weitere Komponenten erkennen
 
-                Node nNode = nList.item(temp);
 
-                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-                    Element eElement = (Element) nNode;
-                    //-----
-                    UMLComponent a = null;
-                    String id = eElement.getElementsByTagName("id").item(0).getTextContent();
-                    String x = eElement.getElementsByTagName("x").item(0).getTextContent();
-                    String y = eElement.getElementsByTagName("y").item(0).getTextContent();
-                    String w = eElement.getElementsByTagName("w").item(0).getTextContent();
-                    String h = eElement.getElementsByTagName("h").item(0).getTextContent();
-                    String panel_attributes = eElement.getElementsByTagName("panel_attributes").item(0).getTextContent();
-                    if (id.equals(IdType.umlclass())){
-                        a = classParse(panel_attributes);
-                        diaList.add(a);
-                    }
-                    //Weitere Komponenten erkennen
+                        //Nur die Benötigten Elemente in die TempComp für die bestimmung der Assoziationen.
 
-
-                    //Nur die Benötigten Elemente in die TempComp für die bestimmung der Assoziationen.
-                    if(a instanceof ConnectableComp){
-                        compPos.add(new TempComp(a, Integer.parseInt(x),Integer.parseInt(y),Integer.parseInt(w),Integer.parseInt(h)));
+                        //Relationen erst beim 2. durchlauf betrachten
+                        if (id.equals(IdType.relation()) && runt == 1) {
+                            String additional_attributes = eElement.getElementsByTagName("additional_attributes").item(0).getTextContent();
+                            a = relationParse(panel_attributes, additional_attributes, Integer.parseInt(x), Integer.parseInt(y), Integer.parseInt(w), Integer.parseInt(h));
+                            diaList.add(a);
+                        }
                     }
                 }
             }
             //Relationen bestimmen
-            for (int temp = 0; temp < nList.getLength(); temp++) {
-
-                Node nNode = nList.item(temp);
-
-                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-                    Element eElement = (Element) nNode;
-                    //-----
-                    UMLComponent a = null;
-                    String id = eElement.getElementsByTagName("id").item(0).getTextContent();
-                    String x = eElement.getElementsByTagName("x").item(0).getTextContent();
-                    String y = eElement.getElementsByTagName("y").item(0).getTextContent();
-                    String w = eElement.getElementsByTagName("w").item(0).getTextContent();
-                    String h = eElement.getElementsByTagName("h").item(0).getTextContent();
-                    String panel_attributes = eElement.getElementsByTagName("panel_attributes").item(0).getTextContent();
-                    String additional_attributes = eElement.getElementsByTagName("additional_attributes").item(0).getTextContent();
-                    System.out.print((StringEscapeUtils.escapeJava(panel_attributes)));
-                    if (id.equals(IdType.relation())){
-
-                    }
-                    //Weitere Komponenten erkennen
-
-                }
-            }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return diaList;
+    }
+
+    private UMLComponent relationParse(String panelAttr, String addAttr, int x, int y, int w, int h) {
+        Relation res = new Relation(panelAttr);
+        Point start = null;
+        Point end = null;
+        String[] s = addAttr.split(";");
+        int x1 = (int) Double.parseDouble(s[0]);
+        int y1 = (int) Double.parseDouble(s[1]);
+        int x2 = (int) Double.parseDouble(s[2]);
+        int y2 = (int) Double.parseDouble(s[3]);
+        start = new Point(x+x1,y+y1);
+        end = new Point(x+x2,y+y2);
+        for (int i = 0; i<compPos.size();i++){
+            TempComp tmp = compPos.get(i);
+            Rectangle rec = tmp.getRec();
+            if( rec.contains(start)){
+                res.setStart(tmp.getComp());
+            }
+            if(rec.contains(end)){
+                res.setEnd(tmp.getComp());
+            }
+        }
+        return res;
     }
 
 
-
-
-
-    private UMLComponent classParse(String panelAttr){
+    private UMLComponent classParse(String panelAttr) {
         String name = "";
         String stereotype = null;
 
         List<UMLComponent> list = new ArrayList<>();
-        System.out.println(panelAttr);
         String[] a = panelAttr.split("\n");
-        if(a[0].equals("&lt;&lt;interface&gt;&gt;")){
+        if (a[0].equals("&lt;&lt;interface&gt;&gt;")) {
             stereotype = StereoType.interf();
             name = a[1];
-        }else
-        if(a[0].equals("&lt;&lt;abstract&gt;&gt;")){
+        } else if (a[0].equals("&lt;&lt;abstract&gt;&gt;")) {
             stereotype = StereoType.abstrac();
             name = a[1];
-        }else {
+        } else {
             name = a[0];
         }
         String[] c = panelAttr.split("--");
-        for(int i = stereotype== null? 1: 2; i<c.length;i++){
+        for (int i = stereotype == null ? 1 : 2; i < c.length; i++) {
             String s = a[i];
-            String[] b =s.split("\n");
-            for(int j = 0; j<b.length; j++){
+            String[] b = s.split("\n");
+            for (int j = 0; j < b.length; j++) {
                 boolean isStatic = false;
                 String visibility = "";
                 String outputType;
                 String inputType;
                 String am = b[j];
-                if(am.charAt(0) == '_'){
+                if (am.charAt(0) == '_') {
                     isStatic = true;
-                    visibility = ""+am.charAt(1);
-                }else{
-                    visibility = ""+am.charAt(0);
+                    visibility = "" + am.charAt(1);
+                } else {
+                    visibility = "" + am.charAt(0);
                 }
-                if (am.contains("(")){
-                    list.add(new Method(name, am.substring(am.indexOf('('),am.indexOf(')')), am.substring(am.indexOf(':')),isStatic,visibility));
+                if (am.contains("(")) {
+                    list.add(new Method(name, am.substring(am.indexOf('('), am.indexOf(')')), am.substring(am.indexOf(':')), isStatic, visibility));
 
-                }else{
+                } else if (am.contains(":")){
 
-                    list.add(new Attribut(name, am.substring(':'), visibility, isStatic));
+                    list.add(new Attribut(name, am.substring(am.indexOf(':')), visibility, isStatic));
 
                 }
-                Class res = new Class(name, stereotype);
-                res.setElements(list);
-                return res;
             }
+            Class res = new Class(name, stereotype);
+            res.setElements(list);
+            return res;
         }
-        UMLComponent res= new Class(name, stereotype);
+        UMLComponent res = new Class(name, stereotype);
 
 
         return res;
     }
 
 
-
-
-    public List<UMLComponent> startParse(){
+    public List<UMLComponent> startParse() {
         return null;
     }
 

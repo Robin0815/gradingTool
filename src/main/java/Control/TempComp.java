@@ -1,7 +1,8 @@
 package Control;
 
 import Model.UMLComponent;
-import java.awt.Rectangle;
+
+import java.awt.*;
 
 public class TempComp {
     private UMLComponent comp;
@@ -12,4 +13,19 @@ public class TempComp {
         rec = new Rectangle(x,y,w,h);
     }
 
+    public UMLComponent getComp() {
+        return comp;
+    }
+
+    public void setComp(UMLComponent comp) {
+        this.comp = comp;
+    }
+
+    public Rectangle getRec() {
+        return rec;
+    }
+
+    public void setRec(Rectangle rec) {
+        this.rec = rec;
+    }
 }

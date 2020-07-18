@@ -1,5 +1,8 @@
 import Control.IdType;
 import Control.Parser;
+import Model.UMLComponent;
+
+import java.util.List;
 
 public class ThinMain {
 
@@ -8,6 +11,7 @@ public class ThinMain {
 
         String file = "Adapter-UML.uxf";
         Parser a = new Parser();
-        a.parseFile(file);
+        List<UMLComponent> l = a.parseFile(file);
+        System.out.println(l.toString());
     }
 }
