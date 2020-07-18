@@ -61,8 +61,8 @@ public class Method implements UMLComponent{
                 "name='" + name + '\'' +
                 ", inputType='" + inputType + '\'' +
                 ", outputType='" + outputType + '\'' +
-                ", isStatic=" + isStatic +
                 ", visibility='" + visibility + '\'' +
+                ", isStatic=" + isStatic +
                 '}';
     }
 }

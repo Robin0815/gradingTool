@@ -49,7 +49,7 @@ public class Class implements UMLComponent, ConnectableComp{
         return "Class{" +
                 "name='" + name + '\'' +
                 ", stereotype='" + stereotype + '\'' +
-                ", elements=" + elements.toString() +
+                ", elements=" + elements +
                 '}';
     }
 }

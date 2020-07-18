@@ -92,19 +92,30 @@ public class Parser {
         Point start = null;
         Point end = null;
         String[] s = addAttr.split(";");
-        int x1 = (int) Double.parseDouble(s[0]);
-        int y1 = (int) Double.parseDouble(s[1]);
-        int x2 = (int) Double.parseDouble(s[2]);
-        int y2 = (int) Double.parseDouble(s[3]);
+        int x2 = (int) Double.parseDouble(s[0]);
+        int y2 = (int) Double.parseDouble(s[1]);
+        int x1 = (int) Double.parseDouble(s[2]);
+        int y1 = (int) Double.parseDouble(s[3]);
         start = new Point(x+x1,y+y1);
         end = new Point(x+x2,y+y2);
+
         for (int i = 0; i<compPos.size();i++){
             TempComp tmp = compPos.get(i);
             Rectangle rec = tmp.getRec();
-            if( rec.contains(start)){
+            Class cl = (Class) tmp.getComp();
+            System.out.println("Rechteck der Klasse: "+ cl.getName()+" "+rec.getMinX() + " "+rec.getMaxX() + " "+rec.getMinY() + " "+rec.getMaxY());
+            System.out.println("Start: "+start);
+            System.out.println("End: "+end);
+            /*if( rec.contains(start)){
                 res.setStart(tmp.getComp());
             }
             if(rec.contains(end)){
+                res.setEnd(tmp.getComp());
+            }*/
+            if( start.getX()>=rec.getMinX() & start.getX() <= rec.getMaxX() & start.getY() >= rec.getMinY() & start.getY() <= rec.getMaxY()){
+                res.setStart(tmp.getComp());
+            }
+            if( end.getX()>=rec.getMinX() & end.getX() <= rec.getMaxX() & end.getY() >= rec.getMinY() & end.getY() <= rec.getMaxY()){
                 res.setEnd(tmp.getComp());
             }
         }
@@ -118,46 +129,44 @@ public class Parser {
 
         List<UMLComponent> list = new ArrayList<>();
         String[] a = panelAttr.split("\n");
-        if (a[0].equals("&lt;&lt;interface&gt;&gt;")) {
+        if (a[0].contains("<<interface>>")) {
             stereotype = StereoType.interf();
             name = a[1];
-        } else if (a[0].equals("&lt;&lt;abstract&gt;&gt;")) {
+        } else if (a[0].contains("<<abstract>>")) {
             stereotype = StereoType.abstrac();
             name = a[1];
         } else {
             name = a[0];
         }
-        String[] c = panelAttr.split("--");
-        for (int i = stereotype == null ? 1 : 2; i < c.length; i++) {
+        Class res = new Class(name, stereotype);
+        for (int i = stereotype == null ? 2 : 3; i < a.length; i++) {
             String s = a[i];
             String[] b = s.split("\n");
             for (int j = 0; j < b.length; j++) {
                 boolean isStatic = false;
                 String visibility = "";
-                String outputType;
-                String inputType;
                 String am = b[j];
+
                 if (am.charAt(0) == '_') {
                     isStatic = true;
                     visibility = "" + am.charAt(1);
+                    am = am.substring(1,am.length()-1);
                 } else {
                     visibility = "" + am.charAt(0);
                 }
                 if (am.contains("(")) {
-                    list.add(new Method(name, am.substring(am.indexOf('('), am.indexOf(')')), am.substring(am.indexOf(':')), isStatic, visibility));
+                    list.add(new Method(am.substring(1, am.indexOf('(')), am.substring(am.indexOf('('), am.indexOf(')')).contains(":")? am.substring(am.indexOf(':'), am.indexOf(')')): am.substring(am.indexOf('('), am.indexOf(')')), am.substring(am.indexOf(':')+1), isStatic, visibility));
 
                 } else if (am.contains(":")){
 
-                    list.add(new Attribut(name, am.substring(am.indexOf(':')), visibility, isStatic));
+                    list.add(new Attribut(am.substring(1,am.indexOf(' ') < am.indexOf(':')? am.indexOf(' '): am.indexOf(':')), am.substring(am.indexOf(':')+1), visibility, isStatic));
 
                 }
             }
-            Class res = new Class(name, stereotype);
-            res.setElements(list);
-            return res;
-        }
-        UMLComponent res = new Class(name, stereotype);
 
+        }
+
+        res.setElements(list);
 
         return res;
     }
