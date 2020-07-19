@@ -4,16 +4,16 @@
 
 package Model;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class Includes {
-    private ArrayList<UMLComponent> connectedElements;
+public class Includes implements UMLComponent{
+    private List<UMLComponent> connectedElements;
 
-    public ArrayList<UMLComponent> getConnectedElements() {
+    public List<UMLComponent> getConnectedElements() {
         return connectedElements;
     }
 
-    public void setConnectedElements(ArrayList<UMLComponent> connectedElements) {
+    public void setConnectedElements(List<UMLComponent> connectedElements) {
         this.connectedElements = connectedElements;
     }
 
@@ -36,5 +36,17 @@ public class Includes {
             }
         }
         return true;
+    }
+
+    @Override
+    public boolean isConnectable() {
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return "Includes{" +
+                "connectedElements=" + connectedElements +
+                '}';
     }
 }

@@ -4,17 +4,17 @@
 
 package Model;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Association  implements UMLComponent{
-    private ArrayList<UMLComponent> connectedElements;
+    private List<UMLComponent> connectedElements;
     private String type = null;
 
-    public ArrayList<UMLComponent> getConnectedElements() {
+    public List<UMLComponent> getConnectedElements() {
         return connectedElements;
     }
 
-    public void setConnectedElements(ArrayList<UMLComponent> connectedElements) {
+    public void setConnectedElements(List<UMLComponent> connectedElements) {
         this.connectedElements = connectedElements;
     }
 
@@ -49,4 +49,16 @@ public class Association  implements UMLComponent{
         return true;
     }
 
+    @Override
+    public boolean isConnectable() {
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return "Association{" +
+                "connectedElements=" + connectedElements +
+                ", type='" + type + '\'' +
+                '}';
+    }
 }

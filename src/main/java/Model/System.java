@@ -34,12 +34,24 @@ public class System implements UMLComponent{
         this.containedElements.remove(element);
     }
 
-    public Boolean noActorsContaines() {
+    public Boolean noActorsContained() {
         for (UMLComponent containedElement : containedElements) {
             if (containedElement instanceof Actor) {
                 return false;
             }
         }
         return true;
+    }
+    @Override
+    public boolean isConnectable() {
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return "System{" +
+                "name='" + name + '\'' +
+                ", containedElements=" + containedElements +
+                '}';
     }
 }

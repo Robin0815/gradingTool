@@ -44,4 +44,9 @@ public class Relation implements UMLComponent{
                 ", end=" + end +
                 '}';
     }
+
+    @Override
+    public boolean isConnectable() {
+        return false;
+    }
 }

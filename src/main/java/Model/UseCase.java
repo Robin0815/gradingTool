@@ -14,4 +14,15 @@ public class UseCase implements UMLComponent {
     public String getName() {
       return this.name;
     }
+    @Override
+    public boolean isConnectable() {
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "UseCase{" +
+                "name='" + name + '\'' +
+                '}';
+    }
 }

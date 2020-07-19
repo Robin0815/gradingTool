@@ -22,4 +22,9 @@ public class Attribut implements UMLComponent{
                 ", isStatic=" + isStatic +
                 '}';
     }
+
+    @Override
+    public boolean isConnectable() {
+        return false;
+    }
 }

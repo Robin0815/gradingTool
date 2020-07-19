@@ -14,4 +14,16 @@ public class Actor implements UMLComponent {
     public String getName() {
         return this.name;
     }
+
+    @Override
+    public boolean isConnectable() {
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Actor{" +
+                "name='" + name + '\'' +
+                '}';
+    }
 }

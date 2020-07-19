@@ -5,5 +5,5 @@
 package Model;
 
 public interface UMLComponent {
-
+    public boolean isConnectable();
 }

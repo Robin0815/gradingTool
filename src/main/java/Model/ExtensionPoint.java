@@ -4,11 +4,11 @@
 
 package Model;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class ExtensionPoint implements UMLComponent {
     private String name;
-    private ArrayList<String> extpoints;
+    private List<String> extpoints;
 
     public void setName(String name) {
         this.name = name;
@@ -22,7 +22,19 @@ public class ExtensionPoint implements UMLComponent {
         extpoints.add(s);
     }
 
-    public ArrayList<String> getExtpoints() {
+    public List<String> getExtpoints() {
         return extpoints;
+    }
+    @Override
+    public boolean isConnectable() {
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "ExtensionPoint{" +
+                "name='" + name + '\'' +
+                ", extpoints=" + extpoints +
+                '}';
     }
 }

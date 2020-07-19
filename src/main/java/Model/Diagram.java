@@ -25,4 +25,9 @@ public class Diagram implements UMLComponent{
     public void setComp(List<UMLComponent> comp) {
         this.comp = comp;
     }
+
+    @Override
+    public boolean isConnectable() {
+        return false;
+    }
 }

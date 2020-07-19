@@ -65,4 +65,9 @@ public class Method implements UMLComponent{
                 ", isStatic=" + isStatic +
                 '}';
     }
+
+    @Override
+    public boolean isConnectable() {
+        return false;
+    }
 }

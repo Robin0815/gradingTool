@@ -2,7 +2,7 @@ package Model;
 
 import java.util.List;
 
-public class Class implements UMLComponent, ConnectableComp{
+public class Class implements UMLComponent{
     private String name;
     private String stereotype;
     private List<UMLComponent> elements;
