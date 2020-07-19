@@ -61,7 +61,7 @@ public class Parser {
                         if (id.equals(IdType.umlclass()) && runt == 0) {
                             a = classParse(panel_attributes);
                             diaList.add(a);
-                            if (a instanceof ConnectableComp) {
+                            if (a.isConnectable()) {
                                 compPos.add(new TempComp(a, Integer.parseInt(x), Integer.parseInt(y), Integer.parseInt(w), Integer.parseInt(h)));
                             }
                         }
