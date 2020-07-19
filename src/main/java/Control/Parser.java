@@ -42,7 +42,6 @@ public class Parser {
             /*
             https://www.codeflow.site/de/article/java__how-to-read-xml-file-in-java-dom-parser Quelle für die XML Pars Funktionen
              */
-
             dia = new Diagram(doc.getDocumentElement().getNodeName());
             NodeList nList = doc.getElementsByTagName("element");
             //erster Durchlauf für alle Elemente die keine Abhängikeiten von anderen haben
