@@ -5,7 +5,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>330</x>
-      <y>200</y>
+      <y>90</y>
       <w>210</w>
       <h>110</h>
     </coordinates>
@@ -21,7 +21,7 @@ _+staticAttribut: Attrib_</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>0</x>
-      <y>230</y>
+      <y>120</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -34,7 +34,7 @@ _+staticAttribut: Attrib_</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>90</x>
-      <y>220</y>
+      <y>110</y>
       <w>260</w>
       <h>40</h>
     </coordinates>
@@ -46,7 +46,7 @@ _+staticAttribut: Attrib_</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>330</x>
-      <y>460</y>
+      <y>350</y>
       <w>210</w>
       <h>110</h>
     </coordinates>
@@ -63,7 +63,7 @@ _+staticAttribut: Attrib_</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>430</x>
-      <y>290</y>
+      <y>180</y>
       <w>90</w>
       <h>200</h>
     </coordinates>
@@ -75,7 +75,7 @@ _+staticAttribut: Attrib_</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>770</x>
-      <y>200</y>
+      <y>90</y>
       <w>210</w>
       <h>110</h>
     </coordinates>
@@ -90,12 +90,48 @@ _+staticAttribut: Attrib_</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>520</x>
-      <y>240</y>
+      <y>130</y>
       <w>280</w>
       <h>280</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 &lt;&lt;use&gt;&gt;</panel_attributes>
     <additional_attributes>260.0;10.0;10.0;260.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>890</x>
+      <y>440</y>
+      <w>120</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Use case 1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>1310</x>
+      <y>430</y>
+      <w>160</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>Use Case
+--
+extension points
+valign=top</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1000</x>
+      <y>450</y>
+      <w>330</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=.&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;310.0;20.0</additional_attributes>
   </element>
 </diagram>

@@ -40,8 +40,8 @@ public class Relation implements UMLComponent{
     public String toString() {
         return "Relation{" +
                 "type='" + type + '\'' +
-                ", start=" + start +
-                ", end=" + end +
+                ", start=" + start +"\n"+
+                ", end=" + end +"\n"+
                 '}';
     }
 

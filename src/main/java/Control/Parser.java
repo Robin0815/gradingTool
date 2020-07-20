@@ -6,6 +6,7 @@ package Control;
 import java.awt.*;
 import java.lang.System;
 import java.lang.reflect.Array;
+import java.security.cert.Extension;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,6 +66,13 @@ public class Parser {
                                 compPos.add(new TempComp(a, Integer.parseInt(x), Integer.parseInt(y), Integer.parseInt(w), Integer.parseInt(h)));
                             }
                         }
+                        if(id.equals((IdType.usecase()))&& runt == 0){
+                            a = useCaseParse(panel_attributes);
+                            diaList.add(a);
+                            if (a.isConnectable()) {
+                                compPos.add(new TempComp(a, Integer.parseInt(x), Integer.parseInt(y), Integer.parseInt(w), Integer.parseInt(h)));
+                            }
+                        }
                         //Weitere Komponenten erkennen
 
 
@@ -86,6 +94,27 @@ public class Parser {
         return diaList;
     }
 
+    private UMLComponent useCaseParse(String panelAttr){
+
+        if(panelAttr.contains("--")){
+            ExtensionPoint res = new ExtensionPoint();
+            String[]s = panelAttr.split("--");
+            String[]s1 = s[0].split("\n");
+            res.setName(s1[0]);
+            s1 = s[1].split("\n");
+            for(int i = 0; i<s1.length;i++){
+                if(!s1[i].contains("=") & !s1[i].isEmpty()){ res.addExtpoint(s1[i]);}
+            }
+            return res;
+        }else{
+            UseCase res = new UseCase();
+            res.setName(panelAttr);
+            return res;
+        }
+
+
+    }
+
     private UMLComponent relationParse(String panelAttr, String addAttr, int x, int y, int w, int h) {
         Relation res = new Relation(panelAttr);
         Point start = null;
@@ -101,10 +130,10 @@ public class Parser {
         for (int i = 0; i<compPos.size();i++){
             TempComp tmp = compPos.get(i);
             Rectangle rec = tmp.getRec();
-            Class cl = (Class) tmp.getComp();
+            /*Class cl = (Class) tmp.getComp();
             System.out.println("Rechteck der Klasse: "+ cl.getName()+" "+rec.getMinX() + " "+rec.getMaxX() + " "+rec.getMinY() + " "+rec.getMaxY());
             System.out.println("Start: "+start);
-            System.out.println("End: "+end);
+            System.out.println("End: "+end);*/
             /*if( rec.contains(start)){
                 res.setStart(tmp.getComp());
             }

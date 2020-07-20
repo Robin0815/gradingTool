@@ -4,11 +4,12 @@
 
 package Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ExtensionPoint implements UMLComponent {
     private String name;
-    private List<String> extpoints;
+    private List<String> extpoints = new ArrayList<>();
 
     public void setName(String name) {
         this.name = name;
