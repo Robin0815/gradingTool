@@ -98,6 +98,12 @@ public class Parser {
                             a = relationParse(panel_attributes, additional_attributes, Integer.parseInt(x), Integer.parseInt(y), Integer.parseInt(w), Integer.parseInt(h));
                             diaList.add(a);
                         }
+
+                        //Alle nicht in IdType definierten Elemente als Unknown Element anlegen
+                        if (!(id.equals(IdType.system()) || id.equals(IdType.umlclass()) || id.equals(IdType.actor()) || id.equals(IdType.usecase()) || id.equals(IdType.relation()))&& runt == 1){
+                            a = new UnknownElement();
+                            diaList.add(a);
+                        }
                     }
                 }
             }
