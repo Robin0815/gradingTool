@@ -6,4 +6,6 @@ public class IdType {
    }
    public static String relation(){ return "Relation"; }
    public static String usecase(){ return "UMLUseCase";}
+   public static String actor(){ return "UMLActor";}
+   public static String system(){ return "UMLGeneric";}
 }

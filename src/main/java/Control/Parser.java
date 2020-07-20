@@ -4,7 +4,6 @@
 package Control;
 
 import java.awt.*;
-import java.lang.System;
 import java.lang.reflect.Array;
 import java.security.cert.Extension;
 import java.util.ArrayList;
@@ -16,6 +15,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
 
 import Model.Class;
+import Model.System;
 import org.apache.commons.text.StringEscapeUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
@@ -73,6 +73,20 @@ public class Parser {
                                 compPos.add(new TempComp(a, Integer.parseInt(x), Integer.parseInt(y), Integer.parseInt(w), Integer.parseInt(h)));
                             }
                         }
+
+                        if(id.equals((IdType.actor()))&& runt == 0){
+                            a = actorParse(panel_attributes);
+                            diaList.add(a);
+                            if (a.isConnectable()) {
+                                compPos.add(new TempComp(a, Integer.parseInt(x), Integer.parseInt(y), Integer.parseInt(w), Integer.parseInt(h)));
+                            }
+                        }
+
+                        if(id.equals((IdType.system()))&& runt == 1){
+                            a = systemParse(panel_attributes, Integer.parseInt(x), Integer.parseInt(y), Integer.parseInt(w), Integer.parseInt(h));
+                            diaList.add(a);
+                        }
+
                         //Weitere Komponenten erkennen
 
 
@@ -92,6 +106,27 @@ public class Parser {
             e.printStackTrace();
         }
         return diaList;
+    }
+
+    private UMLComponent systemParse(String panelAttr, int x, int y, int w, int h) {
+        System res = new System();
+        res.setName(panelAttr);
+
+        for (int i = 0; i<compPos.size();i++){
+            TempComp tmp = compPos.get(i);
+            Rectangle rec = tmp.getRec();
+
+            if( x>=rec.getMinX() & x <= rec.getMaxX() & y >= rec.getMinY() & y <= rec.getMaxY()){
+                res.addContainedElement(tmp.getComp());
+            }
+        }
+        return res;
+    }
+
+    private UMLComponent actorParse(String panelAttr) {
+        Actor res = new Actor();
+        res.setName(panelAttr);
+        return res;
     }
 
     private UMLComponent useCaseParse(String panelAttr){
