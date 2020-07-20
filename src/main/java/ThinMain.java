@@ -1,6 +1,4 @@
-import Control.IdType;
-import Control.Parser;
-import Model.Class;
+import Control.Parser.Parser;
 import Model.UMLComponent;
 
 import java.util.List;

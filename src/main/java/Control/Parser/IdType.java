@@ -1,4 +1,4 @@
-package Control;
+package Control.Parser;
 
 public class IdType {
    public static String umlclass(){

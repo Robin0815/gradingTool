@@ -1,14 +1,13 @@
 /**
  * @author rfrank2s
  */
-package Control;
+package Control.Parser;
 
 import java.awt.*;
-import java.lang.reflect.Array;
-import java.security.cert.Extension;
 import java.util.ArrayList;
 import java.util.List;
 
+import Control.Strategy.Strategy;
 import Model.*;
 
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -16,7 +15,6 @@ import javax.xml.parsers.DocumentBuilder;
 
 import Model.Class;
 import Model.System;
-import org.apache.commons.text.StringEscapeUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
@@ -24,9 +22,9 @@ import org.w3c.dom.Element;
 
 import java.io.File;
 
-import Control.IdType;
 
 public class Parser {
+    private Strategy strategy;
     private List<TempComp> compPos = new ArrayList<>();
 
     public List<UMLComponent> parseFile(String file) {

@@ -1,4 +1,4 @@
-package Control;
+package Control.Parser;
 
 public class StereoType {
     public static String interf(){
