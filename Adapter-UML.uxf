@@ -5,23 +5,24 @@
     <id>UMLClass</id>
     <coordinates>
       <x>330</x>
-      <y>90</y>
+      <y>0</y>
       <w>210</w>
       <h>110</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 Client-Interface
 --
-+operation(a : input): Output
-_-static(a : operation) : Bs_
-_+staticAttribut: Attrib_</panel_attributes>
++operation(a : Input): Output
+_-static(a : Operation) : Bs_
+_+staticAttribut: Attrib_
++operation2(): void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>0</x>
-      <y>120</y>
+      <y>30</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -34,7 +35,7 @@ _+staticAttribut: Attrib_</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>90</x>
-      <y>110</y>
+      <y>20</y>
       <w>260</w>
       <h>40</h>
     </coordinates>
@@ -46,15 +47,15 @@ _+staticAttribut: Attrib_</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>330</x>
-      <y>350</y>
+      <y>260</y>
       <w>210</w>
       <h>110</h>
     </coordinates>
     <panel_attributes>Adapter
 --
-+operation(a : input): Output
--conversionIn(a : input): Old-input
--conversionOut(a : old-output): Output
++operation(a : Input): Output
+-conversionIn(a : Input): Old-input
+-conversionOut(a : Old-output): Output
 -adap : Legacy
 </panel_attributes>
     <additional_attributes/>
@@ -63,7 +64,7 @@ _+staticAttribut: Attrib_</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>430</x>
-      <y>180</y>
+      <y>90</y>
       <w>90</w>
       <h>200</h>
     </coordinates>
@@ -75,7 +76,7 @@ _+staticAttribut: Attrib_</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>770</x>
-      <y>90</y>
+      <y>0</y>
       <w>210</w>
       <h>110</h>
     </coordinates>
@@ -90,7 +91,7 @@ _+staticAttribut: Attrib_</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>520</x>
-      <y>130</y>
+      <y>40</y>
       <w>280</w>
       <h>280</h>
     </coordinates>
@@ -102,7 +103,7 @@ _+staticAttribut: Attrib_</panel_attributes>
     <id>UMLUseCase</id>
     <coordinates>
       <x>890</x>
-      <y>440</y>
+      <y>350</y>
       <w>120</w>
       <h>40</h>
     </coordinates>
@@ -113,7 +114,7 @@ _+staticAttribut: Attrib_</panel_attributes>
     <id>UMLUseCase</id>
     <coordinates>
       <x>1310</x>
-      <y>430</y>
+      <y>340</y>
       <w>160</w>
       <h>90</h>
     </coordinates>
@@ -127,11 +128,37 @@ valign=top</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1000</x>
-      <y>450</y>
+      <y>360</y>
       <w>330</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=.&gt;&gt;</panel_attributes>
     <additional_attributes>10.0;10.0;310.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>850</x>
+      <y>240</y>
+      <w>680</w>
+      <h>310</h>
+    </coordinates>
+    <panel_attributes>System
+halign=left</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1820</x>
+      <y>520</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>Class
+--
++PublicAttribut1 : Type
+-PrivateAttribut2 : Type2</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>

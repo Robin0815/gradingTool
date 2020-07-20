@@ -64,7 +64,7 @@ public class Parser {
                                 compPos.add(new TempComp(a, Integer.parseInt(x), Integer.parseInt(y), Integer.parseInt(w), Integer.parseInt(h)));
                             }
                         }
-                        if(id.equals((IdType.usecase()))&& runt == 0){
+                        if (id.equals((IdType.usecase())) && runt == 0) {
                             a = useCaseParse(panel_attributes);
                             diaList.add(a);
                             if (a.isConnectable()) {
@@ -72,7 +72,7 @@ public class Parser {
                             }
                         }
 
-                        if(id.equals((IdType.actor()))&& runt == 0){
+                        if (id.equals((IdType.actor())) && runt == 0) {
                             a = actorParse(panel_attributes);
                             diaList.add(a);
                             if (a.isConnectable()) {
@@ -80,7 +80,7 @@ public class Parser {
                             }
                         }
 
-                        if(id.equals((IdType.system()))&& runt == 1){
+                        if (id.equals((IdType.system())) && runt == 1) {
                             a = systemParse(panel_attributes, Integer.parseInt(x), Integer.parseInt(y), Integer.parseInt(w), Integer.parseInt(h));
                             diaList.add(a);
                         }
@@ -98,7 +98,7 @@ public class Parser {
                         }
 
                         //Alle nicht in IdType definierten Elemente als Unknown Element anlegen
-                        if (!(id.equals(IdType.system()) || id.equals(IdType.umlclass()) || id.equals(IdType.actor()) || id.equals(IdType.usecase()) || id.equals(IdType.relation()))&& runt == 1){
+                        if (!(id.equals(IdType.system()) || id.equals(IdType.umlclass()) || id.equals(IdType.actor()) || id.equals(IdType.usecase()) || id.equals(IdType.relation())) && runt == 1) {
                             a = new UnknownElement();
                             diaList.add(a);
                         }
@@ -114,13 +114,13 @@ public class Parser {
 
     private UMLComponent systemParse(String panelAttr, int x, int y, int w, int h) {
         System res = new System();
-        res.setName(panelAttr);
+        res.setName(panelAttr.split("\n")[0]);
 
-        for (int i = 0; i<compPos.size();i++){
+        for (int i = 0; i < compPos.size(); i++) {
             TempComp tmp = compPos.get(i);
             Rectangle rec = tmp.getRec();
 
-            if( x>=rec.getMinX() & x <= rec.getMaxX() & y >= rec.getMinY() & y <= rec.getMaxY()){
+            if (x >= rec.getMinX() & x <= rec.getMaxX() & y >= rec.getMinY() & y <= rec.getMaxY()) {
                 res.addContainedElement(tmp.getComp());
             }
         }
@@ -133,19 +133,21 @@ public class Parser {
         return res;
     }
 
-    private UMLComponent useCaseParse(String panelAttr){
+    private UMLComponent useCaseParse(String panelAttr) {
 
-        if(panelAttr.contains("--")){
+        if (panelAttr.contains("--")) {
             ExtensionPoint res = new ExtensionPoint();
-            String[]s = panelAttr.split("--");
-            String[]s1 = s[0].split("\n");
+            String[] s = panelAttr.split("--");
+            String[] s1 = s[0].split("\n");
             res.setName(s1[0]);
             s1 = s[1].split("\n");
-            for(int i = 0; i<s1.length;i++){
-                if(!s1[i].contains("=") & !s1[i].isEmpty()){ res.addExtpoint(s1[i]);}
+            for (int i = 0; i < s1.length; i++) {
+                if (!s1[i].contains("=") & !s1[i].isEmpty()) {
+                    res.addExtpoint(s1[i]);
+                }
             }
             return res;
-        }else{
+        } else {
             UseCase res = new UseCase();
             res.setName(panelAttr);
             return res;
@@ -163,10 +165,10 @@ public class Parser {
         int y2 = (int) Double.parseDouble(s[1]);
         int x1 = (int) Double.parseDouble(s[2]);
         int y1 = (int) Double.parseDouble(s[3]);
-        start = new Point(x+x1,y+y1);
-        end = new Point(x+x2,y+y2);
+        start = new Point(x + x1, y + y1);
+        end = new Point(x + x2, y + y2);
 
-        for (int i = 0; i<compPos.size();i++){
+        for (int i = 0; i < compPos.size(); i++) {
             TempComp tmp = compPos.get(i);
             Rectangle rec = tmp.getRec();
             /*Class cl = (Class) tmp.getComp();
@@ -179,10 +181,10 @@ public class Parser {
             if(rec.contains(end)){
                 res.setEnd(tmp.getComp());
             }*/
-            if( start.getX()>=rec.getMinX() & start.getX() <= rec.getMaxX() & start.getY() >= rec.getMinY() & start.getY() <= rec.getMaxY()){
+            if (start.getX() >= rec.getMinX() & start.getX() <= rec.getMaxX() & start.getY() >= rec.getMinY() & start.getY() <= rec.getMaxY()) {
                 res.setStart(tmp.getComp());
             }
-            if( end.getX()>=rec.getMinX() & end.getX() <= rec.getMaxX() & end.getY() >= rec.getMinY() & end.getY() <= rec.getMaxY()){
+            if (end.getX() >= rec.getMinX() & end.getX() <= rec.getMaxX() & end.getY() >= rec.getMinY() & end.getY() <= rec.getMaxY()) {
                 res.setEnd(tmp.getComp());
             }
         }
@@ -213,20 +215,19 @@ public class Parser {
                 boolean isStatic = false;
                 String visibility = "";
                 String am = b[j];
-
+                am = am.replaceAll(" ", "");
                 if (am.charAt(0) == '_') {
                     isStatic = true;
                     visibility = "" + am.charAt(1);
-                    am = am.substring(1,am.length()-1);
+                    am = am.substring(1, am.length() - 1);
                 } else {
                     visibility = "" + am.charAt(0);
                 }
                 if (am.contains("(")) {
-                    list.add(new Method(am.substring(1, am.indexOf('(')), am.substring(am.indexOf('('), am.indexOf(')')).contains(":")? am.substring(am.indexOf(':'), am.indexOf(')')): am.substring(am.indexOf('('), am.indexOf(')')), am.substring(am.indexOf(':')+1), isStatic, visibility));
+                    list.add(new Method(am.substring(1, am.indexOf('(')), am.substring(am.indexOf('('), am.indexOf(')')).contains(":") ? am.substring(am.indexOf(':') + 1, am.indexOf(')')) : am.substring(am.indexOf('('), am.indexOf(')')), am.substring(am.lastIndexOf(':') + 1), isStatic, visibility));
+                } else if (am.contains(":")) {
 
-                } else if (am.contains(":")){
-
-                    list.add(new Attribut(am.substring(1,am.indexOf(' ') < am.indexOf(':')? am.indexOf(' '): am.indexOf(':')), am.substring(am.indexOf(':')+1), visibility, isStatic));
+                    list.add(new Attribut(am.substring(1, am.indexOf(':')), am.substring(am.indexOf(':') + 1), visibility, isStatic));
 
                 }
             }
