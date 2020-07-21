@@ -1,3 +1,7 @@
+/*
+@author Michael Kowollik
+ */
+
 package Control.Strategy;
 
 import Model.UMLComponent;

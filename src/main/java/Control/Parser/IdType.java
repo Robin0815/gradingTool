@@ -8,4 +8,5 @@ public class IdType {
    public static String usecase(){ return "UMLUseCase";}
    public static String actor(){ return "UMLActor";}
    public static String system(){ return "UMLGeneric";}
+   public static  String note(){ return "UMLNote";}
 }

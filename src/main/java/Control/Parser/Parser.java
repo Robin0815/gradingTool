@@ -1,5 +1,6 @@
 /**
  * @author rfrank2s
+ * @author Michael Kowollik
  */
 package Control.Parser;
 
@@ -85,6 +86,14 @@ public class Parser {
                             diaList.add(a);
                         }
 
+                        if (id.equals((IdType.note())) && runt == 1) {
+                            a = noteParse(panel_attributes);
+                            diaList.add(a);
+                            if (a.isConnectable()) {
+                                compPos.add(new TempComp(a, Integer.parseInt(x), Integer.parseInt(y), Integer.parseInt(w), Integer.parseInt(h)));
+                            }
+                        }
+
                         //Weitere Komponenten erkennen
 
 
@@ -130,6 +139,12 @@ public class Parser {
     private UMLComponent actorParse(String panelAttr) {
         Actor res = new Actor();
         res.setName(panelAttr);
+        return res;
+    }
+
+    private UMLComponent noteParse(String panelAttr) {
+        Note res = new Note();
+        res.setText(panelAttr);
         return res;
     }
 
