@@ -142,7 +142,7 @@ public class Parser {
             res.setName(s1[0]);
             s1 = s[1].split("\n");
             for (int i = 0; i < s1.length; i++) {
-                if (!s1[i].contains("=") & !s1[i].isEmpty()) {
+                if (!s1[i].contains("valign") & !s1[i].isEmpty()) {
                     res.addExtpoint(s1[i]);
                 }
             }
