@@ -107,7 +107,7 @@ public class Parser {
                         }
 
                         //Alle nicht in IdType definierten Elemente als Unknown Element anlegen
-                        if (!(id.equals(IdType.system()) || id.equals(IdType.umlclass()) || id.equals(IdType.actor()) || id.equals(IdType.usecase()) || id.equals(IdType.relation())) && runt == 1) {
+                        if (!(id.equals(IdType.note()) || id.equals(IdType.system()) || id.equals(IdType.umlclass()) || id.equals(IdType.actor()) || id.equals(IdType.usecase()) || id.equals(IdType.relation())) && runt == 1) {
                             a = new UnknownElement();
                             diaList.add(a);
                         }
