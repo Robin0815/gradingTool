@@ -25,11 +25,9 @@ public class ConditionRelation implements UMLComponent{
         this.connectedElements.remove(component);
     }
 
-    public Boolean isConnectedToNote(){
+    public boolean isConnectedToNote(){
         if(connectedElements.size()==1){
-            if(connectedElements.get(0) instanceof Note){
-                return true;
-            }
+            return connectedElements.get(0) instanceof Note;
         }
         return false;
     }
