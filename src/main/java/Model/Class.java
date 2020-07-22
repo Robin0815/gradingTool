@@ -1,4 +1,6 @@
-package Model;
+/**
+ * @author rfrank2s
+ */ package Model;
 
 import java.util.List;
 

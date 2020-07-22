@@ -1,3 +1,6 @@
+/**
+ * @author rfrank2s
+ */
 package Model;
 
 public class Attribut implements UMLComponent{
