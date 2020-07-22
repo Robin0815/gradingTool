@@ -2,8 +2,9 @@
 @author Michael Kowollik
  */
 
-package Control.Strategy;
+package Control.Strategy.UseCaseStrategy;
 
+import Control.Strategy.Strategy;
 import Model.UMLComponent;
 
 import java.util.List;
