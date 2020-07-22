@@ -213,6 +213,9 @@ public class Parser {
         else if(panelAttr.contains("lt=.()")){
             res = new ConditionRelation();
         }
+        else if(panelAttr.contains("lt=->>")){
+            res = new Generalization();
+        }
         else {
             res = new UnknownRelation();
         }

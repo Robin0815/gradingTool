@@ -19,4 +19,8 @@ public class Association  extends Relation{
         return true;
     }*/
 
+    @Override
+    public String toString() {
+        return "Association{}";
+    }
 }

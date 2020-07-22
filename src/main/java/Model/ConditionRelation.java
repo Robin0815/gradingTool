@@ -15,4 +15,8 @@ public class ConditionRelation extends Relation{
         return false;
     }*/
 
+    @Override
+    public String toString() {
+        return "ConditionRelation{}";
+    }
 }

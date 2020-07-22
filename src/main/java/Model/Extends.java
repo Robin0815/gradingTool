@@ -17,4 +17,8 @@ public class Extends extends Relation{
         return true;
     }*/
 
+    @Override
+    public String toString() {
+        return "Extends{}";
+    }
 }
