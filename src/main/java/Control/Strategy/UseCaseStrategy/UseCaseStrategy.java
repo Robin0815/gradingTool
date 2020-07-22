@@ -15,6 +15,7 @@ import java.util.Map;
 public class UseCaseStrategy implements Strategy {
 
     private static Map<String, Integer> synerrors = new HashMap<String, Integer>();
+    private static Map<Elements, Integer> numberOfElements = new HashMap<Elements, Integer>();
 
     @Override
     public void analyzeUML(List<UMLComponent> comps){
@@ -25,106 +26,46 @@ public class UseCaseStrategy implements Strategy {
         //Calculating number of elements
         calculateElements(comps);
         //Comparing with solution
+        checkSimilarity();
     }
 
-    public Map<Elements, Integer> calculateElements(List<UMLComponent> comps){
+    public void calculateElements(List<UMLComponent> comps){
         // Calculating number of all elements in the diagramm
-        Map<Elements, Integer> numberOfElements = new HashMap<Elements, Integer>();
         for (UMLComponent comp: comps) {
             if (comp instanceof UseCase){
-                Integer count = numberOfElements.get(Elements.USECASE);
-                if (count == null) {
-                    numberOfElements.put(Elements.USECASE, 1);
-                }
-                else {
-                    numberOfElements.put(Elements.USECASE, count + 1);
-                }
+                incrementElement(Elements.USECASE);
             } else if (comp instanceof Actor){
-                Integer count = numberOfElements.get(Elements.ACTOR);
-                if (count == null) {
-                    numberOfElements.put(Elements.ACTOR, 1);
-                }
-                else {
-                    numberOfElements.put(Elements.ACTOR, count + 1);
-                }
+                incrementElement(Elements.ACTOR);
             } else if (comp instanceof System){
-                Integer count = numberOfElements.get(Elements.SYSTEM);
-                if (count == null) {
-                    numberOfElements.put(Elements.SYSTEM, 1);
-                }
-                else {
-                    numberOfElements.put(Elements.SYSTEM, count + 1);
-                }
+                incrementElement(Elements.SYSTEM);
             } else if (comp instanceof ExtensionPoint){
-                Integer count = numberOfElements.get(Elements.EXTENSIONPOINT);
-                if (count == null) {
-                    numberOfElements.put(Elements.EXTENSIONPOINT, 1);
-                }
-                else {
-                    numberOfElements.put(Elements.EXTENSIONPOINT, count + 1);
-                }
+                incrementElement(Elements.EXTENSIONPOINT);
             } else if (comp instanceof Note){
-                Integer count = numberOfElements.get(Elements.NOTE);
-                if (count == null) {
-                    numberOfElements.put(Elements.NOTE, 1);
-                }
-                else {
-                    numberOfElements.put(Elements.NOTE, count + 1);
-                }
+                incrementElement(Elements.NOTE);
             } else if (comp instanceof Association){
-                Integer count = numberOfElements.get(Elements.ASSOCIATION);
-                if (count == null) {
-                    numberOfElements.put(Elements.ASSOCIATION, 1);
-                }
-                else {
-                    numberOfElements.put(Elements.ASSOCIATION, count + 1);
-                }
+                incrementElement(Elements.ASSOCIATION);
             } else if (comp instanceof Extends){
-                Integer count = numberOfElements.get(Elements.EXTENDS);
-                if (count == null) {
-                    numberOfElements.put(Elements.EXTENDS, 1);
-                }
-                else {
-                    numberOfElements.put(Elements.EXTENDS, count + 1);
-                }
+                incrementElement(Elements.EXTENDS);
             } else if (comp instanceof Includes){
-                Integer count = numberOfElements.get(Elements.INCLUDES);
-                if (count == null) {
-                    numberOfElements.put(Elements.INCLUDES, 1);
-                }
-                else {
-                    numberOfElements.put(Elements.INCLUDES, count + 1);
-                }
+                incrementElement(Elements.INCLUDES);
             } else if (comp instanceof ConditionRelation){
-                Integer count = numberOfElements.get(Elements.CONDITIONRELATION);
-                if (count == null) {
-                    numberOfElements.put(Elements.CONDITIONRELATION, 1);
-                }
-                else {
-                    numberOfElements.put(Elements.CONDITIONRELATION, count + 1);
-                }
+                incrementElement(Elements.CONDITIONRELATION);
             } else if (comp instanceof Generalization){
-                Integer count = numberOfElements.get(Elements.GENERALIZATION);
-                if (count == null) {
-                    numberOfElements.put(Elements.GENERALIZATION, 1);
-                }
-                else {
-                    numberOfElements.put(Elements.GENERALIZATION, count + 1);
-                }
+                incrementElement(Elements.GENERALIZATION);
             } else {
-                Integer count = numberOfElements.get(Elements.UNKNOWNELEMENT);
-                if (count == null) {
-                    numberOfElements.put(Elements.UNKNOWNELEMENT, 1);
-                }
-                else {
-                    numberOfElements.put(Elements.UNKNOWNELEMENT, count + 1);
-                }
+                incrementElement(Elements.UNKNOWNELEMENT);
             }
-
         }
+    }
 
-
-        return numberOfElements;
+    public void incrementElement(Elements element){
+        Integer count = numberOfElements.get(element);
+        if (count == null) {
+            numberOfElements.put(element, 1);
+        }
+        else {
+            numberOfElements.put(element, count + 1);
+        }
     }
 
     public void checkSyntax(List<UMLComponent>comps){
