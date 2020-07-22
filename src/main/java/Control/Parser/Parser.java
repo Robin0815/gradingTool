@@ -178,8 +178,8 @@ public class Parser {
         String[] s = addAttr.split(";");
         int x2 = (int) Double.parseDouble(s[0]);
         int y2 = (int) Double.parseDouble(s[1]);
-        int x1 = (int) Double.parseDouble(s[2]);
-        int y1 = (int) Double.parseDouble(s[3]);
+        int x1 = (int) Double.parseDouble(s[s.length -2]);
+        int y1 = (int) Double.parseDouble(s[s.length -1]);
         start = new Point(x + x1, y + y1);
         end = new Point(x + x2, y + y2);
 
