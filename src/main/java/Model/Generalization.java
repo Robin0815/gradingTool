@@ -21,6 +21,6 @@ public class Generalization extends Relation{
 
     @Override
     public String toString() {
-        return "Generalization{}";
+        return "Generalization{ "+super.toString()+" }";
     }
 }

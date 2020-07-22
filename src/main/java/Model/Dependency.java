@@ -7,6 +7,6 @@ public class Dependency extends Relation{
 
     @Override
     public String toString() {
-        return "Dependency{}";
+        return "Dependency{ "+super.toString()+" }";
     }
 }

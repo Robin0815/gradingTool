@@ -17,6 +17,6 @@ public class ConditionRelation extends Relation{
 
     @Override
     public String toString() {
-        return "ConditionRelation{}";
+        return "ConditionRelation{ "+super.toString()+" }";
     }
 }

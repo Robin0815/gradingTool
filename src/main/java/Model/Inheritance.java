@@ -6,6 +6,6 @@ package Model;
 public class Inheritance extends Relation{
     @Override
     public String toString() {
-        return "Inheritance{}";
+        return "Inheritance{ "+super.toString()+" }";
     }
 }

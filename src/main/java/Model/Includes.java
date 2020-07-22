@@ -19,6 +19,6 @@ public class Includes extends Relation{
 
     @Override
     public String toString() {
-        return "Includes{}";
+        return "Includes{ "+super.toString()+" }";
     }
 }

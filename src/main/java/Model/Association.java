@@ -21,6 +21,6 @@ public class Association  extends Relation{
 
     @Override
     public String toString() {
-        return "Association{}";
+        return "Association{ "+super.toString()+" }";
     }
 }

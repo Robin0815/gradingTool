@@ -7,6 +7,6 @@ public class Aggregation extends Relation{
 
     @Override
     public String toString() {
-        return "Aggregation{}";
+        return "Aggregation{ "+super.toString()+" }";
     }
 }

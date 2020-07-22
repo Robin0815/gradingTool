@@ -19,6 +19,6 @@ public class Extends extends Relation{
 
     @Override
     public String toString() {
-        return "Extends{}";
+        return "Extends{ "+super.toString()+" }";
     }
 }
