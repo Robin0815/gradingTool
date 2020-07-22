@@ -5,7 +5,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>330</x>
-      <y>100</y>
+      <y>0</y>
       <w>210</w>
       <h>110</h>
     </coordinates>
@@ -22,7 +22,7 @@ _+staticAttribut: Attrib_
     <id>UMLClass</id>
     <coordinates>
       <x>0</x>
-      <y>130</y>
+      <y>30</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -35,7 +35,7 @@ _+staticAttribut: Attrib_
     <id>Relation</id>
     <coordinates>
       <x>90</x>
-      <y>120</y>
+      <y>20</y>
       <w>260</w>
       <h>40</h>
     </coordinates>
@@ -47,7 +47,7 @@ _+staticAttribut: Attrib_
     <id>UMLClass</id>
     <coordinates>
       <x>330</x>
-      <y>360</y>
+      <y>260</y>
       <w>210</w>
       <h>110</h>
     </coordinates>
@@ -64,7 +64,7 @@ _+staticAttribut: Attrib_
     <id>Relation</id>
     <coordinates>
       <x>430</x>
-      <y>190</y>
+      <y>90</y>
       <w>90</w>
       <h>200</h>
     </coordinates>
@@ -76,7 +76,7 @@ _+staticAttribut: Attrib_
     <id>UMLClass</id>
     <coordinates>
       <x>770</x>
-      <y>100</y>
+      <y>0</y>
       <w>210</w>
       <h>110</h>
     </coordinates>
@@ -91,7 +91,7 @@ _+staticAttribut: Attrib_
     <id>Relation</id>
     <coordinates>
       <x>520</x>
-      <y>140</y>
+      <y>40</y>
       <w>280</w>
       <h>280</h>
     </coordinates>
@@ -103,7 +103,7 @@ _+staticAttribut: Attrib_
     <id>UMLUseCase</id>
     <coordinates>
       <x>890</x>
-      <y>450</y>
+      <y>350</y>
       <w>120</w>
       <h>40</h>
     </coordinates>
@@ -114,7 +114,7 @@ _+staticAttribut: Attrib_
     <id>UMLUseCase</id>
     <coordinates>
       <x>1310</x>
-      <y>440</y>
+      <y>340</y>
       <w>160</w>
       <h>90</h>
     </coordinates>
@@ -128,7 +128,7 @@ valign=top</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1000</x>
-      <y>460</y>
+      <y>360</y>
       <w>330</w>
       <h>40</h>
     </coordinates>
@@ -139,7 +139,7 @@ valign=top</panel_attributes>
     <id>UMLGeneric</id>
     <coordinates>
       <x>850</x>
-      <y>340</y>
+      <y>240</y>
       <w>680</w>
       <h>310</h>
     </coordinates>
@@ -151,13 +151,18 @@ halign=left</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>1820</x>
-      <y>620</y>
-      <w>230</w>
-      <h>90</h>
+      <y>520</y>
+      <w>310</w>
+      <h>200</h>
     </coordinates>
     <panel_attributes>Mensch
 --
 +gehen(distanz : double) : void
++emailSchreiben(addresse : String) : String
++setOwnEmail(addresse : String) : void
+--
+-emailAdresse : String
+-groesse : double
 
 
 </panel_attributes>
