@@ -63,6 +63,62 @@ public class UseCaseStrategy implements Strategy {
                 else {
                     numberOfElements.put(Elements.EXTENSIONPOINT, count + 1);
                 }
+            } else if (comp instanceof Note){
+                Integer count = numberOfElements.get(Elements.NOTE);
+                if (count == null) {
+                    numberOfElements.put(Elements.NOTE, 1);
+                }
+                else {
+                    numberOfElements.put(Elements.NOTE, count + 1);
+                }
+            } else if (comp instanceof Association){
+                Integer count = numberOfElements.get(Elements.ASSOCIATION);
+                if (count == null) {
+                    numberOfElements.put(Elements.ASSOCIATION, 1);
+                }
+                else {
+                    numberOfElements.put(Elements.ASSOCIATION, count + 1);
+                }
+            } else if (comp instanceof Extends){
+                Integer count = numberOfElements.get(Elements.EXTENDS);
+                if (count == null) {
+                    numberOfElements.put(Elements.EXTENDS, 1);
+                }
+                else {
+                    numberOfElements.put(Elements.EXTENDS, count + 1);
+                }
+            } else if (comp instanceof Includes){
+                Integer count = numberOfElements.get(Elements.INCLUDES);
+                if (count == null) {
+                    numberOfElements.put(Elements.INCLUDES, 1);
+                }
+                else {
+                    numberOfElements.put(Elements.INCLUDES, count + 1);
+                }
+            } else if (comp instanceof ConditionRelation){
+                Integer count = numberOfElements.get(Elements.CONDITIONRELATION);
+                if (count == null) {
+                    numberOfElements.put(Elements.CONDITIONRELATION, 1);
+                }
+                else {
+                    numberOfElements.put(Elements.CONDITIONRELATION, count + 1);
+                }
+            } else if (comp instanceof Generalization){
+                Integer count = numberOfElements.get(Elements.GENERALIZATION);
+                if (count == null) {
+                    numberOfElements.put(Elements.GENERALIZATION, 1);
+                }
+                else {
+                    numberOfElements.put(Elements.GENERALIZATION, count + 1);
+                }
+            } else {
+                Integer count = numberOfElements.get(Elements.UNKNOWNELEMENT);
+                if (count == null) {
+                    numberOfElements.put(Elements.UNKNOWNELEMENT, 1);
+                }
+                else {
+                    numberOfElements.put(Elements.UNKNOWNELEMENT, count + 1);
+                }
             }
 
         }
@@ -82,7 +138,7 @@ public class UseCaseStrategy implements Strategy {
     }
 
     public void checkSimilarity(){
-        // shecking Similarity with solution
+        //Checking Similarity with solution
     }
 
     public void checkRelation(UMLComponent comp){
