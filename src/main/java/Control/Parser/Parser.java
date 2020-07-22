@@ -172,7 +172,7 @@ public class Parser {
     }
 
     private UMLComponent relationParse(String panelAttr, String addAttr, int x, int y, int w, int h) {
-        Relation res = new Relation(panelAttr);
+        Relation res;
         Point start = null;
         Point end = null;
         String[] s = addAttr.split(";");
@@ -182,6 +182,41 @@ public class Parser {
         int y1 = (int) Double.parseDouble(s[s.length -1]);
         start = new Point(x + x1, y + y1);
         end = new Point(x + x2, y + y2);
+        //Relation erkennen
+        if(panelAttr.contains("lt=<-")){
+            res = new Use();
+        }
+        else if(panelAttr.contains("lt=<.")){
+            res = new Dependency();
+        }
+        else if(panelAttr.contains("lt=<<.")){
+            res = new Implements();
+        }
+        else if(panelAttr.contains("lt=<<-")){
+            res = new Inheritance();
+        }
+        else if(panelAttr.contains("lt=<<<<<-")){
+            res = new Composition();
+        }
+        else if(panelAttr.contains("lt=<<<<-")){
+            res = new Aggregation();
+        }
+        else if(panelAttr.contains("lt=.>") && panelAttr.contains("<<includes>>")){
+            res = new Includes();
+        }
+        else if(panelAttr.contains("lt=.>") && panelAttr.contains("<<extends>>")){
+            res = new Extends();
+        }
+        else if(!panelAttr.contains("=")){
+            res = new Association();
+        }
+        else if(panelAttr.contains("lt=.()")){
+            res = new ConditionRelation();
+        }
+        else {
+            res = new UnknownRelation();
+        }
+
 
         for (int i = 0; i < compPos.size(); i++) {
             TempComp tmp = compPos.get(i);

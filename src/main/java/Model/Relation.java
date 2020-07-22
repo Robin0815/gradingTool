@@ -30,4 +30,12 @@ public abstract class Relation implements UMLComponent{
     public boolean isConnectable() {
         return false;
     }
+
+    @Override
+    public String toString() {
+        return "\n"+"Relation{" +
+                "start=" + start +
+                ", end=" + end +
+                '}'+"\n";
+    }
 }

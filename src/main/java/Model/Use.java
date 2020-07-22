@@ -4,4 +4,8 @@
 package Model;
 
 public class Use extends Relation{
+    @Override
+    public String toString() {
+        return "Use{}";
+    }
 }
