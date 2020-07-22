@@ -62,15 +62,14 @@ public class UseCaseStrategy implements Strategy {
         Integer count = numberOfElements.get(element);
         if (count == null) {
             numberOfElements.put(element, 1);
-        }
-        else {
+        } else {
             numberOfElements.put(element, count + 1);
         }
     }
 
     public void checkSyntax(List<UMLComponent>comps){
         for (UMLComponent comp: comps) {
-            if (comp instanceof Relation){
+            if (comp instanceof Association || comp instanceof Generalization || comp instanceof Extends || comp instanceof Includes || comp instanceof ConditionRelation){
                 checkRelation(comp);
             } else {
                 checkEntity(comp);
@@ -79,16 +78,21 @@ public class UseCaseStrategy implements Strategy {
     }
 
     public void checkSimilarity(){
-        //Checking Similarity with solution
+        //Checking similarity with solution
     }
 
     public void checkRelation(UMLComponent comp){
         //Checking syntax and semantics of relations
-
+        //Check if Relation is binary
+        //Check if ConditionRelation is connected to Note only
+        //Check if Association connects only Actors to Use Cases / Extension Points
+        //Check if Includes and Extends connects only Use Cases and Actors
+        //Check if Generalization connects either Use Cases or Actors
     }
 
     public void checkEntity(UMLComponent comp){
         //Checking syntax and semantics of use cases and actors
-
+        //Check if Name is not null
+        //Check if Systems contains Actors
     }
 }
