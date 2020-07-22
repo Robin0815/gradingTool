@@ -1,6 +1,6 @@
 /**
  * @author rfrank2s
- * @author Michael Kowollik
+ * @author mkowol2s
  */
 package Control.Parser;
 

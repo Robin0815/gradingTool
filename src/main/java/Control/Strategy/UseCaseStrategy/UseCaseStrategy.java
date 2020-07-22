@@ -1,5 +1,5 @@
 /*
-@author Michael Kowollik
+@author mkowol2s
  */
 
 package Control.Strategy.UseCaseStrategy;
