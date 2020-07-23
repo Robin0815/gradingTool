@@ -4,6 +4,7 @@
 package Model;
 
 public abstract class Relation implements UMLComponent{
+    private final String id = "Relation";
     private UMLComponent start;
     private UMLComponent end;
 
