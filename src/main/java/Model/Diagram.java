@@ -42,7 +42,7 @@ public class Diagram implements UMLComponent{
     }
 
     @Override
-    public String id() {
-        return "Diagram";
+    public Elements id() {
+        return Elements.DIAGRAM;
     }
 }

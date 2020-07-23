@@ -7,8 +7,6 @@ package Model;
 import Control.Strategy.UseCaseStrategy.Visitor.Visitor;
 
 public class Association  extends Relation{
-    public final String id = "Association";
-
     @Override
     public String toString() {
         return "Association{ "+super.toString()+" }";
@@ -20,7 +18,7 @@ public class Association  extends Relation{
     }
 
     @Override
-    public String id() {
-        return id;
+    public Elements id() {
+        return Elements.ASSOCIATION;
     }
 }

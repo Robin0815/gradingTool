@@ -3,7 +3,6 @@ package Model;
 import Control.Strategy.UseCaseStrategy.Visitor.Visitor;
 
 public class NonHumanActor implements UMLComponent{
-    public final String id = "NonHumanActor";
     private String name;
 
     public String getName() {
@@ -32,7 +31,7 @@ public class NonHumanActor implements UMLComponent{
     }
 
     @Override
-    public String id() {
-        return id;
+    public Elements id() {
+        return Elements.NONHUMANACTOR;
     }
 }

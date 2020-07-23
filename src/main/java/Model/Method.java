@@ -11,7 +11,6 @@ public class Method implements UMLComponent{
     private String outputType;
     private boolean isStatic;
     private String visibility;
-    public final String id = "Methode";
 
     public Method(String name, String inputType, String outputType, boolean isStatic, String visibility) {
         this.name = name;
@@ -83,7 +82,7 @@ public class Method implements UMLComponent{
     }
 
     @Override
-    public String id() {
-        return id;
+    public Elements id() {
+        return Elements.METHOD;
     }
 }

@@ -7,8 +7,6 @@ package Model;
 import Control.Strategy.UseCaseStrategy.Visitor.Visitor;
 
 public class UnknownElement implements UMLComponent{
-    public final String id = "UnknownElement";
-
     @Override
     public boolean isConnectable() {
         return false;
@@ -25,7 +23,7 @@ public class UnknownElement implements UMLComponent{
     }
 
     @Override
-    public String id() {
-        return id;
+    public Elements id() {
+        return Elements.UNKNOWNELEMENT;
     }
 }

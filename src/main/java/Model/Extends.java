@@ -7,8 +7,6 @@ package Model;
 import Control.Strategy.UseCaseStrategy.Visitor.Visitor;
 
 public class Extends extends Relation{
-    public final String id = "Extends";
-
     @Override
     public String toString() {
         return "Extends{ "+super.toString()+" }";
@@ -20,7 +18,7 @@ public class Extends extends Relation{
     }
 
     @Override
-    public String id() {
-        return id;
+    public Elements id() {
+        return Elements.EXTENDS;
     }
 }

@@ -7,8 +7,6 @@ package Model;
 import Control.Strategy.UseCaseStrategy.Visitor.Visitor;
 
 public class ConditionRelation extends Relation{
-    public final String id = "ConditionRelation";
-
     @Override
     public String toString() {
         return "ConditionRelation{ "+super.toString()+" }";
@@ -20,7 +18,7 @@ public class ConditionRelation extends Relation{
     }
 
     @Override
-    public String id() {
-        return id;
+    public Elements id() {
+        return Elements.CONDITIONRELATION;
     }
 }

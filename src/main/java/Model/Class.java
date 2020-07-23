@@ -11,7 +11,6 @@ public class Class implements UMLComponent{
     private String name;
     private String stereotype;
     private List<UMLComponent> elements;
-    public final String id = "Class";
 
     public String getName() {
         return name;
@@ -65,7 +64,7 @@ public class Class implements UMLComponent{
     }
 
     @Override
-    public String id() {
-        return id;
+    public Elements id() {
+        return Elements.CLASS;
     }
 }

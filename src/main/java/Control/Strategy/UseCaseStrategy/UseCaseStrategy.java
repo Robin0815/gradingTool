@@ -5,7 +5,7 @@
 package Control.Strategy.UseCaseStrategy;
 
 import Control.Strategy.Strategy;
-import Control.Strategy.UseCaseStrategy.Visitor.Elements;
+import Model.Elements;
 import Control.Strategy.UseCaseStrategy.Visitor.ErrorTypes;
 import Control.Strategy.UseCaseStrategy.Visitor.ErrorWrapper;
 import Model.*;
@@ -32,7 +32,7 @@ public class UseCaseStrategy implements Strategy {
 
     public void calculateElements(List<UMLComponent> comps){
         // Calculating number of all elements in the diagramm
-        for (UMLComponent comp: comps) {
+        /*for (UMLComponent comp: comps) {
             if (comp instanceof UseCase){
                 incrementElement(Elements.USECASE);
             } else if (comp instanceof Actor){
@@ -56,7 +56,7 @@ public class UseCaseStrategy implements Strategy {
             } else {
                 incrementElement(Elements.UNKNOWNELEMENT);
             }
-        }
+        }*/
     }
 
     public void incrementElement(Elements element){

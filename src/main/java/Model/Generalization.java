@@ -7,8 +7,6 @@ package Model;
 import Control.Strategy.UseCaseStrategy.Visitor.Visitor;
 
 public class Generalization extends Relation{
-    public final String id = "Generalization";
-
     @Override
     public String toString() {
         return "Generalization{ "+super.toString()+" }";
@@ -20,7 +18,7 @@ public class Generalization extends Relation{
     }
 
     @Override
-    public String id() {
-        return id;
+    public Elements id() {
+        return Elements.GENERALIZATION;
     }
 }

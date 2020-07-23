@@ -6,7 +6,6 @@ package Model;
 import Control.Strategy.UseCaseStrategy.Visitor.Visitor;
 
 public class Composition extends Relation{
-    public final String id = "Composition";
     @Override
     public String toString() {
         return "Composition{ "+super.toString()+" }";
@@ -18,7 +17,7 @@ public class Composition extends Relation{
     }
 
     @Override
-    public String id() {
-        return id;
+    public Elements id() {
+        return Elements.COMPOSITION;
     }
 }

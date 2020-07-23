@@ -2,12 +2,11 @@ package Control.Strategy.UseCaseStrategy;
 
 import Control.Strategy.UseCaseStrategy.Visitor.ErrorTypes;
 import Control.Strategy.UseCaseStrategy.Visitor.ErrorWrapper;
-import Model.ConditionRelation;
+import Model.Elements;
 import Model.UMLComponent;
 import Model.UseCase;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class SyntaxChecker {
@@ -48,7 +47,7 @@ public class SyntaxChecker {
     }
 
     public void checkSyntax(UMLComponent component){
-        if (component.id() =="UseCase"){
+        if (component.id() == Elements.USECASE){
             applyRules((UseCase) component);
         }
     }

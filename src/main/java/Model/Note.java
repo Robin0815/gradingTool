@@ -7,7 +7,6 @@ package Model;
 import Control.Strategy.UseCaseStrategy.Visitor.Visitor;
 
 public class Note implements UMLComponent{
-    public final String id = "Note";
     String text;
 
     public String getText() {
@@ -36,7 +35,7 @@ public class Note implements UMLComponent{
     }
 
     @Override
-    public String id() {
-        return id;
+    public Elements id() {
+        return Elements.NOTE;
     }
 }

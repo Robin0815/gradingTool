@@ -6,7 +6,6 @@ package Model;
 import Control.Strategy.UseCaseStrategy.Visitor.Visitor;
 
 public class Dependency extends Relation{
-    public final String id = "Dependency";
     @Override
     public String toString() {
         return "Dependency{ "+super.toString()+" }";
@@ -18,7 +17,7 @@ public class Dependency extends Relation{
     }
 
     @Override
-    public String id() {
-        return id;
+    public Elements id() {
+        return Elements.DEPENDENCY;
     }
 }

@@ -7,7 +7,6 @@ package Model;
 import Control.Strategy.UseCaseStrategy.Visitor.Visitor;
 
 public class UseCase implements UMLComponent {
-    public final String id = "UseCase";
     private String name;
 
     public void setName(String name) {
@@ -35,7 +34,7 @@ public class UseCase implements UMLComponent {
     }
 
     @Override
-    public String id() {
-        return id;
+    public Elements id() {
+        return Elements.USECASE;
     }
 }
