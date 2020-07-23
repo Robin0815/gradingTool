@@ -86,7 +86,7 @@ public class UseCaseStrategy implements Strategy {
         //Check if Relation is binary
         //Check if ConditionRelation is connected to Note only
         //Check if Association connects only Actors to Use Cases / Extension Points
-        //Check if Includes and Extends connects only Use Cases and Actors
+        //Check if Includes and Extends connects only Use Cases and Extension Points
         //Check if Generalization connects either Use Cases or Actors
     }
 
