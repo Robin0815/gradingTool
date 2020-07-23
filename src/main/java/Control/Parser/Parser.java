@@ -86,7 +86,7 @@ public class Parser {
                             diaList.add(a);
                         }
 
-                        if (id.equals((IdType.note())) && runt == 1) {
+                        if (id.equals((IdType.note())) && runt == 0) {
                             a = noteParse(panel_attributes);
                             diaList.add(a);
                             if (a.isConnectable()) {
