@@ -10,5 +10,6 @@ public class ClassStrategy implements Strategy {
     public void analyzeUML(List<UMLComponent> comps) {
         //Implemenatation for automatic correction here
 
+
     }
 }
