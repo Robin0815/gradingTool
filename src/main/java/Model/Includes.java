@@ -7,6 +7,7 @@ package Model;
 import Control.Strategy.UseCaseStrategy.Visitor.Visitor;
 
 public class Includes extends Relation{
+    public final String id = "Includes";
 
     @Override
     public String toString() {

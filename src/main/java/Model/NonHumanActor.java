@@ -3,7 +3,7 @@ package Model;
 import Control.Strategy.UseCaseStrategy.Visitor.Visitor;
 
 public class NonHumanActor implements UMLComponent{
-
+    public final String id = "NonHumanActor";
     private String name;
 
     public String getName() {

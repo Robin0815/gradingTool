@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ExtensionPoint implements UMLComponent {
+    public final String id = "ExtensionPoint";
     private String name;
     private List<String> extpoints = new ArrayList<>();
 

@@ -7,6 +7,7 @@ package Model;
 import Control.Strategy.UseCaseStrategy.Visitor.Visitor;
 
 public class Note implements UMLComponent{
+    public final String id = "Note";
     String text;
 
     public String getText() {

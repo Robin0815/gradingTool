@@ -14,7 +14,7 @@ public class ThinMain {
         String file = "Adapter-UML.uxf";
         Parser a = new Parser();
         List<UMLComponent> l = a.parseFile(file);
-        System.out.println(l.toString());
+        //System.out.println(l.toString());
         /*for (int i = 0; i< l.size();i++){
             UMLComponent tmp = l.get(i);
             if(tmp instanceof Use){
@@ -31,7 +31,7 @@ public class ThinMain {
                 }
             }
         }*/
-       /* Strategy strategy = new UseCaseStrategy();
-        strategy.analyzeUML(l);*/
+       Strategy strategy = new UseCaseStrategy();
+        strategy.analyzeUML(l);
     }
 }

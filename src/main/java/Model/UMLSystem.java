@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UMLSystem implements UMLComponent{
+    public final String id = "UMLSystem";
     private String name;
     private List<UMLComponent> containedElements = new ArrayList<>();
 

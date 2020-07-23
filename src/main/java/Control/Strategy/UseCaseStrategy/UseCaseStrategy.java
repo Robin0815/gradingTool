@@ -8,7 +8,6 @@ import Control.Strategy.Strategy;
 import Control.Strategy.UseCaseStrategy.Visitor.Elements;
 import Control.Strategy.UseCaseStrategy.Visitor.ErrorTypes;
 import Control.Strategy.UseCaseStrategy.Visitor.ErrorWrapper;
-import Control.Strategy.UseCaseStrategy.Visitor.UseCaseRuleVisitor;
 import Model.*;
 import Model.UMLSystem;
 
@@ -70,9 +69,10 @@ public class UseCaseStrategy implements Strategy {
     }
 
     public void checkSyntax(List<UMLComponent>comps){
-        UseCaseRuleVisitor synchecker =  new UseCaseRuleVisitor();
+        SyntaxChecker synchecker = new SyntaxChecker();
         for (UMLComponent comp: comps) {
-            comp.accept(synchecker);
+            System.out.println(comp.id);
+            synchecker.checkSyntax(comp);
         }
         Map<ErrorTypes, ErrorWrapper> tmpmap = synchecker.getNumberOfErrors();
         System.out.println(Collections.singletonList(tmpmap));
@@ -80,20 +80,5 @@ public class UseCaseStrategy implements Strategy {
 
     public void checkSimilarity(){
         //Checking similarity with solution
-    }
-
-    public void checkRelation(UMLComponent comp){
-        //Checking syntax and semantics of relations
-        //Check if Relation is binary
-        //Check if ConditionRelation is connected to Note only
-        //Check if Association connects only Actors to Use Cases / Extension Points
-        //Check if Includes and Extends connects only Use Cases and Extension Points
-        //Check if Generalization connects either Use Cases or Actors
-    }
-
-    public void checkEntity(UMLComponent comp){
-        //Checking syntax and semantics of use cases and actors
-        //Check if Name is not null
-        //Check if Systems contains Actors
     }
 }

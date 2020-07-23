@@ -7,6 +7,7 @@ package Model;
 import Control.Strategy.UseCaseStrategy.Visitor.Visitor;
 
 public class ConditionRelation extends Relation{
+    public final String id = "ConditionRelation";
 
     @Override
     public String toString() {

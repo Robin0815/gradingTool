@@ -7,6 +7,7 @@ package Model;
 import Control.Strategy.UseCaseStrategy.Visitor.Visitor;
 
 public class Actor implements UMLComponent {
+    public final String id = "Actor";
     private String name;
 
     public void setName(String name) {

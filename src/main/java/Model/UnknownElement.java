@@ -7,6 +7,7 @@ package Model;
 import Control.Strategy.UseCaseStrategy.Visitor.Visitor;
 
 public class UnknownElement implements UMLComponent{
+    public final String id = "UnknownElement";
 
     @Override
     public boolean isConnectable() {
