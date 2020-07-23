@@ -81,9 +81,15 @@ public class Parser {
                             }
                         }
 
-                        if (id.equals((IdType.system())) && runt == 1) {
-                            a = systemParse(panel_attributes, Integer.parseInt(x), Integer.parseInt(y), Integer.parseInt(w), Integer.parseInt(h));
-                            diaList.add(a);
+                        if (id.equals((IdType.system()))) {
+                            a = systemParse(panel_attributes, Integer.parseInt(x), Integer.parseInt(y), Integer.parseInt(w), Integer.parseInt(h), runt);
+                            if (a != null) {
+                                diaList.add(a);
+                                if (a.isConnectable()) {
+                                    compPos.add(new TempComp(a, Integer.parseInt(x), Integer.parseInt(y), Integer.parseInt(w), Integer.parseInt(h)));
+                                }
+                            }
+
                         }
 
                         if (id.equals((IdType.note())) && runt == 0) {
@@ -121,8 +127,8 @@ public class Parser {
         return diaList;
     }
 
-    private UMLComponent systemParse(String panelAttr, int x, int y, int w, int h) {
-        if (panelAttr.contains("valign=")) {
+    private UMLComponent systemParse(String panelAttr, int x, int y, int w, int h, int runt) {
+        if (panelAttr.contains("valign=") && runt == 0) {
             NonHumanActor res = new NonHumanActor();
             String tmp = panelAttr.split("\n")[0];
             if(tmp.contains("valign")){
@@ -131,7 +137,7 @@ public class Parser {
             }
             res.setName(tmp);
             return res;
-        } else {
+        } else if (panelAttr.contains("halign=") && runt == 1) {
             UMLSystem res = new UMLSystem();
             String tmpstring = panelAttr.split("\n")[0];
             if(tmpstring.contains("halign")){
@@ -150,6 +156,7 @@ public class Parser {
             }
             return res;
         }
+        return null;
     }
 
     private UMLComponent actorParse(String panelAttr) {

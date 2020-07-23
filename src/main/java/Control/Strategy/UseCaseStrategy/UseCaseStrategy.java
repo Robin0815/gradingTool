@@ -75,6 +75,7 @@ public class UseCaseStrategy implements Strategy {
     public void checkComponent(List<UMLComponent>comps){
         for (UMLComponent comp: comps) {
             checkComponent(comp);
+            System.out.println(comp.toString());
         }
         Map<ErrorTypes, ErrorWrapper> tmpmap = synchecker.getNumberOfErrors();
         System.out.println(Collections.singletonList(tmpmap));

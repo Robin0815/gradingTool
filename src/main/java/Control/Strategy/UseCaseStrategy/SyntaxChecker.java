@@ -86,11 +86,10 @@ public class SyntaxChecker {
         }
         //Check if no Actors are contained
         for (UMLComponent comp : umlSystem.getContainedElements()) {
-            System.out.println(comp.toString());
             if (comp.id() == Elements.ACTOR || comp.id() == Elements.NONHUMANACTOR) {
                 incrementFails(ErrorTypes.ACTORSCONTAINED);
             } else {
-                incrementSucesses(ErrorTypes.ACTORSCONTAINED);
+                //incrementSucesses(ErrorTypes.ACTORSCONTAINED);
             }
         }
     }
