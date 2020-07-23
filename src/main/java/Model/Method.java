@@ -81,4 +81,9 @@ public class Method implements UMLComponent{
     public void accept(Visitor visitor) {
         visitor.visit(this);
     }
+
+    @Override
+    public String id() {
+        return id;
+    }
 }

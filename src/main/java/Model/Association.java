@@ -18,4 +18,9 @@ public class Association  extends Relation{
     public void accept(Visitor visitor) {
         visitor.visit(this);
     }
+
+    @Override
+    public String id() {
+        return id;
+    }
 }

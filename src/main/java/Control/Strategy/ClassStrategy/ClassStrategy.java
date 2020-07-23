@@ -9,5 +9,6 @@ public class ClassStrategy implements Strategy {
     @Override
     public void analyzeUML(List<UMLComponent> comps) {
         //Implemenatation for automatic correction here
+
     }
 }

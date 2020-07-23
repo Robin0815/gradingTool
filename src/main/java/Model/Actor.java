@@ -34,4 +34,9 @@ public class Actor implements UMLComponent {
                 "name='" + name + '\'' +
                 '}';
     }
+
+    @Override
+    public String id() {
+        return id;
+    }
 }

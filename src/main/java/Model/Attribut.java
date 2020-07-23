@@ -38,4 +38,9 @@ public class Attribut implements UMLComponent{
     public void accept(Visitor visitor) {
         visitor.visit(this);
     }
+
+    @Override
+    public String id() {
+        return id;
+    }
 }

@@ -55,4 +55,9 @@ public class UMLSystem implements UMLComponent{
                 ", containedElements=" + containedElements +
                 '}';
     }
+
+    @Override
+    public String id() {
+        return id;
+    }
 }

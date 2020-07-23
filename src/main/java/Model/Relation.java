@@ -36,4 +36,9 @@ public abstract class Relation implements UMLComponent{
                 ", end=" + end +
                 '}'+"\n";
     }
+
+    @Override
+    public String id() {
+        return id;
+    }
 }

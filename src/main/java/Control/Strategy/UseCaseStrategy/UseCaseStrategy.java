@@ -71,7 +71,7 @@ public class UseCaseStrategy implements Strategy {
     public void checkSyntax(List<UMLComponent>comps){
         SyntaxChecker synchecker = new SyntaxChecker();
         for (UMLComponent comp: comps) {
-            System.out.println(comp.id);
+            System.out.println(comp.id());
             synchecker.checkSyntax(comp);
         }
         Map<ErrorTypes, ErrorWrapper> tmpmap = synchecker.getNumberOfErrors();

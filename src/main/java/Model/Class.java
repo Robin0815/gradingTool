@@ -63,4 +63,9 @@ public class Class implements UMLComponent{
                 ", elements=" + elements +
                 '}';
     }
+
+    @Override
+    public String id() {
+        return id;
+    }
 }

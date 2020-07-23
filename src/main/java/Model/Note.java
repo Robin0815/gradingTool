@@ -34,4 +34,9 @@ public class Note implements UMLComponent{
                 "text='" + text + '\'' +
                 '}';
     }
+
+    @Override
+    public String id() {
+        return id;
+    }
 }

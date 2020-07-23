@@ -23,4 +23,9 @@ public class UnknownElement implements UMLComponent{
     public String toString() {
         return "UnknownElement{}";
     }
+
+    @Override
+    public String id() {
+        return id;
+    }
 }

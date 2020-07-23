@@ -46,4 +46,9 @@ public class ExtensionPoint implements UMLComponent {
                 ", extpoints=" + extpoints +
                 '}';
     }
+
+    @Override
+    public String id() {
+        return id;
+    }
 }

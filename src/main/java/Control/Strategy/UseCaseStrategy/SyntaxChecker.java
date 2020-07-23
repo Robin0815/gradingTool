@@ -48,7 +48,7 @@ public class SyntaxChecker {
     }
 
     public void checkSyntax(UMLComponent component){
-        if (component.id =="UseCase"){
+        if (component.id() =="UseCase"){
             applyRules((UseCase) component);
         }
     }
