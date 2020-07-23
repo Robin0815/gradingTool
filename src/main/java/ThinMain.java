@@ -1,4 +1,6 @@
 import Control.Parser.Parser;
+import Control.Strategy.Strategy;
+import Control.Strategy.UseCaseStrategy.UseCaseStrategy;
 import Model.UMLComponent;
 import Model.Use;
 
@@ -29,5 +31,7 @@ public class ThinMain {
                 }
             }
         }*/
+       /* Strategy strategy = new UseCaseStrategy();
+        strategy.analyzeUML(l);*/
     }
 }

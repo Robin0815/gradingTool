@@ -4,12 +4,12 @@
 
 package Model;
 
-import Control.Visitor.Visitor;
+import Control.Strategy.UseCaseStrategy.Visitor.Visitor;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class System implements UMLComponent{
+public class UMLSystem implements UMLComponent{
     private String name;
     private List<UMLComponent> containedElements = new ArrayList<>();
 

@@ -3,7 +3,7 @@
  */
 package Model;
 
-import Control.Visitor.Visitor;
+import Control.Strategy.UseCaseStrategy.Visitor.Visitor;
 
 public class Method implements UMLComponent{
     private String name;

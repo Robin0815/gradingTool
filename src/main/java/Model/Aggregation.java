@@ -3,7 +3,7 @@
  */
 package Model;
 
-import Control.Visitor.Visitor;
+import Control.Strategy.UseCaseStrategy.Visitor.Visitor;
 
 public class Aggregation extends Relation{
     public final String id = "Aggregation";

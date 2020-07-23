@@ -4,7 +4,7 @@
 
 package Model;
 
-import Control.Visitor.Visitor;
+import Control.Strategy.UseCaseStrategy.Visitor.Visitor;
 
 import java.util.ArrayList;
 import java.util.List;

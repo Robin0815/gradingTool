@@ -1,4 +1,4 @@
-package Control.Visitor;
+package Control.Strategy.UseCaseStrategy.Visitor;
 
 public class ErrorWrapper {
 
@@ -13,10 +13,6 @@ public class ErrorWrapper {
         this.fails = fails;
     }
 
-    public void incrementFails() {
-        this.fails++;
-    }
-
     public Integer getSucesses() {
         return sucesses;
     }
@@ -25,8 +21,11 @@ public class ErrorWrapper {
         this.sucesses = sucesses;
     }
 
-    public void incrementSucesses() {
-        this.sucesses++;
+    @Override
+    public String toString() {
+        return "ErrorWrapper{" +
+                "sucesses=" + sucesses +
+                ", fails=" + fails +
+                '}';
     }
-
 }

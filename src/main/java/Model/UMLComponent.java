@@ -4,7 +4,7 @@
 
 package Model;
 
-import Control.Visitor.Visitor;
+import Control.Strategy.UseCaseStrategy.Visitor.Visitor;
 
 public interface UMLComponent {
     public final String id = null;

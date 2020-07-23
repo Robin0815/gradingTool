@@ -1,4 +1,4 @@
-package Control.Strategy.UseCaseStrategy;
+package Control.Strategy.UseCaseStrategy.Visitor;
 
 public enum Elements {
     USECASE, EXTENSIONPOINT, ACTOR, SYSTEM, GENERALIZATION, ASSOCIATION, CONDITIONRELATION, NOTE, EXTENDS, INCLUDES, UNKNOWNELEMENT

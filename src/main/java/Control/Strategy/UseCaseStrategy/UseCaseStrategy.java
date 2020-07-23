@@ -5,9 +5,14 @@
 package Control.Strategy.UseCaseStrategy;
 
 import Control.Strategy.Strategy;
+import Control.Strategy.UseCaseStrategy.Visitor.Elements;
+import Control.Strategy.UseCaseStrategy.Visitor.ErrorTypes;
+import Control.Strategy.UseCaseStrategy.Visitor.ErrorWrapper;
+import Control.Strategy.UseCaseStrategy.Visitor.SyntaxVisitor;
 import Model.*;
-import Model.System;
+import Model.UMLSystem;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,7 +41,7 @@ public class UseCaseStrategy implements Strategy {
                 incrementElement(Elements.USECASE);
             } else if (comp instanceof Actor){
                 incrementElement(Elements.ACTOR);
-            } else if (comp instanceof System){
+            } else if (comp instanceof UMLSystem){
                 incrementElement(Elements.SYSTEM);
             } else if (comp instanceof ExtensionPoint){
                 incrementElement(Elements.EXTENSIONPOINT);
@@ -68,13 +73,12 @@ public class UseCaseStrategy implements Strategy {
     }
 
     public void checkSyntax(List<UMLComponent>comps){
+        SyntaxVisitor synchecker =  new SyntaxVisitor();
         for (UMLComponent comp: comps) {
-            if (comp instanceof Association || comp instanceof Generalization || comp instanceof Extends || comp instanceof Includes || comp instanceof ConditionRelation){
-                checkRelation(comp);
-            } else {
-                checkEntity(comp);
-            }
+            comp.accept(synchecker);
         }
+        Map<ErrorTypes, ErrorWrapper> tmpmap = synchecker.getNumberOfErrors();
+        System.out.println(Arrays.asList(tmpmap));
     }
 
     public void checkSimilarity(){

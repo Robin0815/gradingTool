@@ -15,7 +15,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
 
 import Model.Class;
-import Model.System;
+import Model.UMLSystem;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
@@ -127,7 +127,7 @@ public class Parser {
             res.setName(panelAttr.split("\n")[0]);
             return res;
         } else {
-            System res = new System();
+            UMLSystem res = new UMLSystem();
             res.setName(panelAttr.split("\n")[0]);
             Rectangle sy = new Rectangle(x,y,w,h);
             for (int i = 0; i < compPos.size(); i++) {

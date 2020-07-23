@@ -1,8 +1,8 @@
-package Control.Visitor;
+package Control.Strategy.UseCaseStrategy.Visitor;
 
 import Model.*;
 import Model.Class;
-import Model.System;
+import Model.UMLSystem;
 
 public interface Visitor {
     void visit(Actor actor);
@@ -22,7 +22,7 @@ public interface Visitor {
     void visit(Inheritance inheritance);
     void visit(Method method);
     void visit(Note note);
-    void visit(System system);
+    void visit(UMLSystem system);
     void visit(UnknownElement unknownElement);
     void visit(UnknownRelation unknownRelation);
     void visit(Use use);
