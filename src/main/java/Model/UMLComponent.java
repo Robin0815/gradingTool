@@ -7,6 +7,7 @@ package Model;
 import Control.Visitor.Visitor;
 
 public interface UMLComponent {
+    public final String id = null;
     boolean isConnectable();
     void accept(Visitor visitor);
 }

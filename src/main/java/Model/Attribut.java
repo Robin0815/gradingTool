@@ -10,6 +10,7 @@ public class Attribut implements UMLComponent{
     private String outputType;
     private String visibility;
     private boolean isStatic;
+    public final String id = "Attribut";
 
     public Attribut(String name, String outputType, String visibility, boolean isStatic) {
         this.name = name;

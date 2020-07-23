@@ -6,6 +6,7 @@ package Model;
 import Control.Visitor.Visitor;
 
 public class Inheritance extends Relation{
+    public final String id = "Inheritance";
     @Override
     public String toString() {
         return "Inheritance{ "+super.toString()+" }";

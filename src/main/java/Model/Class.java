@@ -11,6 +11,7 @@ public class Class implements UMLComponent{
     private String name;
     private String stereotype;
     private List<UMLComponent> elements;
+    public final String id = "Class";
 
     public String getName() {
         return name;
