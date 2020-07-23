@@ -14,8 +14,8 @@ import java.util.Map;
 
 public class UseCaseStrategy implements Strategy {
 
-    private static Map<String, Integer> synerrors = new HashMap<String, Integer>();
-    private static Map<Elements, Integer> numberOfElements = new HashMap<Elements, Integer>();
+    private static Map<String, Integer> synerrors = new HashMap<>();
+    private static Map<Elements, Integer> numberOfElements = new HashMap<>();
 
     @Override
     public void analyzeUML(List<UMLComponent> comps){

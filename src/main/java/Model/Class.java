@@ -1,6 +1,9 @@
 /**
  * @author rfrank2s
- */ package Model;
+ */
+package Model;
+
+import Control.Visitor.Visitor;
 
 import java.util.List;
 
@@ -44,6 +47,11 @@ public class Class implements UMLComponent{
     @Override
     public boolean isConnectable() {
         return true;
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 
     @Override

@@ -4,6 +4,9 @@
 
 package Model;
 
+import Control.Visitor.Visitor;
+
 public interface UMLComponent {
-    public boolean isConnectable();
+    boolean isConnectable();
+    void accept(Visitor visitor);
 }

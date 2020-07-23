@@ -4,19 +4,17 @@
 
 package Model;
 
-import java.util.List;
+import Control.Visitor.Visitor;
 
 public class ConditionRelation extends Relation{
-
-    /*public boolean isConnectedToNote(){
-        if(connectedElements.size()==1){
-            return connectedElements.get(0) instanceof Note;
-        }
-        return false;
-    }*/
 
     @Override
     public String toString() {
         return "ConditionRelation{ "+super.toString()+" }";
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 }

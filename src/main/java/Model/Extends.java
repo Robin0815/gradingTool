@@ -4,21 +4,17 @@
 
 package Model;
 
-import java.util.List;
+import Control.Visitor.Visitor;
 
 public class Extends extends Relation{
-
-    /*public Boolean connectsUseCases() {
-        for (UMLComponent connectedElement : connectedElements) {
-            if (!(connectedElement instanceof UseCase || connectedElement instanceof ExtensionPoint)) {
-                return false;
-            }
-        }
-        return true;
-    }*/
 
     @Override
     public String toString() {
         return "Extends{ "+super.toString()+" }";
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 }

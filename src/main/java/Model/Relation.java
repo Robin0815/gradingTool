@@ -3,9 +3,6 @@
  */
 package Model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public abstract class Relation implements UMLComponent{
     private UMLComponent start;
     private UMLComponent end;

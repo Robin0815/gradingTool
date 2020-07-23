@@ -3,6 +3,8 @@
  */
 package Model;
 
+import Control.Visitor.Visitor;
+
 public class Method implements UMLComponent{
     private String name;
     private String inputType;
@@ -72,5 +74,10 @@ public class Method implements UMLComponent{
     @Override
     public boolean isConnectable() {
         return false;
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 }

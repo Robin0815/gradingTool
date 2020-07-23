@@ -3,6 +3,8 @@
  */
 package Model;
 
+import Control.Visitor.Visitor;
+
 public class Attribut implements UMLComponent{
     private String name;
     private String outputType;
@@ -29,5 +31,10 @@ public class Attribut implements UMLComponent{
     @Override
     public boolean isConnectable() {
         return false;
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 }

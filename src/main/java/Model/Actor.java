@@ -4,6 +4,8 @@
 
 package Model;
 
+import Control.Visitor.Visitor;
+
 public class Actor implements UMLComponent {
     private String name;
 
@@ -18,6 +20,11 @@ public class Actor implements UMLComponent {
     @Override
     public boolean isConnectable() {
         return true;
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 
     @Override

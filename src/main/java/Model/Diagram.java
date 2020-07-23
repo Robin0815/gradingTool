@@ -3,6 +3,8 @@
  */
 package Model;
 
+import Control.Visitor.Visitor;
+
 import java.util.List;
 
 public class Diagram implements UMLComponent{
@@ -32,5 +34,10 @@ public class Diagram implements UMLComponent{
     @Override
     public boolean isConnectable() {
         return false;
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 }

@@ -4,6 +4,8 @@
 
 package Model;
 
+import Control.Visitor.Visitor;
+
 import java.util.List;
 
 public class System implements UMLComponent{
@@ -34,17 +36,14 @@ public class System implements UMLComponent{
         this.containedElements.remove(element);
     }
 
-    public Boolean noActorsContained() {
-        for (UMLComponent containedElement : containedElements) {
-            if (containedElement instanceof Actor) {
-                return false;
-            }
-        }
-        return true;
-    }
     @Override
     public boolean isConnectable() {
         return false;
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 
     @Override
