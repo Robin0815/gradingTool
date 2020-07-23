@@ -122,18 +122,24 @@ public class Parser {
     }
 
     private UMLComponent systemParse(String panelAttr, int x, int y, int w, int h) {
-        System res = new System();
-        res.setName(panelAttr.split("\n")[0]);
+        if (panelAttr.contains("valign=")) {
+            NonHumanActor res = new NonHumanActor();
+            res.setName(panelAttr.split("\n")[0]);
+            return res;
+        } else {
+            System res = new System();
+            res.setName(panelAttr.split("\n")[0]);
+            Rectangle sy = new Rectangle(x,y,w,h);
+            for (int i = 0; i < compPos.size(); i++) {
+                TempComp tmp = compPos.get(i);
+                Rectangle rec = tmp.getRec();
 
-        for (int i = 0; i < compPos.size(); i++) {
-            TempComp tmp = compPos.get(i);
-            Rectangle rec = tmp.getRec();
-
-            if (x >= rec.getMinX() & x <= rec.getMaxX() & y >= rec.getMinY() & y <= rec.getMaxY()) {
-                res.addContainedElement(tmp.getComp());
+                if (sy.contains(rec)) {
+                    res.addContainedElement(tmp.getComp());
+                }
             }
+            return res;
         }
-        return res;
     }
 
     private UMLComponent actorParse(String panelAttr) {
@@ -178,45 +184,34 @@ public class Parser {
         String[] s = addAttr.split(";");
         int x2 = (int) Double.parseDouble(s[0]);
         int y2 = (int) Double.parseDouble(s[1]);
-        int x1 = (int) Double.parseDouble(s[s.length -2]);
-        int y1 = (int) Double.parseDouble(s[s.length -1]);
+        int x1 = (int) Double.parseDouble(s[s.length - 2]);
+        int y1 = (int) Double.parseDouble(s[s.length - 1]);
         start = new Point(x + x1, y + y1);
         end = new Point(x + x2, y + y2);
         //Relation erkennen
-        if(panelAttr.contains("lt=<-")){
+        if (panelAttr.contains("lt=<-")) {
             res = new Use();
-        }
-        else if(panelAttr.contains("lt=<.")){
+        } else if (panelAttr.contains("lt=<.")) {
             res = new Dependency();
-        }
-        else if(panelAttr.contains("lt=<<.")){
+        } else if (panelAttr.contains("lt=<<.")) {
             res = new Implements();
-        }
-        else if(panelAttr.contains("lt=<<-")){
+        } else if (panelAttr.contains("lt=<<-")) {
             res = new Inheritance();
-        }
-        else if(panelAttr.contains("lt=<<<<<-")){
+        } else if (panelAttr.contains("lt=<<<<<-")) {
             res = new Composition();
-        }
-        else if(panelAttr.contains("lt=<<<<-")){
+        } else if (panelAttr.contains("lt=<<<<-")) {
             res = new Aggregation();
-        }
-        else if(panelAttr.contains("lt=.>") && panelAttr.contains("<<includes>>")){
+        } else if (panelAttr.contains("lt=.>") && panelAttr.contains("<<includes>>")) {
             res = new Includes();
-        }
-        else if(panelAttr.contains("lt=.>") && panelAttr.contains("<<extends>>")){
+        } else if (panelAttr.contains("lt=.>") && panelAttr.contains("<<extends>>")) {
             res = new Extends();
-        }
-        else if(!panelAttr.contains("=")){
+        } else if (!panelAttr.contains("=")) {
             res = new Association();
-        }
-        else if(panelAttr.contains("lt=.()")){
+        } else if (panelAttr.contains("lt=.()")) {
             res = new ConditionRelation();
-        }
-        else if(panelAttr.contains("lt=->>")){
+        } else if (panelAttr.contains("lt=->>")) {
             res = new Generalization();
-        }
-        else {
+        } else {
             res = new UnknownRelation();
         }
 

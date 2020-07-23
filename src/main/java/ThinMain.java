@@ -9,7 +9,7 @@ public class ThinMain {
     public static void main(String[] args) {
         //System.out.println("Start");
 
-        String file = "All-Elements.uxf";
+        String file = "Adapter-UML.uxf";
         Parser a = new Parser();
         List<UMLComponent> l = a.parseFile(file);
         System.out.println(l.toString());

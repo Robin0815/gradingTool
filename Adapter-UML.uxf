@@ -168,4 +168,16 @@ halign=left</panel_attributes>
 </panel_attributes>
     <additional_attributes/>
   </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>1400</x>
+      <y>150</y>
+      <w>130</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Neighboursystem
+valign=center</panel_attributes>
+    <additional_attributes/>
+  </element>
 </diagram>

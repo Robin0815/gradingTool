@@ -6,11 +6,12 @@ package Model;
 
 import Control.Visitor.Visitor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class System implements UMLComponent{
     private String name;
-    private List<UMLComponent> containedElements;
+    private List<UMLComponent> containedElements = new ArrayList<>();
 
     public String getName() {
         return name;
