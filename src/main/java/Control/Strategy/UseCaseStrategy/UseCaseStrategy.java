@@ -12,48 +12,25 @@ import java.util.*;
 
 public class UseCaseStrategy implements Strategy {
 
-    private static Map<String, Integer> synerrors = new HashMap<>();
     private static Map<Elements, Integer> numberOfElements = new HashMap<>();
+    private SyntaxChecker synchecker = new SyntaxChecker();
+    private Boolean checksyntax = true;
+    private Boolean checksimilarity = true;
+
+    public UseCaseStrategy(Boolean checksyntax, Boolean checksimilarity){
+        this.checksyntax=checksyntax;
+        this.checksimilarity=checksimilarity;
+    }
 
     @Override
     public void analyzeUML(List<UMLComponent> comps){
         //Implemenatation for automatic correction here
 
         //Checking syntax and semantics
-        checkSyntax(comps);
+        checkComponent(comps);
         //Calculating number of elements
-        calculateElements(comps);
         //Comparing with solution
         checkSimilarity();
-    }
-
-    public void calculateElements(List<UMLComponent> comps){
-        // Calculating number of all elements in the diagramm
-        /*for (UMLComponent comp: comps) {
-            if (comp instanceof UseCase){
-                incrementElement(Elements.USECASE);
-            } else if (comp instanceof Actor){
-                incrementElement(Elements.ACTOR);
-            } else if (comp instanceof UMLSystem){
-                incrementElement(Elements.SYSTEM);
-            } else if (comp instanceof ExtensionPoint){
-                incrementElement(Elements.EXTENSIONPOINT);
-            } else if (comp instanceof Note){
-                incrementElement(Elements.NOTE);
-            } else if (comp instanceof Association){
-                incrementElement(Elements.ASSOCIATION);
-            } else if (comp instanceof Extends){
-                incrementElement(Elements.EXTENDS);
-            } else if (comp instanceof Includes){
-                incrementElement(Elements.INCLUDES);
-            } else if (comp instanceof ConditionRelation){
-                incrementElement(Elements.CONDITIONRELATION);
-            } else if (comp instanceof Generalization){
-                incrementElement(Elements.GENERALIZATION);
-            } else {
-                incrementElement(Elements.UNKNOWNELEMENT);
-            }
-        }*/
     }
 
     public void incrementElement(Elements element){
@@ -65,14 +42,43 @@ public class UseCaseStrategy implements Strategy {
         }
     }
 
-    public void checkSyntax(List<UMLComponent>comps){
-        SyntaxChecker synchecker = new SyntaxChecker();
+
+    public void checkComponent(UMLComponent component){
+        if (checksyntax) {
+            if (component.id() == Elements.USECASE) {
+                synchecker.applyRules((UseCase) component);
+            } else if (component.id() == Elements.ACTOR) {
+                synchecker.applyRules((Actor) component);
+            } else if (component.id() == Elements.NONHUMANACTOR) {
+                synchecker.applyRules((NonHumanActor) component);
+            } else if (component.id() == Elements.UMLSYSTEM) {
+                synchecker.applyRules((UMLSystem) component);
+            } else if (component.id() == Elements.EXTENSIONPOINT) {
+                synchecker.applyRules((ExtensionPoint) component);
+            } else if (component.id() == Elements.NOTE) {
+                synchecker.applyRules((Note) component);
+            } else if (component.id() == Elements.ASSOCIATION) {
+                synchecker.applyRules((Association) component);
+            } else if (component.id() == Elements.GENERALIZATION) {
+                synchecker.applyRules((Generalization) component);
+            } else if (component.id() == Elements.EXTENDS) {
+                synchecker.applyRules((Extends) component);
+            } else if (component.id() == Elements.INCLUDES) {
+                synchecker.applyRules((Includes) component);
+            }
+        }
+        if (checksimilarity){
+            incrementElement(component.id());
+        }
+    }
+
+    public void checkComponent(List<UMLComponent>comps){
         for (UMLComponent comp: comps) {
-            //System.out.println(comp.id());
-            synchecker.checkSyntax(comp);
+            checkComponent(comp);
         }
         Map<ErrorTypes, ErrorWrapper> tmpmap = synchecker.getNumberOfErrors();
         System.out.println(Collections.singletonList(tmpmap));
+        System.out.println(Collections.singletonList(numberOfElements));
     }
 
     public void checkSimilarity(){

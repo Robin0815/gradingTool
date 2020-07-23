@@ -16,7 +16,7 @@ public class SyntaxChecker {
         this.numberOfErrors = numberOfErrors;
     }
 
-    public void incrementFails(ErrorTypes errorType){
+    private void incrementFails(ErrorTypes errorType){
         ErrorWrapper count = numberOfErrors.get(errorType);
         if (count == null) {
             ErrorWrapper newcount = new ErrorWrapper();
@@ -29,7 +29,7 @@ public class SyntaxChecker {
         }
     }
 
-    public void incrementSucesses(ErrorTypes errorType){
+    private void incrementSucesses(ErrorTypes errorType){
         ErrorWrapper count = numberOfErrors.get(errorType);
         if (count == null) {
             ErrorWrapper newcount = new ErrorWrapper();
@@ -42,33 +42,9 @@ public class SyntaxChecker {
         }
     }
 
-    public void checkSyntax(UMLComponent component){
-        if (component.id() == Elements.USECASE){
-            applyRules((UseCase) component);
-        } else if (component.id() == Elements.ACTOR){
-            applyRules((Actor) component);
-        } else if (component.id() == Elements.NONHUMANACTOR){
-            applyRules((NonHumanActor) component);
-        } else if (component.id() == Elements.UMLSYSTEM){
-            applyRules((UMLSystem) component);
-        } else if (component.id() == Elements.EXTENSIONPOINT){
-            applyRules((ExtensionPoint) component);
-        } else if (component.id() == Elements.NOTE){
-            applyRules((Note) component);
-        } else if (component.id() == Elements.ASSOCIATION){
-            applyRules((Association) component);
-        } else if (component.id() == Elements.GENERALIZATION){
-            applyRules((Generalization) component);
-        } else if (component.id() == Elements.EXTENDS){
-            applyRules((Extends) component);
-        } else if (component.id() == Elements.INCLUDES){
-            applyRules((Includes) component);
-        }
-    }
-
-    private void applyRules(UseCase useCase){
+    public void applyRules(UseCase useCase){
         //Check if name is set
-        if (useCase.getName() == ""){
+        if (useCase.getName().equals("")){
             incrementFails(ErrorTypes.ENTITYNAME);
             incrementFails(ErrorTypes.USECASENAME);
         } else {
@@ -77,9 +53,9 @@ public class SyntaxChecker {
         }
     }
 
-    private void applyRules(Actor actor){
+    public void applyRules(Actor actor){
         //Check if name is set
-        if (actor.getName() == ""){
+        if (actor.getName().equals("")){
             incrementFails(ErrorTypes.ENTITYNAME);
             incrementFails(ErrorTypes.ACTORNAME);
         } else {
@@ -88,9 +64,9 @@ public class SyntaxChecker {
         }
     }
 
-    private void applyRules(NonHumanActor nonHumanActor){
+    public void applyRules(NonHumanActor nonHumanActor){
         //Check if name is set
-        if (nonHumanActor.getName() == ""){
+        if (nonHumanActor.getName().equals("")){
             incrementFails(ErrorTypes.ENTITYNAME);
             incrementFails(ErrorTypes.ACTORNAME);
         } else {
@@ -99,9 +75,9 @@ public class SyntaxChecker {
         }
     }
 
-    private void applyRules(UMLSystem umlSystem){
+    public void applyRules(UMLSystem umlSystem){
         //Check if name is set
-        if (umlSystem.getName() == ""){
+        if (umlSystem.getName().equals("")){
             incrementFails(ErrorTypes.ENTITYNAME);
             incrementFails(ErrorTypes.SYSTEMNAME);
         } else {
@@ -119,9 +95,9 @@ public class SyntaxChecker {
         }
     }
 
-    private void applyRules(ExtensionPoint extensionPoint){
+    public void applyRules(ExtensionPoint extensionPoint){
         //Check if name is set
-        if (extensionPoint.getName() == ""){
+        if (extensionPoint.getName().equals("")){
             incrementFails(ErrorTypes.ENTITYNAME);
             incrementFails(ErrorTypes.USECASENAME);
         } else {
@@ -136,16 +112,16 @@ public class SyntaxChecker {
         }
     }
 
-    private void applyRules(Note note){
+    public void applyRules(Note note){
         //Check if note is not empty
-        if (note.getText() == ""){
+        if (note.getText().equals("")){
             incrementFails(ErrorTypes.EMPTYNOTE);
         } else {
             incrementSucesses(ErrorTypes.EMPTYNOTE);
         }
     }
 
-    private void applyRules(Association association){
+    public void applyRules(Association association){
         //Check if relation is binary
         if (association.getStart() != null && association.getEnd() != null){
             incrementSucesses(ErrorTypes.NONBINARYRELATION);
@@ -163,7 +139,7 @@ public class SyntaxChecker {
         }
     }
 
-    private void applyRules(Generalization generalization){
+    public void applyRules(Generalization generalization){
         //Check if relation is binary
         if (generalization.getStart() != null && generalization.getEnd() != null){
             incrementSucesses(ErrorTypes.NONBINARYRELATION);
@@ -181,7 +157,7 @@ public class SyntaxChecker {
         }
     }
 
-    private void applyRules(Includes includes){
+    public void applyRules(Includes includes){
         //Check if relation is binary
         if (includes.getStart() != null && includes.getEnd() != null){
             incrementSucesses(ErrorTypes.NONBINARYRELATION);
@@ -199,7 +175,7 @@ public class SyntaxChecker {
         }
     }
 
-    private void applyRules(Extends extend){
+    public void applyRules(Extends extend){
         //Check if relation is binary
         if (extend.getStart() != null && extend.getEnd() != null){
             incrementSucesses(ErrorTypes.NONBINARYRELATION);
@@ -217,7 +193,7 @@ public class SyntaxChecker {
         }
     }
 
-    private void applyRules(ConditionRelation conditionRelation){
+    public void applyRules(ConditionRelation conditionRelation){
         //Check if relation is NOT binary
         if ((conditionRelation.getStart() == null && conditionRelation.getEnd() != null) || (conditionRelation.getStart() != null && conditionRelation.getEnd() == null)){
             incrementSucesses(ErrorTypes.BINARYCONDITIONRELATION);
