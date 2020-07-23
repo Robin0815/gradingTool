@@ -8,14 +8,11 @@ import Control.Strategy.Strategy;
 import Control.Strategy.UseCaseStrategy.Visitor.Elements;
 import Control.Strategy.UseCaseStrategy.Visitor.ErrorTypes;
 import Control.Strategy.UseCaseStrategy.Visitor.ErrorWrapper;
-import Control.Strategy.UseCaseStrategy.Visitor.SyntaxVisitor;
+import Control.Strategy.UseCaseStrategy.Visitor.UseCaseRuleVisitor;
 import Model.*;
 import Model.UMLSystem;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class UseCaseStrategy implements Strategy {
 
@@ -73,12 +70,12 @@ public class UseCaseStrategy implements Strategy {
     }
 
     public void checkSyntax(List<UMLComponent>comps){
-        SyntaxVisitor synchecker =  new SyntaxVisitor();
+        UseCaseRuleVisitor synchecker =  new UseCaseRuleVisitor();
         for (UMLComponent comp: comps) {
             comp.accept(synchecker);
         }
         Map<ErrorTypes, ErrorWrapper> tmpmap = synchecker.getNumberOfErrors();
-        System.out.println(Arrays.asList(tmpmap));
+        System.out.println(Collections.singletonList(tmpmap));
     }
 
     public void checkSimilarity(){

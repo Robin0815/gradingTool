@@ -27,4 +27,5 @@ public interface Visitor {
     void visit(UnknownRelation unknownRelation);
     void visit(Use use);
     void visit(UseCase useCase);
+    void visit(NonHumanActor nonHumanActor);
 }

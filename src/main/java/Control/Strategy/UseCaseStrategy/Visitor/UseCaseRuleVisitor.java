@@ -7,7 +7,7 @@ import Model.UMLSystem;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SyntaxVisitor implements Visitor{
+public class UseCaseRuleVisitor implements Visitor{
     private Map<ErrorTypes, ErrorWrapper> numberOfErrors = new HashMap<>();
 
     public Map<ErrorTypes, ErrorWrapper> getNumberOfErrors() {
@@ -46,7 +46,8 @@ public class SyntaxVisitor implements Visitor{
 
     @Override
     public void visit(Actor actor) {
-        if(actor.getName()==null){
+        incrementSucesses(ErrorTypes.UNKNOWNELEMENT);
+        if (actor.getName() == null){
             incrementFails(ErrorTypes.ACTORNAME);
             incrementFails(ErrorTypes.ENTITYNAME);
         }else{
@@ -101,7 +102,8 @@ public class SyntaxVisitor implements Visitor{
 
     @Override
     public void visit(ExtensionPoint extensionPoint) {
-        if(extensionPoint.getName()==null){
+        incrementSucesses(ErrorTypes.UNKNOWNELEMENT);
+        if (extensionPoint.getName() == null){
             incrementFails(ErrorTypes.USECASENAME);
             incrementFails(ErrorTypes.ENTITYNAME);
         }else{
@@ -143,7 +145,8 @@ public class SyntaxVisitor implements Visitor{
 
     @Override
     public void visit(UMLSystem system) {
-        if(system.getName()==null){
+        incrementSucesses(ErrorTypes.UNKNOWNELEMENT);
+        if (system.getName() == null){
             incrementFails(ErrorTypes.SYSTEMNAME);
             incrementFails(ErrorTypes.ENTITYNAME);
         }else{
@@ -170,7 +173,8 @@ public class SyntaxVisitor implements Visitor{
 
     @Override
     public void visit(UseCase useCase) {
-        if(useCase.getName()==null){
+        incrementSucesses(ErrorTypes.UNKNOWNELEMENT);
+        if (useCase.getName() == null){
             incrementFails(ErrorTypes.USECASENAME);
             incrementFails(ErrorTypes.ENTITYNAME);
         }else{
@@ -178,5 +182,17 @@ public class SyntaxVisitor implements Visitor{
             incrementSucesses(ErrorTypes.ENTITYNAME);
         }
 
+    }
+
+    @Override
+    public void visit(NonHumanActor nonHumanActor) {
+        incrementSucesses(ErrorTypes.UNKNOWNELEMENT);
+        if (nonHumanActor.getName() == null){
+            incrementFails(ErrorTypes.ACTORNAME);
+            incrementFails(ErrorTypes.ENTITYNAME);
+        }else{
+            incrementSucesses(ErrorTypes.ACTORNAME);
+            incrementSucesses(ErrorTypes.ENTITYNAME);
+        }
     }
 }
