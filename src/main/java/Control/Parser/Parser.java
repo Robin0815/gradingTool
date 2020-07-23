@@ -124,11 +124,21 @@ public class Parser {
     private UMLComponent systemParse(String panelAttr, int x, int y, int w, int h) {
         if (panelAttr.contains("valign=")) {
             NonHumanActor res = new NonHumanActor();
-            res.setName(panelAttr.split("\n")[0]);
+            String tmp = panelAttr.split("\n")[0];
+            if(tmp.contains("valign")){
+                res.setName("");
+                return res;
+            }
+            res.setName(tmp);
             return res;
         } else {
             UMLSystem res = new UMLSystem();
-            res.setName(panelAttr.split("\n")[0]);
+            String tmpstring = panelAttr.split("\n")[0];
+            if(tmpstring.contains("halign")){
+                res.setName("");
+            } else {
+                res.setName(tmpstring);
+            }
             Rectangle sy = new Rectangle(x,y,w,h);
             for (int i = 0; i < compPos.size(); i++) {
                 TempComp tmp = compPos.get(i);
@@ -160,6 +170,10 @@ public class Parser {
             ExtensionPoint res = new ExtensionPoint();
             String[] s = panelAttr.split("--");
             String[] s1 = s[0].split("\n");
+            if ( s1.length == 0){
+                res.setName("");
+                return res;
+            }
             res.setName(s1[0]);
             s1 = s[1].split("\n");
             for (int i = 0; i < s1.length; i++) {

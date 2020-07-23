@@ -1,4 +1,4 @@
-package Control.Strategy.UseCaseStrategy.Visitor;
+package Control.Strategy.UseCaseStrategy;
 
 public class ErrorWrapper {
 

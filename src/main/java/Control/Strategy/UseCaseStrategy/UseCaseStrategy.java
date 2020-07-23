@@ -6,10 +6,7 @@ package Control.Strategy.UseCaseStrategy;
 
 import Control.Strategy.Strategy;
 import Model.Elements;
-import Control.Strategy.UseCaseStrategy.Visitor.ErrorTypes;
-import Control.Strategy.UseCaseStrategy.Visitor.ErrorWrapper;
 import Model.*;
-import Model.UMLSystem;
 
 import java.util.*;
 
@@ -71,7 +68,7 @@ public class UseCaseStrategy implements Strategy {
     public void checkSyntax(List<UMLComponent>comps){
         SyntaxChecker synchecker = new SyntaxChecker();
         for (UMLComponent comp: comps) {
-            System.out.println(comp.id());
+            //System.out.println(comp.id());
             synchecker.checkSyntax(comp);
         }
         Map<ErrorTypes, ErrorWrapper> tmpmap = synchecker.getNumberOfErrors();

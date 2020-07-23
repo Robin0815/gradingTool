@@ -11,7 +11,7 @@ public class ThinMain {
     public static void main(String[] args) {
         //System.out.println("Start");
 
-        String file = "Adapter-UML.uxf";
+        String file = "WorstUseCase.uxf";
         Parser a = new Parser();
         List<UMLComponent> l = a.parseFile(file);
         //System.out.println(l.toString());
