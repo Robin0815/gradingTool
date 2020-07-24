@@ -5,14 +5,17 @@ package Model;
 
 import Control.Strategy.UseCaseStrategy.Visitor.Visitor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Method implements UMLComponent{
     private String name;
-    private String inputType;
+    private List<String> inputType;
     private String outputType;
     private boolean isStatic;
     private String visibility;
 
-    public Method(String name, String inputType, String outputType, boolean isStatic, String visibility) {
+    public Method(String name, List<String> inputType, String outputType, boolean isStatic, String visibility) {
         this.name = name;
         this.inputType = inputType;
         this.outputType = outputType;
@@ -28,12 +31,12 @@ public class Method implements UMLComponent{
         this.name = name;
     }
 
-    public String getInputType() {
+    public List<String> getInputType() {
         return inputType;
     }
 
     public void setInputType(String inputType) {
-        this.inputType = inputType;
+        this.inputType.add(inputType);
     }
 
     public String getOutputType() {
@@ -64,10 +67,10 @@ public class Method implements UMLComponent{
     public String toString() {
         return "Method{" +
                 "name='" + name + '\'' +
-                ", inputType='" + inputType + '\'' +
+                ", inputType=" + inputType +
                 ", outputType='" + outputType + '\'' +
-                ", visibility='" + visibility + '\'' +
                 ", isStatic=" + isStatic +
+                ", visibility='" + visibility + '\'' +
                 '}';
     }
 

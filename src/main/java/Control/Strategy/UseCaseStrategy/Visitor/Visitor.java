@@ -28,4 +28,5 @@ public interface Visitor {
     void visit(Use use);
     void visit(UseCase useCase);
     void visit(NonHumanActor nonHumanActor);
+    void visit(Constructor constructor);
 }
