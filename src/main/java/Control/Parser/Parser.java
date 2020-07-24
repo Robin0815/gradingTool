@@ -285,6 +285,9 @@ public class Parser {
                 String visibility = "";
                 String am = b[j];
                 am = am.replaceAll(" ", "");
+                if(am.isEmpty()){
+                    break;
+                }
                 if (am.charAt(0) == '_') {
                     isStatic = true;
                     visibility = "" + am.charAt(1);
@@ -293,7 +296,19 @@ public class Parser {
                     visibility = "" + am.charAt(0);
                 }
                 if (am.contains("(")) {
-                    list.add(new Method(am.substring(1, am.indexOf('(')), am.substring(am.indexOf('('), am.indexOf(')')).contains(":") ? am.substring(am.indexOf(':') + 1, am.indexOf(')')) : am.substring(am.indexOf('('), am.indexOf(')')), am.substring(am.lastIndexOf(':') + 1), isStatic, visibility));
+                    List<String> input = new ArrayList<>();
+                    String[]ab = (am.substring(am.indexOf('(')+1,am.indexOf(')')).split(":"));
+                    for (int p= 1; p<ab.length-1;p++){
+                        //System.out.println(ab[p]);
+                        input.add(ab[p].replace(" ", "").substring(0, ab[p].indexOf(',')));
+                    }
+                    input.add(ab[ab.length-1].replace(" ", ""));
+                    if(!am.substring(am.indexOf(')')).contains(":")){
+                        list.add(new Constructor(visibility,input));
+                    }//am.substring(am.indexOf('('), am.indexOf(')')).contains(":") ? am.substring(am.indexOf(':') + 1, am.indexOf(')')) : am.substring(am.indexOf('('), am.indexOf(')'))
+                    else {
+                        list.add(new Method(am.substring(1, am.indexOf('(')), input, am.substring(am.lastIndexOf(':') + 1), isStatic, visibility));
+                    }
                 } else if (am.contains(":")) {
 
                     list.add(new Attribut(am.substring(1, am.indexOf(':')), am.substring(am.indexOf(':') + 1), visibility, isStatic));

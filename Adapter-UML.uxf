@@ -150,19 +150,22 @@ halign=left</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1820</x>
-      <y>520</y>
-      <w>310</w>
-      <h>200</h>
+      <x>1830</x>
+      <y>440</y>
+      <w>410</w>
+      <h>230</h>
     </coordinates>
     <panel_attributes>Mensch
 --
 +gehen(distanz : double) : void
-+emailSchreiben(addresse : String) : String
++emailSchreiben(addresse : String, inhalt : String) : EMail
 +setOwnEmail(addresse : String) : void
++Mensch(name : String, geburtsTag : Datum)
 --
--emailAdresse : String
--groesse : double
+#emailAdresse : String
++name : String
+-geburtstag : Datum
+_+anzMenschen : int_
 
 
 </panel_attributes>
@@ -178,6 +181,20 @@ halign=left</panel_attributes>
     </coordinates>
     <panel_attributes>Neighboursystem
 valign=center</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2350</x>
+      <y>480</y>
+      <w>280</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>SimpleClass
+--
+
+--</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
