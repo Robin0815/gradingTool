@@ -14,8 +14,11 @@ public class UseCaseStrategy implements Strategy {
 
     private static Map<Elements, Integer> numberOfElements = new HashMap<>();
     private SyntaxChecker synchecker = new SyntaxChecker();
+    private InstructionGenerator instructionGenerator = new InstructionGenerator();
     private Boolean checksyntax = true;
     private Boolean checksimilarity = true;
+    private double delta = 0.1;
+    List<UMLComponent> relationlist = new ArrayList<>();
 
     public UseCaseStrategy(Boolean checksyntax, Boolean checksimilarity){
         this.checksyntax=checksyntax;
@@ -31,6 +34,9 @@ public class UseCaseStrategy implements Strategy {
         //Calculating number of elements
         //Comparing with solution
         checkSimilarity();
+
+
+
     }
 
     public void incrementElement(Elements element){
@@ -59,27 +65,36 @@ public class UseCaseStrategy implements Strategy {
                 synchecker.applyRules((Note) component);
             } else if (component.id() == Elements.ASSOCIATION) {
                 synchecker.applyRules((Association) component);
+                relationlist.add(component);
             } else if (component.id() == Elements.GENERALIZATION) {
                 synchecker.applyRules((Generalization) component);
+                relationlist.add(component);
             } else if (component.id() == Elements.EXTENDS) {
                 synchecker.applyRules((Extends) component);
+                relationlist.add(component);
             } else if (component.id() == Elements.INCLUDES) {
                 synchecker.applyRules((Includes) component);
+                relationlist.add(component);
+            } else if (component.id() == Elements.CONDITIONRELATION) {
+                synchecker.applyRules((ConditionRelation) component);
+                 relationlist.add(component);
             }
         }
         if (checksimilarity){
             incrementElement(component.id());
+            incrementElement(Elements.TOTALELEMTS);
         }
     }
 
     public void checkComponent(List<UMLComponent>comps){
         for (UMLComponent comp: comps) {
             checkComponent(comp);
-            System.out.println(comp.toString());
         }
         Map<ErrorTypes, ErrorWrapper> tmpmap = synchecker.getNumberOfErrors();
-        System.out.println(Collections.singletonList(tmpmap));
-        System.out.println(Collections.singletonList(numberOfElements));
+        instructionGenerator.createResponseSyntaxErrors(synchecker.getNumberOfErrors());
+        //System.out.println(Collections.singletonList(tmpmap));
+        //System.out.println(tmpmap.get(ErrorTypes.TOTALERRORS).getPercentage());
+        //System.out.println(Collections.singletonList(numberOfElements));
     }
 
     public void checkSimilarity(){

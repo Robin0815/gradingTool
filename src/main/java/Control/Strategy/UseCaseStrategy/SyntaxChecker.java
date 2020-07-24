@@ -47,9 +47,12 @@ public class SyntaxChecker {
         if (useCase.getName().equals("")){
             incrementFails(ErrorTypes.ENTITYNAME);
             incrementFails(ErrorTypes.USECASENAME);
+            incrementFails(ErrorTypes.TOTALERRORS);
         } else {
             incrementSucesses(ErrorTypes.ENTITYNAME);
             incrementSucesses(ErrorTypes.USECASENAME);
+            incrementSucesses(ErrorTypes.TOTALERRORS);
+
         }
     }
 
@@ -58,9 +61,11 @@ public class SyntaxChecker {
         if (actor.getName().equals("")){
             incrementFails(ErrorTypes.ENTITYNAME);
             incrementFails(ErrorTypes.ACTORNAME);
+            incrementFails(ErrorTypes.TOTALERRORS);
         } else {
             incrementSucesses(ErrorTypes.ENTITYNAME);
             incrementSucesses(ErrorTypes.ACTORNAME);
+            incrementSucesses(ErrorTypes.TOTALERRORS);
         }
     }
 
@@ -69,9 +74,11 @@ public class SyntaxChecker {
         if (nonHumanActor.getName().equals("")){
             incrementFails(ErrorTypes.ENTITYNAME);
             incrementFails(ErrorTypes.ACTORNAME);
+            incrementFails(ErrorTypes.TOTALERRORS);
         } else {
             incrementSucesses(ErrorTypes.ENTITYNAME);
             incrementSucesses(ErrorTypes.ACTORNAME);
+            incrementSucesses(ErrorTypes.TOTALERRORS);
         }
     }
 
@@ -80,14 +87,17 @@ public class SyntaxChecker {
         if (umlSystem.getName().equals("")){
             incrementFails(ErrorTypes.ENTITYNAME);
             incrementFails(ErrorTypes.SYSTEMNAME);
+            incrementFails(ErrorTypes.TOTALERRORS);
         } else {
             incrementSucesses(ErrorTypes.ENTITYNAME);
             incrementSucesses(ErrorTypes.SYSTEMNAME);
+            incrementSucesses(ErrorTypes.TOTALERRORS);
         }
         //Check if no Actors are contained
         for (UMLComponent comp : umlSystem.getContainedElements()) {
             if (comp.id() == Elements.ACTOR || comp.id() == Elements.NONHUMANACTOR) {
                 incrementFails(ErrorTypes.ACTORSCONTAINED);
+                incrementFails(ErrorTypes.TOTALERRORS);
             } else {
                 //incrementSucesses(ErrorTypes.ACTORSCONTAINED);
             }
@@ -99,15 +109,19 @@ public class SyntaxChecker {
         if (extensionPoint.getName().equals("")){
             incrementFails(ErrorTypes.ENTITYNAME);
             incrementFails(ErrorTypes.USECASENAME);
+            incrementFails(ErrorTypes.TOTALERRORS);
         } else {
             incrementSucesses(ErrorTypes.ENTITYNAME);
             incrementSucesses(ErrorTypes.USECASENAME);
+            incrementSucesses(ErrorTypes.TOTALERRORS);
         }
         //Check if at least one extension point is defined
         if (extensionPoint.getExtpoints().isEmpty()){
             incrementFails(ErrorTypes.EMPTYEXTENSIONPOINT);
+            incrementFails(ErrorTypes.TOTALERRORS);
         } else {
             incrementSucesses(ErrorTypes.EMPTYEXTENSIONPOINT);
+            incrementSucesses(ErrorTypes.TOTALERRORS);
         }
     }
 
@@ -115,8 +129,10 @@ public class SyntaxChecker {
         //Check if note is not empty
         if (note.getText().equals("")){
             incrementFails(ErrorTypes.EMPTYNOTE);
+            incrementFails(ErrorTypes.TOTALERRORS);
         } else {
             incrementSucesses(ErrorTypes.EMPTYNOTE);
+            incrementSucesses(ErrorTypes.TOTALERRORS);
         }
     }
 
@@ -125,16 +141,20 @@ public class SyntaxChecker {
         if (association.getStart() != null && association.getEnd() != null){
             incrementSucesses(ErrorTypes.NONBINARYRELATION);
             incrementSucesses(ErrorTypes.NONBINARYASSOCIATION);
+            incrementSucesses(ErrorTypes.TOTALERRORS);
         } else {
             incrementFails(ErrorTypes.NONBINARYRELATION);
             incrementFails(ErrorTypes.NONBINARYASSOCIATION);
+            incrementFails(ErrorTypes.TOTALERRORS);
             return;
         }
         //Check if relation only connects use cases and actors
         if (((association.getStart().id() == Elements.USECASE || association.getStart().id() == Elements.EXTENSIONPOINT) && (association.getEnd().id() == Elements.ACTOR || association.getEnd().id() == Elements.NONHUMANACTOR)) || ((association.getStart().id() == Elements.ACTOR || association.getStart().id() == Elements.NONHUMANACTOR) && (association.getEnd().id() == Elements.USECASE || association.getEnd().id() == Elements.EXTENSIONPOINT))){
             incrementSucesses(ErrorTypes.NOTSAMETYPEASSOCIATION);
+            incrementSucesses(ErrorTypes.TOTALERRORS);
         } else {
             incrementFails(ErrorTypes.NOTSAMETYPEASSOCIATION);
+            incrementFails(ErrorTypes.TOTALERRORS);
         }
     }
 
@@ -143,16 +163,20 @@ public class SyntaxChecker {
         if (generalization.getStart() != null && generalization.getEnd() != null){
             incrementSucesses(ErrorTypes.NONBINARYRELATION);
             incrementSucesses(ErrorTypes.NONBINARYGENERALIZATION);
+            incrementSucesses(ErrorTypes.TOTALERRORS);
         } else {
             incrementFails(ErrorTypes.NONBINARYRELATION);
             incrementFails(ErrorTypes.NONBINARYGENERALIZATION);
+            incrementFails(ErrorTypes.TOTALERRORS);
             return;
         }
         //Check if relation either connects use cases and actors
         if (((generalization.getStart().id() == Elements.USECASE || generalization.getStart().id() == Elements.EXTENSIONPOINT) && (generalization.getEnd().id() == Elements.USECASE || generalization.getEnd().id() == Elements.EXTENSIONPOINT)) || ((generalization.getStart().id() == Elements.ACTOR || generalization.getStart().id() == Elements.NONHUMANACTOR) && (generalization.getEnd().id() == Elements.ACTOR || generalization.getEnd().id() == Elements.NONHUMANACTOR))){
             incrementSucesses(ErrorTypes.NOTSAMETYPEGENERALIZATION);
+            incrementSucesses(ErrorTypes.TOTALERRORS);
         } else {
             incrementFails(ErrorTypes.NOTSAMETYPEGENERALIZATION);
+            incrementFails(ErrorTypes.TOTALERRORS);
         }
     }
 
@@ -161,16 +185,20 @@ public class SyntaxChecker {
         if (includes.getStart() != null && includes.getEnd() != null){
             incrementSucesses(ErrorTypes.NONBINARYRELATION);
             incrementSucesses(ErrorTypes.NONBINARYINCLUDES);
+            incrementSucesses(ErrorTypes.TOTALERRORS);
         } else {
             incrementFails(ErrorTypes.NONBINARYRELATION);
             incrementFails(ErrorTypes.NONBINARYINCLUDES);
+            incrementFails(ErrorTypes.TOTALERRORS);
             return;
         }
         //Check if relation only connects use cases or extension points
         if ((includes.getStart().id() == Elements.USECASE || includes.getStart().id() == Elements.EXTENSIONPOINT) && (includes.getEnd().id() == Elements.USECASE || includes.getEnd().id() == Elements.EXTENSIONPOINT)){
             incrementSucesses(ErrorTypes.NOTSAMETYPEINCLUDES);
+            incrementSucesses(ErrorTypes.TOTALERRORS);
         } else {
             incrementFails(ErrorTypes.NOTSAMETYPEINCLUDES);
+            incrementFails(ErrorTypes.TOTALERRORS);
         }
     }
 
@@ -179,32 +207,41 @@ public class SyntaxChecker {
         if (extend.getStart() != null && extend.getEnd() != null){
             incrementSucesses(ErrorTypes.NONBINARYRELATION);
             incrementSucesses(ErrorTypes.NONBINARYEXTENDS);
+            incrementSucesses(ErrorTypes.TOTALERRORS);
         } else {
             incrementFails(ErrorTypes.NONBINARYRELATION);
             incrementFails(ErrorTypes.NONBINARYEXTENDS);
+            incrementFails(ErrorTypes.TOTALERRORS);
             return;
         }
         //Check if relation only connects use cases or extension points
         if ((extend.getStart().id() == Elements.USECASE || extend.getStart().id() == Elements.EXTENSIONPOINT) && (extend.getEnd().id() == Elements.USECASE || extend.getEnd().id() == Elements.EXTENSIONPOINT)){
             incrementSucesses(ErrorTypes.NOTSAMETYPEEXTENDS);
+            incrementSucesses(ErrorTypes.TOTALERRORS);
         } else {
             incrementFails(ErrorTypes.NOTSAMETYPEEXTENDS);
+            incrementFails(ErrorTypes.TOTALERRORS);
         }
     }
 
     public void applyRules(ConditionRelation conditionRelation){
         //Check if relation is NOT binary
-        if ((conditionRelation.getStart() == null && conditionRelation.getEnd() != null) || (conditionRelation.getStart() != null && conditionRelation.getEnd() == null)){
+        if (conditionRelation.getStart() == null && conditionRelation.getEnd() != null){
             incrementSucesses(ErrorTypes.BINARYCONDITIONRELATION);
+            incrementSucesses(ErrorTypes.TOTALERRORS);
         } else {
             incrementFails(ErrorTypes.BINARYCONDITIONRELATION);
+            incrementFails(ErrorTypes.TOTALERRORS);
             return;
         }
         //Check if relation only connects to note
-        if (conditionRelation.getStart().id()== Elements.NOTE || conditionRelation.getEnd().id()== Elements.NOTE ){
+        if (conditionRelation.getStart() == null || conditionRelation.getEnd().id()== Elements.NOTE ){
             incrementSucesses(ErrorTypes.CONDITIONRELATIONNONOTE);
+            incrementSucesses(ErrorTypes.TOTALERRORS);
         } else {
             incrementFails(ErrorTypes.CONDITIONRELATIONNONOTE);
+            incrementFails(ErrorTypes.TOTALERRORS);
+
         }
     }
 }

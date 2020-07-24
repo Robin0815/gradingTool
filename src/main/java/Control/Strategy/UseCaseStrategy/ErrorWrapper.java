@@ -21,6 +21,10 @@ public class ErrorWrapper {
         this.sucesses = sucesses;
     }
 
+    public double getPercentage(){
+        return Math.round((double) this.fails/(this.fails+this.sucesses)*100);
+    }
+
     @Override
     public String toString() {
         return "ErrorWrapper{" +
