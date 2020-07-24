@@ -1,4 +1,4 @@
-/**
+/*
  * @author rfrank2s
  * @author mkowol2s
  */
@@ -8,7 +8,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import Control.Strategy.Strategy;
+
 import Model.*;
 
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -25,11 +25,11 @@ import java.io.File;
 
 
 public class Parser {
-    private Strategy strategy;
-    private List<TempComp> compPos = new ArrayList<>();
+    //private Strategy strategy;
+    private final List<TempComp> compPos = new ArrayList<>();
 
     public List<UMLComponent> parseFile(String file) {
-        UMLComponent dia;
+        //UMLComponent dia;
         List<UMLComponent> diaList = new ArrayList<>();
 
         try {
@@ -42,7 +42,7 @@ public class Parser {
             /*
             https://www.codeflow.site/de/article/java__how-to-read-xml-file-in-java-dom-parser Quelle für die XML Pars Funktionen
              */
-            dia = new Diagram(doc.getDocumentElement().getNodeName());
+            //dia = new Diagram(doc.getDocumentElement().getNodeName());
             NodeList nList = doc.getElementsByTagName("element");
             //erster Durchlauf für alle Elemente die keine Abhängikeiten von anderen haben
             for (int runt = 0; runt < 2; runt++) {
@@ -51,7 +51,7 @@ public class Parser {
                     if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                         Element eElement = (Element) nNode;
                         //-----
-                        UMLComponent a = null;
+                        UMLComponent a;
                         String id = eElement.getElementsByTagName("id").item(0).getTextContent();
                         String x = eElement.getElementsByTagName("x").item(0).getTextContent();
                         String y = eElement.getElementsByTagName("y").item(0).getTextContent();
@@ -108,7 +108,7 @@ public class Parser {
                         //Relationen erst beim 2. durchlauf betrachten
                         if (id.equals(IdType.relation()) && runt == 1) {
                             String additional_attributes = eElement.getElementsByTagName("additional_attributes").item(0).getTextContent();
-                            a = relationParse(panel_attributes, additional_attributes, Integer.parseInt(x), Integer.parseInt(y), Integer.parseInt(w), Integer.parseInt(h));
+                            a = relationParse(panel_attributes, additional_attributes, Integer.parseInt(x), Integer.parseInt(y));
                             diaList.add(a);
                         }
 
@@ -146,8 +146,7 @@ public class Parser {
                 res.setName(tmpstring);
             }
             Rectangle sy = new Rectangle(x,y,w,h);
-            for (int i = 0; i < compPos.size(); i++) {
-                TempComp tmp = compPos.get(i);
+            for (TempComp tmp : compPos) {
                 Rectangle rec = tmp.getRec();
 
                 if (sy.contains(rec)) {
@@ -183,9 +182,9 @@ public class Parser {
             }
             res.setName(s1[0]);
             s1 = s[1].split("\n");
-            for (int i = 0; i < s1.length; i++) {
-                if (!s1[i].contains("valign") & !s1[i].isEmpty()) {
-                    res.addExtpoint(s1[i]);
+            for (String value : s1) {
+                if (!value.contains("valign") & !value.isEmpty()) {
+                    res.addExtpoint(value);
                 }
             }
             return res;
@@ -198,10 +197,10 @@ public class Parser {
 
     }
 
-    private UMLComponent relationParse(String panelAttr, String addAttr, int x, int y, int w, int h) {
+    private UMLComponent relationParse(String panelAttr, String addAttr, int x, int y) {
         Relation res;
-        Point start = null;
-        Point end = null;
+        Point start;
+        Point end;
         String[] s = addAttr.split(";");
         int x2 = (int) Double.parseDouble(s[0]);
         int y2 = (int) Double.parseDouble(s[1]);
@@ -237,8 +236,7 @@ public class Parser {
         }
 
 
-        for (int i = 0; i < compPos.size(); i++) {
-            TempComp tmp = compPos.get(i);
+        for (TempComp tmp : compPos) {
             Rectangle rec = tmp.getRec();
             /*Class cl = (Class) tmp.getComp();
             System.out.println("Rechteck der Klasse: "+ cl.getName()+" "+rec.getMinX() + " "+rec.getMaxX() + " "+rec.getMinY() + " "+rec.getMaxY());
@@ -262,7 +260,7 @@ public class Parser {
 
 
     private UMLComponent classParse(String panelAttr) {
-        String name = "";
+        String name;
         String stereotype = null;
 
         List<UMLComponent> list = new ArrayList<>();
@@ -280,12 +278,12 @@ public class Parser {
         for (int i = stereotype == null ? 2 : 3; i < a.length; i++) {
             String s = a[i];
             String[] b = s.split("\n");
-            for (int j = 0; j < b.length; j++) {
+            for (String value : b) {
                 boolean isStatic = false;
-                String visibility = "";
-                String am = b[j];
+                String visibility;
+                String am = value;
                 am = am.replaceAll(" ", "");
-                if(am.isEmpty()){
+                if (am.isEmpty()) {
                     break;
                 }
                 if (am.charAt(0) == '_') {
@@ -297,14 +295,14 @@ public class Parser {
                 }
                 if (am.contains("(")) {
                     List<String> input = new ArrayList<>();
-                    String[]ab = (am.substring(am.indexOf('(')+1,am.indexOf(')')).split(":"));
-                    for (int p= 1; p<ab.length-1;p++){
+                    String[] ab = (am.substring(am.indexOf('(') + 1, am.indexOf(')')).split(":"));
+                    for (int p = 1; p < ab.length - 1; p++) {
                         //System.out.println(ab[p]);
                         input.add(ab[p].replace(" ", "").substring(0, ab[p].indexOf(',')));
                     }
-                    input.add(ab[ab.length-1].replace(" ", ""));
-                    if(!am.substring(am.indexOf(')')).contains(":")){
-                        list.add(new Constructor(visibility,input));
+                    input.add(ab[ab.length - 1].replace(" ", ""));
+                    if (!am.substring(am.indexOf(')')).contains(":")) {
+                        list.add(new Constructor(visibility, input));
                     }//am.substring(am.indexOf('('), am.indexOf(')')).contains(":") ? am.substring(am.indexOf(':') + 1, am.indexOf(')')) : am.substring(am.indexOf('('), am.indexOf(')'))
                     else {
                         list.add(new Method(am.substring(1, am.indexOf('(')), input, am.substring(am.lastIndexOf(':') + 1), isStatic, visibility));
@@ -324,8 +322,8 @@ public class Parser {
     }
 
 
-    public List<UMLComponent> startParse() {
+    /*public List<UMLComponent> startParse() {
         return null;
-    }
+    }*/
 
 }

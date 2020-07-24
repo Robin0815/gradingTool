@@ -2,7 +2,7 @@ import Control.Parser.Parser;
 import Control.Strategy.Strategy;
 import Control.Strategy.UseCaseStrategy.UseCaseStrategy;
 import Model.UMLComponent;
-import Model.Use;
+
 
 import java.util.List;
 
