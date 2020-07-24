@@ -7,6 +7,7 @@ import java.util.Map;
 
 public class SyntaxChecker {
     private Map<ErrorTypes, ErrorWrapper> numberOfErrors = new HashMap<>();
+    private Map<ErrorTypes, ErrorWrapper> numberOfAllErrors = new HashMap<>();
 
     public Map<ErrorTypes, ErrorWrapper> getNumberOfErrors() {
         return numberOfErrors;
@@ -16,33 +17,58 @@ public class SyntaxChecker {
         this.numberOfErrors = numberOfErrors;
     }
 
+    public Map<ErrorTypes, ErrorWrapper> getNumberOfAllErrors() {
+        return numberOfAllErrors;
+    }
+
+    public void setNumberOfAllErrors(Map<ErrorTypes, ErrorWrapper> numberOfAllErrors) {
+        this.numberOfAllErrors = numberOfAllErrors;
+    }
+
+    public void prepareForNext(){
+        numberOfErrors.clear();
+    }
+
     private void incrementFails(ErrorTypes errorType){
-        ErrorWrapper count = numberOfErrors.get(errorType);
+        incrementFails(errorType,numberOfErrors);
+        incrementFails(errorType,numberOfAllErrors);
+
+    }
+
+    private void incrementSucesses(ErrorTypes errorType){
+        incrementSucesses(errorType,numberOfErrors);
+        incrementSucesses(errorType,numberOfAllErrors);
+
+    }
+
+    private void incrementFails(ErrorTypes errorType, Map<ErrorTypes, ErrorWrapper> tmpmap){
+        ErrorWrapper count = tmpmap.get(errorType);
         if (count == null) {
             ErrorWrapper newcount = new ErrorWrapper();
             newcount.setFails(1);
             newcount.setSucesses(0);
-            numberOfErrors.put(errorType,newcount);
+            tmpmap.put(errorType,newcount);
         } else {
             count.setFails(count.getFails()+1);
-            numberOfErrors.put(errorType,count);
+            tmpmap.put(errorType,count);
         }
     }
 
-    private void incrementSucesses(ErrorTypes errorType){
-        ErrorWrapper count = numberOfErrors.get(errorType);
+    private void incrementSucesses(ErrorTypes errorType, Map<ErrorTypes, ErrorWrapper> tmpmap){
+        ErrorWrapper count = tmpmap.get(errorType);
         if (count == null) {
             ErrorWrapper newcount = new ErrorWrapper();
             newcount.setFails(0);
             newcount.setSucesses(1);
-            numberOfErrors.put(errorType,newcount);
+            tmpmap.put(errorType,newcount);
         } else {
             count.setSucesses(count.getSucesses()+1);
-            numberOfErrors.put(errorType,count);
+            tmpmap.put(errorType,count);
         }
     }
 
     public void applyRules(UseCase useCase){
+        incrementSucesses(ErrorTypes.UNKNOWNELEMENT);
         //Check if name is set
         if (useCase.getName().equals("")){
             incrementFails(ErrorTypes.ENTITYNAME);
@@ -57,6 +83,7 @@ public class SyntaxChecker {
     }
 
     public void applyRules(Actor actor){
+        incrementSucesses(ErrorTypes.UNKNOWNELEMENT);
         //Check if name is set
         if (actor.getName().equals("")){
             incrementFails(ErrorTypes.ENTITYNAME);
@@ -70,6 +97,7 @@ public class SyntaxChecker {
     }
 
     public void applyRules(NonHumanActor nonHumanActor){
+        incrementSucesses(ErrorTypes.UNKNOWNELEMENT);
         //Check if name is set
         if (nonHumanActor.getName().equals("")){
             incrementFails(ErrorTypes.ENTITYNAME);
@@ -83,6 +111,7 @@ public class SyntaxChecker {
     }
 
     public void applyRules(UMLSystem umlSystem){
+        incrementSucesses(ErrorTypes.UNKNOWNELEMENT);
         //Check if name is set
         if (umlSystem.getName().equals("")){
             incrementFails(ErrorTypes.ENTITYNAME);
@@ -105,6 +134,7 @@ public class SyntaxChecker {
     }
 
     public void applyRules(ExtensionPoint extensionPoint){
+        incrementSucesses(ErrorTypes.UNKNOWNELEMENT);
         //Check if name is set
         if (extensionPoint.getName().equals("")){
             incrementFails(ErrorTypes.ENTITYNAME);
@@ -126,6 +156,7 @@ public class SyntaxChecker {
     }
 
     public void applyRules(Note note){
+        incrementSucesses(ErrorTypes.UNKNOWNELEMENT);
         //Check if note is not empty
         if (note.getText().equals("")){
             incrementFails(ErrorTypes.EMPTYNOTE);
@@ -137,6 +168,7 @@ public class SyntaxChecker {
     }
 
     public void applyRules(Association association){
+        incrementSucesses(ErrorTypes.UNKNOWNELEMENT);
         //Check if relation is binary
         if (association.getStart() != null && association.getEnd() != null){
             incrementSucesses(ErrorTypes.NONBINARYRELATION);
@@ -159,6 +191,7 @@ public class SyntaxChecker {
     }
 
     public void applyRules(Generalization generalization){
+        incrementSucesses(ErrorTypes.UNKNOWNELEMENT);
         //Check if relation is binary
         if (generalization.getStart() != null && generalization.getEnd() != null){
             incrementSucesses(ErrorTypes.NONBINARYRELATION);
@@ -181,6 +214,7 @@ public class SyntaxChecker {
     }
 
     public void applyRules(Includes includes){
+        incrementSucesses(ErrorTypes.UNKNOWNELEMENT);
         //Check if relation is binary
         if (includes.getStart() != null && includes.getEnd() != null){
             incrementSucesses(ErrorTypes.NONBINARYRELATION);
@@ -203,6 +237,7 @@ public class SyntaxChecker {
     }
 
     public void applyRules(Extends extend){
+        incrementSucesses(ErrorTypes.UNKNOWNELEMENT);
         //Check if relation is binary
         if (extend.getStart() != null && extend.getEnd() != null){
             incrementSucesses(ErrorTypes.NONBINARYRELATION);
@@ -225,8 +260,10 @@ public class SyntaxChecker {
     }
 
     public void applyRules(ConditionRelation conditionRelation){
+        incrementSucesses(ErrorTypes.UNKNOWNELEMENT);
         //Check if relation is NOT binary
         if (conditionRelation.getStart() == null && conditionRelation.getEnd() != null){
+
             incrementSucesses(ErrorTypes.BINARYCONDITIONRELATION);
             incrementSucesses(ErrorTypes.TOTALERRORS);
         } else {
@@ -243,5 +280,9 @@ public class SyntaxChecker {
             incrementFails(ErrorTypes.TOTALERRORS);
 
         }
+    }
+
+    public void applyRules(UMLComponent component){
+        incrementFails(ErrorTypes.UNKNOWNELEMENT);
     }
 }

@@ -12,7 +12,8 @@ import java.util.*;
 
 public class UseCaseStrategy implements Strategy {
 
-    private static Map<Elements, Integer> numberOfElements = new HashMap<>();
+    private Map<Elements, Integer> numberOfElements = new HashMap<>();
+    private Map<ErrorTypes, ErrorWrapper> numberOfAllErrors = new HashMap<>();
     private SyntaxChecker synchecker = new SyntaxChecker();
     private InstructionGenerator instructionGenerator = new InstructionGenerator();
     private Boolean checksyntax = true;
@@ -28,15 +29,12 @@ public class UseCaseStrategy implements Strategy {
     @Override
     public void analyzeUML(List<UMLComponent> comps){
         //Implemenatation for automatic correction here
-
+        synchecker.prepareForNext();
+        numberOfElements.clear();
         //Checking syntax and semantics
         checkComponent(comps);
         //Calculating number of elements
         //Comparing with solution
-        checkSimilarity();
-
-
-
     }
 
     public void incrementElement(Elements element){
@@ -78,6 +76,8 @@ public class UseCaseStrategy implements Strategy {
             } else if (component.id() == Elements.CONDITIONRELATION) {
                 synchecker.applyRules((ConditionRelation) component);
                  relationlist.add(component);
+            } else {
+                synchecker.applyRules(component);
             }
         }
         if (checksimilarity){
@@ -95,9 +95,5 @@ public class UseCaseStrategy implements Strategy {
         //System.out.println(Collections.singletonList(tmpmap));
         //System.out.println(tmpmap.get(ErrorTypes.TOTALERRORS).getPercentage());
         //System.out.println(Collections.singletonList(numberOfElements));
-    }
-
-    public void checkSimilarity(){
-        //Checking similarity with solution
     }
 }
