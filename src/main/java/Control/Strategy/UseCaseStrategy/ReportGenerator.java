@@ -4,8 +4,8 @@ import Model.Elements;
 
 import java.util.Map;
 
-public class InstructionGenerator {
-    public void createResponseSyntaxErrors(Map<ErrorTypes, ErrorWrapper> errormap){
+public class ReportGenerator {
+    public void createReportSyntaxErrors(Map<ErrorTypes, ErrorWrapper> errormap){
         ErrorWrapper errorWrapper;
         String synResponse = "SYNTAX/SEMANTIK ANALYSE\n" +
                 "-------------------------------------------------------------------------------------------------------\n";
@@ -24,7 +24,7 @@ public class InstructionGenerator {
         if (errorWrapper != null){
             synResponse += "Subjekte/Objekte wurden zu " + errorWrapper.getPercentage() +"% nicht benannt.\n";
         }
-        errorWrapper = errormap.get(ErrorTypes.ACTORNAME);
+                errorWrapper = errormap.get(ErrorTypes.ACTORNAME);
         if (errorWrapper != null){
             synResponse += "Akteure wurden zu " + errorWrapper.getPercentage() +"% nicht benannt.\n";
         }

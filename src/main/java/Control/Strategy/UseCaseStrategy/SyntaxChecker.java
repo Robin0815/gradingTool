@@ -128,7 +128,8 @@ public class SyntaxChecker {
                 incrementFails(ErrorTypes.ACTORSCONTAINED);
                 incrementFails(ErrorTypes.TOTALERRORS);
             } else {
-                //incrementSucesses(ErrorTypes.ACTORSCONTAINED);
+                incrementSucesses(ErrorTypes.ACTORSCONTAINED);
+                incrementSucesses(ErrorTypes.TOTALERRORS);
             }
         }
     }

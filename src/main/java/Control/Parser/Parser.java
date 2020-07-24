@@ -26,9 +26,10 @@ import java.io.File;
 
 public class Parser {
     //private Strategy strategy;
-    private final List<TempComp> compPos = new ArrayList<>();
+    private List<TempComp> compPos = new ArrayList<>();
 
     public List<UMLComponent> parseFile(String file) {
+        compPos = new ArrayList<>();
         //UMLComponent dia;
         List<UMLComponent> diaList = new ArrayList<>();
 

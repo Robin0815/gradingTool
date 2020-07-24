@@ -15,11 +15,12 @@ public class UseCaseStrategy implements Strategy {
     private Map<Elements, Integer> numberOfElements = new HashMap<>();
     private Map<ErrorTypes, ErrorWrapper> numberOfAllErrors = new HashMap<>();
     private SyntaxChecker synchecker = new SyntaxChecker();
-    private InstructionGenerator instructionGenerator = new InstructionGenerator();
+    private ReportGenerator reportGenerator = new ReportGenerator();
     private Boolean checksyntax = true;
     private Boolean checksimilarity = true;
     private double delta = 0.1;
-    List<UMLComponent> relationlist = new ArrayList<>();
+    private List<UMLComponent> relationlist = new ArrayList<>();
+    private Solution solution;
 
     public UseCaseStrategy(Boolean checksyntax, Boolean checksimilarity){
         this.checksyntax=checksyntax;
@@ -31,10 +32,25 @@ public class UseCaseStrategy implements Strategy {
         //Implemenatation for automatic correction here
         synchecker.prepareForNext();
         numberOfElements.clear();
-        //Checking syntax and semantics
+        //Checking syntax and semantics and counting elements
         checkComponent(comps);
-        //Calculating number of elements
-        //Comparing with solution
+        //Checking if not enough errors (first delta)
+        //Generating true or false for passed
+        if (checksimilarity) {
+            //Checking if solution is set
+            if (solution == null) {
+                //Set solution
+                solution = new Solution();
+                solution.setNumberOfElements(numberOfElements);
+                solution.setRelationlist(relationlist);
+                return;
+            }
+            //Comparing with solution (second delta)
+            //Generating true or false for passed
+        }
+        //Check if last diagram
+        //Generate Report
+        reportGenerator.createReportSyntaxErrors(synchecker.getNumberOfAllErrors());
     }
 
     public void incrementElement(Elements element){
@@ -90,10 +106,8 @@ public class UseCaseStrategy implements Strategy {
         for (UMLComponent comp: comps) {
             checkComponent(comp);
         }
-        Map<ErrorTypes, ErrorWrapper> tmpmap = synchecker.getNumberOfErrors();
-        instructionGenerator.createResponseSyntaxErrors(synchecker.getNumberOfErrors());
-        //System.out.println(Collections.singletonList(tmpmap));
-        //System.out.println(tmpmap.get(ErrorTypes.TOTALERRORS).getPercentage());
+        //numberOfAllErrors = synchecker.getNumberOfErrors();
+        //System.out.println(Collections.singletonList(numberOfAllErrors));
         //System.out.println(Collections.singletonList(numberOfElements));
     }
 }
