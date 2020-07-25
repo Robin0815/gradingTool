@@ -25,8 +25,8 @@ public interface Visitor {
     void visit(UMLSystem system);
     void visit(UnknownElement unknownElement);
     void visit(UnknownRelation unknownRelation);
-    void visit(Use use);
     void visit(UseCase useCase);
     void visit(NonHumanActor nonHumanActor);
     void visit(Constructor constructor);
+    void visit(Association2 association2);
 }

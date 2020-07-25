@@ -5,7 +5,7 @@ package Model;
 
 import Control.Strategy.UseCaseStrategy.Visitor.Visitor;
 
-public class Use extends Relation{
+public class Association2 extends Relation{
     @Override
     public String toString() {
         return "Use{ "+super.toString()+" }";
