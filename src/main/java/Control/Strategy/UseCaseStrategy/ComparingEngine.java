@@ -40,8 +40,8 @@ public class ComparingEngine {
         }
         System.out.println(Arrays.toString(sampleList1.toArray()));
         System.out.println(Arrays.toString(sampleList2.toArray()));
-        double[] sample1 = ArrayUtils.toPrimitive(sampleList1.toArray(new Double[sampleList1.size()]));
-        double[] sample2 = ArrayUtils.toPrimitive(sampleList2.toArray(new Double[sampleList2.size()]));
+        double[] sample1 = ArrayUtils.toPrimitive(sampleList1.toArray(new Double[0]));
+        double[] sample2 = ArrayUtils.toPrimitive(sampleList2.toArray(new Double[0]));
         System.out.println(tester.tTest(sample1, sample2));
         System.out.println("ALPHA: " + alpha);
         System.out.println("1-ALPHA: "+(1-alpha));
@@ -68,8 +68,8 @@ public class ComparingEngine {
         }
         System.out.println(Arrays.toString(sampleList1.toArray()));
         System.out.println(Arrays.toString(sampleList2.toArray()));
-        double[] sample1 = ArrayUtils.toPrimitive(sampleList1.toArray(new Double[sampleList1.size()]));
-        double[] sample2 = ArrayUtils.toPrimitive(sampleList2.toArray(new Double[sampleList2.size()]));
+        double[] sample1 = ArrayUtils.toPrimitive(sampleList1.toArray(new Double[0]));
+        double[] sample2 = ArrayUtils.toPrimitive(sampleList2.toArray(new Double[0]));
         System.out.println(tester.tTest(sample1, sample2));
         System.out.println("ALPHA: " + alpha);
         System.out.println("1-ALPHA: "+(1-alpha));

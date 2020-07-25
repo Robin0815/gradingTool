@@ -59,9 +59,6 @@ public class ReducedRelation {
         if (getClass() != obj.getClass())
             return false;
         ReducedRelation other = (ReducedRelation) obj;
-        if (id != other.id || start != other.start || end != other.end) {
-            return false;
-        }
-        return true;
+        return id == other.id && start == other.start && end == other.end;
     }
 }
