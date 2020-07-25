@@ -8,6 +8,15 @@ import java.util.Map;
 public class SyntaxChecker {
     private Map<ErrorTypes, ErrorWrapper> numberOfErrors = new HashMap<>();
     private Map<ErrorTypes, ErrorWrapper> numberOfAllErrors = new HashMap<>();
+    private Map<ReducedRelation, Integer> reducedRelationIntegerMap = new HashMap<>();
+
+    public Map<ReducedRelation, Integer> getReducedRelationIntegerMap() {
+        return reducedRelationIntegerMap;
+    }
+
+    public void setReducedRelationIntegerMap(Map<ReducedRelation, Integer> reducedRelationIntegerMap) {
+        this.reducedRelationIntegerMap = reducedRelationIntegerMap;
+    }
 
     public Map<ErrorTypes, ErrorWrapper> getNumberOfErrors() {
         return numberOfErrors;
@@ -27,7 +36,27 @@ public class SyntaxChecker {
 
     public void prepareForNext(){
         numberOfErrors.clear();
+        reducedRelationIntegerMap.clear();
     }
+
+    private void createReducedRealtion(Relation relation){
+        ReducedRelation reducedRelation = new ReducedRelation();
+        reducedRelation.setId(relation.id());
+        reducedRelation.setStart(relation.getStart().id());
+        reducedRelation.setEnd(relation.getEnd().id());
+        incrementRelation(reducedRelation);
+    }
+
+
+    public void incrementRelation(ReducedRelation reducedRelation){
+        Integer count = reducedRelationIntegerMap.get(reducedRelation);
+        if (count == null) {
+            reducedRelationIntegerMap.put(reducedRelation, 1);
+        } else {
+            reducedRelationIntegerMap.put(reducedRelation, count + 1);
+        }
+    }
+
 
     private void incrementFails(ErrorTypes errorType){
         incrementFails(errorType,numberOfErrors);
@@ -181,6 +210,7 @@ public class SyntaxChecker {
             incrementFails(ErrorTypes.TOTALERRORS);
             return;
         }
+        createReducedRealtion(association);
         //Check if relation only connects use cases and actors
         if (((association.getStart().id() == Elements.USECASE || association.getStart().id() == Elements.EXTENSIONPOINT) && (association.getEnd().id() == Elements.ACTOR || association.getEnd().id() == Elements.NONHUMANACTOR)) || ((association.getStart().id() == Elements.ACTOR || association.getStart().id() == Elements.NONHUMANACTOR) && (association.getEnd().id() == Elements.USECASE || association.getEnd().id() == Elements.EXTENSIONPOINT))){
             incrementSucesses(ErrorTypes.NOTSAMETYPEASSOCIATION);
@@ -204,6 +234,7 @@ public class SyntaxChecker {
             incrementFails(ErrorTypes.TOTALERRORS);
             return;
         }
+        createReducedRealtion(generalization);
         //Check if relation either connects use cases and actors
         if (((generalization.getStart().id() == Elements.USECASE || generalization.getStart().id() == Elements.EXTENSIONPOINT) && (generalization.getEnd().id() == Elements.USECASE || generalization.getEnd().id() == Elements.EXTENSIONPOINT)) || ((generalization.getStart().id() == Elements.ACTOR || generalization.getStart().id() == Elements.NONHUMANACTOR) && (generalization.getEnd().id() == Elements.ACTOR || generalization.getEnd().id() == Elements.NONHUMANACTOR))){
             incrementSucesses(ErrorTypes.NOTSAMETYPEGENERALIZATION);
@@ -227,6 +258,7 @@ public class SyntaxChecker {
             incrementFails(ErrorTypes.TOTALERRORS);
             return;
         }
+        createReducedRealtion(includes);
         //Check if relation only connects use cases or extension points
         if ((includes.getStart().id() == Elements.USECASE || includes.getStart().id() == Elements.EXTENSIONPOINT) && (includes.getEnd().id() == Elements.USECASE || includes.getEnd().id() == Elements.EXTENSIONPOINT)){
             incrementSucesses(ErrorTypes.NOTSAMETYPEINCLUDES);
@@ -250,6 +282,7 @@ public class SyntaxChecker {
             incrementFails(ErrorTypes.TOTALERRORS);
             return;
         }
+        createReducedRealtion(extend);
         //Check if relation only connects use cases or extension points
         if ((extend.getStart().id() == Elements.USECASE || extend.getStart().id() == Elements.EXTENSIONPOINT) && (extend.getEnd().id() == Elements.USECASE || extend.getEnd().id() == Elements.EXTENSIONPOINT)){
             incrementSucesses(ErrorTypes.NOTSAMETYPEEXTENDS);

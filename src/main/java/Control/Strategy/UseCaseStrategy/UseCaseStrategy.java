@@ -14,16 +14,13 @@ public class UseCaseStrategy implements Strategy {
 
     private Map<Elements, Integer> numberOfElements = new HashMap<>();
     private Map<ErrorTypes, ErrorWrapper> numberOfAllErrors = new HashMap<>();
-    private SyntaxChecker synchecker = new SyntaxChecker();
-    private ReportGenerator reportGenerator = new ReportGenerator();
-    private Boolean checksyntax = true;
+    private final SyntaxChecker synchecker = new SyntaxChecker();
+    private final ReportGenerator reportGenerator = new ReportGenerator();
     private Boolean checksimilarity = true;
     private double delta = 0.1;
-    private List<UMLComponent> relationlist = new ArrayList<>();
     private Solution solution;
 
-    public UseCaseStrategy(Boolean checksyntax, Boolean checksimilarity){
-        this.checksyntax=checksyntax;
+    public UseCaseStrategy(Boolean checksimilarity){
         this.checksimilarity=checksimilarity;
     }
 
@@ -42,7 +39,8 @@ public class UseCaseStrategy implements Strategy {
                 //Set solution
                 solution = new Solution();
                 solution.setNumberOfElements(numberOfElements);
-                solution.setRelationlist(relationlist);
+                solution.setReducedRelationIntegerMap(synchecker.getReducedRelationIntegerMap());
+                //System.out.println(solution.toString());
                 return;
             }
             //Comparing with solution (second delta)
@@ -62,39 +60,31 @@ public class UseCaseStrategy implements Strategy {
         }
     }
 
-
     public void checkComponent(UMLComponent component){
-        if (checksyntax) {
-            if (component.id() == Elements.USECASE) {
-                synchecker.applyRules((UseCase) component);
-            } else if (component.id() == Elements.ACTOR) {
-                synchecker.applyRules((Actor) component);
-            } else if (component.id() == Elements.NONHUMANACTOR) {
-                synchecker.applyRules((NonHumanActor) component);
-            } else if (component.id() == Elements.UMLSYSTEM) {
-                synchecker.applyRules((UMLSystem) component);
-            } else if (component.id() == Elements.EXTENSIONPOINT) {
-                synchecker.applyRules((ExtensionPoint) component);
-            } else if (component.id() == Elements.NOTE) {
-                synchecker.applyRules((Note) component);
-            } else if (component.id() == Elements.ASSOCIATION) {
-                synchecker.applyRules((Association) component);
-                relationlist.add(component);
-            } else if (component.id() == Elements.GENERALIZATION) {
-                synchecker.applyRules((Generalization) component);
-                relationlist.add(component);
-            } else if (component.id() == Elements.EXTENDS) {
-                synchecker.applyRules((Extends) component);
-                relationlist.add(component);
-            } else if (component.id() == Elements.INCLUDES) {
-                synchecker.applyRules((Includes) component);
-                relationlist.add(component);
-            } else if (component.id() == Elements.CONDITIONRELATION) {
-                synchecker.applyRules((ConditionRelation) component);
-                 relationlist.add(component);
-            } else {
-                synchecker.applyRules(component);
-            }
+        if (component.id() == Elements.USECASE) {
+            synchecker.applyRules((UseCase) component);
+        } else if (component.id() == Elements.ACTOR) {
+            synchecker.applyRules((Actor) component);
+        } else if (component.id() == Elements.NONHUMANACTOR) {
+            synchecker.applyRules((NonHumanActor) component);
+        } else if (component.id() == Elements.UMLSYSTEM) {
+            synchecker.applyRules((UMLSystem) component);
+        } else if (component.id() == Elements.EXTENSIONPOINT) {
+            synchecker.applyRules((ExtensionPoint) component);
+        } else if (component.id() == Elements.NOTE) {
+            synchecker.applyRules((Note) component);
+        } else if (component.id() == Elements.ASSOCIATION) {
+            synchecker.applyRules((Association) component);
+        } else if (component.id() == Elements.GENERALIZATION) {
+            synchecker.applyRules((Generalization) component);
+        } else if (component.id() == Elements.EXTENDS) {
+            synchecker.applyRules((Extends) component);
+        } else if (component.id() == Elements.INCLUDES) {
+            synchecker.applyRules((Includes) component);
+        } else if (component.id() == Elements.CONDITIONRELATION) {
+            synchecker.applyRules((ConditionRelation) component);
+        } else {
+            synchecker.applyRules(component);
         }
         if (checksimilarity){
             incrementElement(component.id());
@@ -106,8 +96,10 @@ public class UseCaseStrategy implements Strategy {
         for (UMLComponent comp: comps) {
             checkComponent(comp);
         }
+        //reducedRelationIntegerMap = synchecker.getReducedRelationIntegerMap();
         //numberOfAllErrors = synchecker.getNumberOfErrors();
         //System.out.println(Collections.singletonList(numberOfAllErrors));
         //System.out.println(Collections.singletonList(numberOfElements));
+        //System.out.println(Collections.singletonList(reducedRelationIntegerMap));
     }
 }

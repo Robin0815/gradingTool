@@ -10,7 +10,15 @@ import java.util.Map;
 
 public class Solution {
     private Map<Elements, Integer> numberOfElements = new HashMap<>();
-    private List<UMLComponent> relationlist = new ArrayList<>();
+    private Map<ReducedRelation, Integer> reducedRelationIntegerMap = new HashMap<>();
+
+    public Map<ReducedRelation, Integer> getReducedRelationIntegerMap() {
+        return reducedRelationIntegerMap;
+    }
+
+    public void setReducedRelationIntegerMap(Map<ReducedRelation, Integer> reducedRelationIntegerMap) {
+        this.reducedRelationIntegerMap = reducedRelationIntegerMap;
+    }
 
     public Map<Elements, Integer> getNumberOfElements() {
         return numberOfElements;
@@ -20,11 +28,11 @@ public class Solution {
         this.numberOfElements = numberOfElements;
     }
 
-    public List<UMLComponent> getRelationlist() {
-        return relationlist;
-    }
-
-    public void setRelationlist(List<UMLComponent> relationlist) {
-        this.relationlist = relationlist;
+    @Override
+    public String toString() {
+        return "Solution{" +
+                "numberOfElements=" + numberOfElements +
+                ", reducedRelationIntegerMap=" + reducedRelationIntegerMap +
+                '}';
     }
 }
