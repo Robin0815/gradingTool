@@ -14,6 +14,7 @@ public class UseCaseStrategy implements Strategy {
 
     private Map<Elements, Integer> numberOfElements = new HashMap<>();
     private Map<ErrorTypes, ErrorWrapper> numberOfAllErrors = new HashMap<>();
+    private Map<ReducedRelation, Integer> reducedRelationIntegerMap = new HashMap<>();
     private final SyntaxChecker synchecker = new SyntaxChecker();
     private final ReportGenerator reportGenerator = new ReportGenerator();
     private Boolean checksimilarity = true;
@@ -29,19 +30,20 @@ public class UseCaseStrategy implements Strategy {
         //Implemenatation for automatic correction here
         synchecker.prepareForNext();
         numberOfElements = new HashMap<>();
+        reducedRelationIntegerMap = new HashMap<>();
         //Checking syntax and semantics and counting elements
         checkComponent(comps);
+        reducedRelationIntegerMap = synchecker.getReducedRelationIntegerMap();
         //Checking if not enough errors (first delta)
         //Generating true or false for passed
         if (checksimilarity) {
             Solution solution = new Solution();
             solution.setNumberOfElements((HashMap<Elements, Integer>) numberOfElements);
-            solution.setReducedRelationIntegerMap(synchecker.getReducedRelationIntegerMap());
+            solution.setReducedRelationIntegerMap(reducedRelationIntegerMap);
             //Checking if solution is set
             if (tutorSolution == null) {
                 //Set solution
                 tutorSolution=solution;
-                System.out.println(solution.toString());
                 return;
             }
             //Comparing with solution (second delta)
@@ -98,10 +100,10 @@ public class UseCaseStrategy implements Strategy {
         for (UMLComponent comp: comps) {
             checkComponent(comp);
         }
-        //reducedRelationIntegerMap = synchecker.getReducedRelationIntegerMap();
+        reducedRelationIntegerMap = synchecker.getReducedRelationIntegerMap();
         //numberOfAllErrors = synchecker.getNumberOfErrors();
         //System.out.println(Collections.singletonList(numberOfAllErrors));
         //System.out.println(Collections.singletonList(numberOfElements));
-        //System.out.println(Collections.singletonList(reducedRelationIntegerMap));
+        System.out.println(Collections.singletonList(reducedRelationIntegerMap));
     }
 }

@@ -36,18 +36,18 @@ public class SyntaxChecker {
 
     public void prepareForNext(){
         numberOfErrors.clear();
-        reducedRelationIntegerMap.clear();
+        reducedRelationIntegerMap = new HashMap<>();
     }
 
     private void createReducedRealtion(Relation relation){
         ReducedRelation reducedRelation = new ReducedRelation();
         reducedRelation.setId(relation.id());
-        if(reducedRelation.getStart() != null){
+        if(relation.getStart() != null){
             reducedRelation.setStart(relation.getStart().id());
         } else {
             reducedRelation.setStart(null);
         }
-        if(reducedRelation.getEnd() != null){
+        if(relation.getEnd() != null){
             reducedRelation.setEnd(relation.getEnd().id());
         } else {
             reducedRelation.setEnd(null);
