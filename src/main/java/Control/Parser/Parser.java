@@ -211,7 +211,7 @@ public class Parser {
         end = new Point(x + x2, y + y2);
         //Relation erkennen
         if (panelAttr.contains("lt=<-")) {
-            res = new Use();
+            res = new Association2();
         } else if (panelAttr.contains("lt=<.")) {
             res = new Dependency();
         } else if (panelAttr.contains("lt=<<.")) {

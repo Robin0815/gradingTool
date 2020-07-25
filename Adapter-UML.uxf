@@ -150,21 +150,19 @@ halign=left</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1830</x>
-      <y>440</y>
+      <x>1720</x>
+      <y>330</y>
       <w>410</w>
-      <h>230</h>
+      <h>170</h>
     </coordinates>
     <panel_attributes>Mensch
 --
-+gehen(distanz : double) : void
-+emailSchreiben(addresse : String, inhalt : String) : EMail
-+setOwnEmail(addresse : String) : void
-+Mensch(name : String, geburtsTag : Datum)
++getEMail(): EMail
++setEMail(email : EMail) : void
++createEMail(adresse : String) : EMail
 --
-#emailAdresse : String
+-emailAdresse : EMail
 +name : String
--geburtstag : Datum
 _+anzMenschen : int_
 
 
@@ -186,15 +184,29 @@ valign=center</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2350</x>
-      <y>480</y>
+      <x>2330</x>
+      <y>450</y>
       <w>280</w>
       <h>200</h>
     </coordinates>
-    <panel_attributes>SimpleClass
+    <panel_attributes>EMail
 --
-
---</panel_attributes>
++EMail(adresse : String)
++send(inhalt : String, empfaenger : EMail): void
++empfange(): String
+--
+-adresse : String</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2120</x>
+      <y>450</y>
+      <w>230</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>210.0;100.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>
