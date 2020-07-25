@@ -1,15 +1,12 @@
 package Control.Strategy.UseCaseStrategy;
 
 import Model.Elements;
-import Model.UMLComponent;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Solution {
-    private Map<Elements, Integer> numberOfElements = new HashMap<>();
+    private HashMap<Elements, Integer> numberOfElements = new HashMap<>();
     private Map<ReducedRelation, Integer> reducedRelationIntegerMap = new HashMap<>();
 
     public Map<ReducedRelation, Integer> getReducedRelationIntegerMap() {
@@ -20,11 +17,11 @@ public class Solution {
         this.reducedRelationIntegerMap = reducedRelationIntegerMap;
     }
 
-    public Map<Elements, Integer> getNumberOfElements() {
+    public HashMap<Elements, Integer> getNumberOfElements() {
         return numberOfElements;
     }
 
-    public void setNumberOfElements(Map<Elements, Integer> numberOfElements) {
+    public void setNumberOfElements(HashMap<Elements, Integer> numberOfElements) {
         this.numberOfElements = numberOfElements;
     }
 

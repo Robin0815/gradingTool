@@ -43,4 +43,16 @@ public class TestUseCase {
         strategy.analyzeUML(l);
         assertTrue(true);
     }
+    @Test
+    public void testSame(){
+        String file = "GoodUseCase.uxf";
+        Parser a = new Parser();
+        List<UMLComponent> l = a.parseFile(file);
+        Strategy strategy = new UseCaseStrategy(true);
+        strategy.analyzeUML(l);
+        file = "GoodUseCase.uxf";
+        l = a.parseFile(file);
+        strategy.analyzeUML(l);
+        assertTrue(true);
+    }
 }

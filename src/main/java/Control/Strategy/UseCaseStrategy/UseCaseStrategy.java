@@ -17,7 +17,7 @@ public class UseCaseStrategy implements Strategy {
     private final SyntaxChecker synchecker = new SyntaxChecker();
     private final ReportGenerator reportGenerator = new ReportGenerator();
     private Boolean checksimilarity = true;
-    private double delta = 0.1;
+    private double alpha = 0.4;
     private Solution tutorSolution;
 
     public UseCaseStrategy(Boolean checksimilarity){
@@ -28,14 +28,14 @@ public class UseCaseStrategy implements Strategy {
     public void analyzeUML(List<UMLComponent> comps){
         //Implemenatation for automatic correction here
         synchecker.prepareForNext();
-        numberOfElements.clear();
+        numberOfElements = new HashMap<>();
         //Checking syntax and semantics and counting elements
         checkComponent(comps);
         //Checking if not enough errors (first delta)
         //Generating true or false for passed
         if (checksimilarity) {
             Solution solution = new Solution();
-            solution.setNumberOfElements(numberOfElements);
+            solution.setNumberOfElements((HashMap<Elements, Integer>) numberOfElements);
             solution.setReducedRelationIntegerMap(synchecker.getReducedRelationIntegerMap());
             //Checking if solution is set
             if (tutorSolution == null) {
@@ -45,7 +45,7 @@ public class UseCaseStrategy implements Strategy {
                 return;
             }
             //Comparing with solution (second delta)
-            ComparingEngine.compareSolutions(tutorSolution,solution);
+            ComparingEngine.compareSolutions(tutorSolution, solution, alpha);
             //Generating true or false for passed
         }
         //Check if last diagram
