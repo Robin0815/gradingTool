@@ -40,7 +40,7 @@ public class UseCaseStrategy implements Strategy {
                 solution = new Solution();
                 solution.setNumberOfElements(numberOfElements);
                 solution.setReducedRelationIntegerMap(synchecker.getReducedRelationIntegerMap());
-                //System.out.println(solution.toString());
+                System.out.println(solution.toString());
                 return;
             }
             //Comparing with solution (second delta)

@@ -42,8 +42,16 @@ public class SyntaxChecker {
     private void createReducedRealtion(Relation relation){
         ReducedRelation reducedRelation = new ReducedRelation();
         reducedRelation.setId(relation.id());
-        reducedRelation.setStart(relation.getStart().id());
-        reducedRelation.setEnd(relation.getEnd().id());
+        if(reducedRelation.getStart() != null){
+            reducedRelation.setStart(relation.getStart().id());
+        } else {
+            reducedRelation.setStart(null);
+        }
+        if(reducedRelation.getEnd() != null){
+            reducedRelation.setEnd(relation.getEnd().id());
+        } else {
+            reducedRelation.setEnd(null);
+        }
         incrementRelation(reducedRelation);
     }
 
@@ -305,6 +313,7 @@ public class SyntaxChecker {
             incrementFails(ErrorTypes.TOTALERRORS);
             return;
         }
+        createReducedRealtion(conditionRelation);
         //Check if relation only connects to note
         if (conditionRelation.getStart() == null || conditionRelation.getEnd().id()== Elements.NOTE ){
             incrementSucesses(ErrorTypes.CONDITIONRELATIONNONOTE);
