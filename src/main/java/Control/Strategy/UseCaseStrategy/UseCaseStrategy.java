@@ -18,7 +18,7 @@ public class UseCaseStrategy implements Strategy {
     private final ReportGenerator reportGenerator = new ReportGenerator();
     private Boolean checksimilarity = true;
     private double delta = 0.1;
-    private Solution solution;
+    private Solution tutorSolution;
 
     public UseCaseStrategy(Boolean checksimilarity){
         this.checksimilarity=checksimilarity;
@@ -34,16 +34,18 @@ public class UseCaseStrategy implements Strategy {
         //Checking if not enough errors (first delta)
         //Generating true or false for passed
         if (checksimilarity) {
+            Solution solution = new Solution();
+            solution.setNumberOfElements(numberOfElements);
+            solution.setReducedRelationIntegerMap(synchecker.getReducedRelationIntegerMap());
             //Checking if solution is set
-            if (solution == null) {
+            if (tutorSolution == null) {
                 //Set solution
-                solution = new Solution();
-                solution.setNumberOfElements(numberOfElements);
-                solution.setReducedRelationIntegerMap(synchecker.getReducedRelationIntegerMap());
+                tutorSolution=solution;
                 System.out.println(solution.toString());
                 return;
             }
             //Comparing with solution (second delta)
+            ComparingEngine.compareSolutions(tutorSolution,solution);
             //Generating true or false for passed
         }
         //Check if last diagram
