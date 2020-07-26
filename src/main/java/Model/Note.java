@@ -4,8 +4,6 @@
 
 package Model;
 
-import Control.Strategy.UseCaseStrategy.Visitor.Visitor;
-
 public class Note implements UMLComponent{
     String text;
 
@@ -20,11 +18,6 @@ public class Note implements UMLComponent{
     @Override
     public boolean isConnectable() {
         return true;
-    }
-
-    @Override
-    public void accept(Visitor visitor) {
-        visitor.visit(this);
     }
 
     @Override

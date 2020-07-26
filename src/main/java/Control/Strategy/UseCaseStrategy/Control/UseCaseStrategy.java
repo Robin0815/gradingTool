@@ -2,9 +2,10 @@
 @author mkowol2s
  */
 
-package Control.Strategy.UseCaseStrategy;
+package Control.Strategy.UseCaseStrategy.Control;
 
 import Control.Strategy.Strategy;
+import Control.Strategy.UseCaseStrategy.DTO.Solution;
 import Model.Elements;
 import Model.*;
 

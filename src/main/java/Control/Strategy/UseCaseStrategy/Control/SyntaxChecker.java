@@ -1,5 +1,8 @@
-package Control.Strategy.UseCaseStrategy;
+package Control.Strategy.UseCaseStrategy.Control;
 
+import Control.Strategy.UseCaseStrategy.DTO.ErrorTypes;
+import Control.Strategy.UseCaseStrategy.DTO.ErrorWrapper;
+import Control.Strategy.UseCaseStrategy.DTO.ReducedRelation;
 import Model.*;
 
 import java.util.ArrayList;

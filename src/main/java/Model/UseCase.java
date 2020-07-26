@@ -4,8 +4,6 @@
 
 package Model;
 
-import Control.Strategy.UseCaseStrategy.Visitor.Visitor;
-
 public class UseCase implements UMLComponent {
     private String name;
 
@@ -19,11 +17,6 @@ public class UseCase implements UMLComponent {
     @Override
     public boolean isConnectable() {
         return true;
-    }
-
-    @Override
-    public void accept(Visitor visitor) {
-        visitor.visit(this);
     }
 
     @Override

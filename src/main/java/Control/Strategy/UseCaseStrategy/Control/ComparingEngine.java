@@ -1,4 +1,6 @@
-package Control.Strategy.UseCaseStrategy;
+package Control.Strategy.UseCaseStrategy.Control;
+import Control.Strategy.UseCaseStrategy.DTO.ReducedRelation;
+import Control.Strategy.UseCaseStrategy.DTO.Solution;
 import Model.Elements;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.math3.stat.inference.TTest;
@@ -15,7 +17,7 @@ public class ComparingEngine {
     private int undecidedSubmissions = 0;
     private int failedSubmissions = 0;
 
-    public void compareSolutions(Solution tutorsolution,Solution studentsolution, double alpha, double delta){
+    public void compareSolutions(Solution tutorsolution, Solution studentsolution, double alpha, double delta){
         double konfElements = getSimilarityNumberOfElements(tutorsolution.getNumberOfElements(),studentsolution.getNumberOfElements());
         double konfRelations = getSimilarityRelations(tutorsolution.getReducedRelationIntegerMap(),studentsolution.getReducedRelationIntegerMap());
         createFeedback(konfElements,konfRelations,alpha,delta);

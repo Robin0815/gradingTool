@@ -1,4 +1,4 @@
-package Control.Strategy.UseCaseStrategy;
+package Control.Strategy.UseCaseStrategy.DTO;
 
 import Model.Elements;
 

@@ -5,7 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import Control.Parser.Parser;
 import Control.Strategy.Strategy;
-import Control.Strategy.UseCaseStrategy.UseCaseStrategy;
+import Control.Strategy.UseCaseStrategy.Control.UseCaseStrategy;
 import Model.UMLComponent;
 import org.junit.Test;
 

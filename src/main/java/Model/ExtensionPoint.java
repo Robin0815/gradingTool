@@ -4,8 +4,6 @@
 
 package Model;
 
-import Control.Strategy.UseCaseStrategy.Visitor.Visitor;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,11 +29,6 @@ public class ExtensionPoint implements UMLComponent {
     @Override
     public boolean isConnectable() {
         return true;
-    }
-
-    @Override
-    public void accept(Visitor visitor) {
-        visitor.visit(this);
     }
 
     @Override

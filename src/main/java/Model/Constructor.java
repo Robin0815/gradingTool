@@ -3,8 +3,6 @@
  */
 package Model;
 
-import Control.Strategy.UseCaseStrategy.Visitor.Visitor;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,11 +42,6 @@ public class Constructor implements UMLComponent{
     @Override
     public boolean isConnectable() {
         return false;
-    }
-
-    @Override
-    public void accept(Visitor visitor) {
-        visitor.visit(this);
     }
 
     @Override
