@@ -1,4 +1,4 @@
-package Control.Strategy.UseCaseStrategy.DTO;
+package Control.Strategy.UseCaseStrategy;
 
 public enum ErrorTypes {
     ENTITYNAME, SYSTEMNAME, ACTORNAME, USECASENAME, ACTORSCONTAINED, NONBINARYRELATION, NONBINARYASSOCIATION,

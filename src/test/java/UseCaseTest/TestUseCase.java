@@ -17,7 +17,7 @@ public class TestUseCase {
         String file = "WorstUseCase.uxf";
         Parser a = new Parser();
         List<UMLComponent> l = a.parseFile(file);
-        Strategy strategy = new UseCaseStrategy(false);
+        Strategy strategy = new UseCaseStrategy(0.2,1);
         strategy.analyzeUML(l);
         assertTrue(true);
     }
@@ -27,7 +27,7 @@ public class TestUseCase {
         String file = "GoodUseCase.uxf";
         Parser a = new Parser();
         List<UMLComponent> l = a.parseFile(file);
-        Strategy strategy = new UseCaseStrategy(false);
+        Strategy strategy = new UseCaseStrategy(0.2,1);
         strategy.analyzeUML(l);
         assertTrue(true);
     }
@@ -36,7 +36,7 @@ public class TestUseCase {
         String file = "GoodUseCase.uxf";
         Parser a = new Parser();
         List<UMLComponent> l = a.parseFile(file);
-        Strategy strategy = new UseCaseStrategy(true);
+        Strategy strategy = new UseCaseStrategy(0.2,0.1,0.4,2);
         strategy.analyzeUML(l);
         file = "WorstUseCase.uxf";
         l = a.parseFile(file);
@@ -48,7 +48,7 @@ public class TestUseCase {
         String file = "GoodUseCase.uxf";
         Parser a = new Parser();
         List<UMLComponent> l = a.parseFile(file);
-        Strategy strategy = new UseCaseStrategy(true);
+        Strategy strategy = new UseCaseStrategy(0.2,0.1,0.4,2);
         strategy.analyzeUML(l);
         file = "GoodUseCase.uxf";
         l = a.parseFile(file);

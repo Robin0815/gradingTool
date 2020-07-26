@@ -30,7 +30,7 @@ public class ThinMain {
                 }
             }
         }*/
-        Strategy strategy = new UseCaseStrategy(true);
+        Strategy strategy = new UseCaseStrategy(0.2,1);
         strategy.analyzeUML(l);
     }
 }

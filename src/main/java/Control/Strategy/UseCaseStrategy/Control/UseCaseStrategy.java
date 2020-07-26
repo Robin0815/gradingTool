@@ -17,29 +17,40 @@ public class UseCaseStrategy implements Strategy {
     private final SyntaxChecker synchecker = new SyntaxChecker();
     private final ComparingEngine comparingEngine = new ComparingEngine();
     private boolean first = true;
-    private Boolean checksimilarity = true;
+    private Boolean checksimilarity;
     private double beta = 0.2;
     private double alpha = 0.1;
     private double delta = 0.4;
+    private int numberOfSubmissions = 0;
     private Solution tutorSolution;
 
-    public UseCaseStrategy(Boolean checksimilarity){
-        this.checksimilarity=checksimilarity;
+    public UseCaseStrategy(double beta, int numberOfSubmissions){
+        this.beta = beta;
+        this.numberOfSubmissions= numberOfSubmissions;
+        this.checksimilarity = false;
+    }
+
+    public UseCaseStrategy(double beta, double alpha, double delta, int numberOfSubmissions){
+        this.beta = beta;
+        this.alpha = alpha;
+        this.delta = delta;
+        this.numberOfSubmissions= numberOfSubmissions;
+        this.checksimilarity = true;
     }
 
     @Override
     public void analyzeUML(List<UMLComponent> comps){
+        this.numberOfSubmissions--;
         //Implemenatation for automatic correction here
         synchecker.prepareForNext();
         numberOfElements = new HashMap<>();
         //Checking syntax and semantics and counting elements
         checkComponent(comps);
         //Checking if not enough errors (first delta)
-        if (!first && checksimilarity){
+        if(!(first && checksimilarity)){
             synchecker.createSyntaxFeedback(beta);
-        } else {
-            first = false;
         }
+        this.first=false;
         //Generating true or false for passed
         if (checksimilarity) {
             Solution solution = new Solution();
@@ -55,14 +66,15 @@ public class UseCaseStrategy implements Strategy {
             comparingEngine.compareSolutions(tutorSolution, solution, alpha, delta);
             //Generating true or false for passed
         }
-        synchecker.createSyntaxFeedback(beta);
         //Check if last diagram
-        //Generate Report
-        ReportGenerator.createFeedbackOfResults(synchecker.returnResults());
-        if (checksimilarity) {
-            ReportGenerator.createFeedbackOfResults(comparingEngine.returnResults());
+        if(this.numberOfSubmissions==0) {
+            //Generate Report
+            ReportGenerator.createFeedbackOfResults(synchecker.returnResults());
+            if (checksimilarity) {
+                ReportGenerator.createFeedbackOfResults(comparingEngine.returnResults());
+            }
+            ReportGenerator.createReportSyntaxErrors(synchecker.getNumberOfAllErrors());
         }
-        ReportGenerator.createReportSyntaxErrors(synchecker.getNumberOfAllErrors());
     }
 
     private void incrementElement(Elements element){
