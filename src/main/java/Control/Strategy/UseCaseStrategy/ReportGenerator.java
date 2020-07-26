@@ -1,11 +1,10 @@
 package Control.Strategy.UseCaseStrategy;
 
-import Model.Elements;
-
+import java.util.ArrayList;
 import java.util.Map;
 
 public class ReportGenerator {
-    public void createReportSyntaxErrors(Map<ErrorTypes, ErrorWrapper> errormap){
+    public static void createReportSyntaxErrors(Map<ErrorTypes, ErrorWrapper> errormap){
         ErrorWrapper errorWrapper;
         String synResponse = "SYNTAX/SEMANTIK ANALYSE\n" +
                 "-------------------------------------------------------------------------------------------------------\n";
@@ -101,8 +100,24 @@ public class ReportGenerator {
         System.out.println(synResponse);
     }
 
-
-    public void createInstructionNumberOfElements(Elements element){
-
+    public static void createFeedbackOfResults(ArrayList<Long> results){
+        if(results.size()==3) {
+            String reportResults = "REPORT ZUM VERGLEICH MIT DER MUSTERLÖSUNG\n" +
+                    "-------------------------------------------------------------------------------------------------------\n";
+            reportResults += results.get(2) + "% der Abgaben wurden mit Bestanden bewertet.\n";
+            reportResults += results.get(1) + "% der Abgaben müssen manuell geprüft werden.\n";
+            reportResults += results.get(0) + "% der Abgaben wurden mit Durchgefallen bewertet.\n";
+            reportResults += "-------------------------------------------------------------------------------------------------------\n";
+            System.out.println(reportResults);
+        } else if(results.size()==2) {
+            String reportResults = "REPORT ZUR SYNTAXÜBERPRÜFUNG\n" +
+                    "-------------------------------------------------------------------------------------------------------\n";
+            reportResults += results.get(1) + "% der Abgaben wurden mit Bestanden bewertet.\n";
+            reportResults += results.get(0) + "% der Abgaben wurden mit Durchgefallen bewertet.\n";
+            reportResults += "-------------------------------------------------------------------------------------------------------\n";
+            System.out.println(reportResults);
+        } else {
+            System.out.println("Something went wrong");
+        }
     }
 }

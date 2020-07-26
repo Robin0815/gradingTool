@@ -2,6 +2,7 @@ package Control.Strategy.UseCaseStrategy;
 
 import Model.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,34 +10,42 @@ public class SyntaxChecker {
     private Map<ErrorTypes, ErrorWrapper> numberOfErrors = new HashMap<>();
     private Map<ErrorTypes, ErrorWrapper> numberOfAllErrors = new HashMap<>();
     private Map<ReducedRelation, Integer> reducedRelationIntegerMap = new HashMap<>();
+    private int passedSubmissions = 0;
+    private int failedSubmissions = 0;
 
     public Map<ReducedRelation, Integer> getReducedRelationIntegerMap() {
         return reducedRelationIntegerMap;
-    }
-
-    public void setReducedRelationIntegerMap(Map<ReducedRelation, Integer> reducedRelationIntegerMap) {
-        this.reducedRelationIntegerMap = reducedRelationIntegerMap;
     }
 
     public Map<ErrorTypes, ErrorWrapper> getNumberOfErrors() {
         return numberOfErrors;
     }
 
-    public void setNumberOfErrors(Map<ErrorTypes, ErrorWrapper> numberOfErrors) {
-        this.numberOfErrors = numberOfErrors;
-    }
-
     public Map<ErrorTypes, ErrorWrapper> getNumberOfAllErrors() {
         return numberOfAllErrors;
     }
 
-    public void setNumberOfAllErrors(Map<ErrorTypes, ErrorWrapper> numberOfAllErrors) {
-        this.numberOfAllErrors = numberOfAllErrors;
+    public ArrayList<Long> returnResults() {
+        ArrayList<Long> results = new ArrayList<>();
+        results.add(Math.round((double) failedSubmissions/(failedSubmissions+passedSubmissions)*100));
+        results.add(Math.round((double) passedSubmissions/(failedSubmissions+passedSubmissions)*100));
+        return results;
     }
 
     public void prepareForNext(){
         numberOfErrors.clear();
         reducedRelationIntegerMap = new HashMap<>();
+    }
+
+    public boolean createSyntaxFeedback(double beta){
+        if (numberOfErrors.get(ErrorTypes.TOTALERRORS).getPercentage()>beta*100){
+            failedSubmissions++;
+            System.out.println("FAILED SYN");
+            return false;
+        }
+        passedSubmissions++;
+        System.out.println("PASSED SYN");
+        return true;
     }
 
     private void createReducedRealtion(Relation relation){
