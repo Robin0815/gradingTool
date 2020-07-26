@@ -17,7 +17,7 @@ public class UseCaseStrategy implements Strategy {
     private final SyntaxChecker synchecker = new SyntaxChecker();
     private final ComparingEngine comparingEngine = new ComparingEngine();
     private boolean first = true;
-    private Boolean checksimilarity;
+    private final Boolean checksimilarity;
     private double beta = 0.2;
     private double alpha = 0.1;
     private double delta = 0.4;

@@ -1,3 +1,7 @@
+/*
+@author mkowol2s
+ */
+
 package Control.Strategy.UseCaseStrategy;
 
 public enum ErrorTypes {

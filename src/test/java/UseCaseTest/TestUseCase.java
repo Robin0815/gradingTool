@@ -1,5 +1,8 @@
-package UseCaseTest;
+/*
+@author mkowol2s
+ */
 
+package UseCaseTest;
 
 import static org.junit.Assert.assertTrue;
 

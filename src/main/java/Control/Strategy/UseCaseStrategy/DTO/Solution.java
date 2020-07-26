@@ -1,6 +1,9 @@
+/*
+@author mkowol2s
+ */
+
 package Control.Strategy.UseCaseStrategy.DTO;
 
-import Control.Strategy.UseCaseStrategy.DTO.ReducedRelation;
 import Model.Elements;
 
 import java.util.HashMap;
