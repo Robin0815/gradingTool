@@ -4,7 +4,7 @@
 
 package Control.Strategy.UseCaseStrategy.Control;
 
-import Control.Strategy.UseCaseStrategy.ErrorTypes;
+import Control.Strategy.UseCaseStrategy.DTO.ErrorTypes;
 import Control.Strategy.UseCaseStrategy.DTO.ErrorWrapper;
 import Control.Strategy.UseCaseStrategy.DTO.ReducedRelation;
 import Model.*;
@@ -22,10 +22,6 @@ public class SyntaxChecker {
 
     public Map<ReducedRelation, Integer> getReducedRelationIntegerMap() {
         return reducedRelationIntegerMap;
-    }
-
-    public Map<ErrorTypes, ErrorWrapper> getNumberOfErrors() {
-        return numberOfErrors;
     }
 
     public Map<ErrorTypes, ErrorWrapper> getNumberOfAllErrors() {
@@ -72,7 +68,7 @@ public class SyntaxChecker {
     }
 
 
-    public void incrementRelation(ReducedRelation reducedRelation){
+    private void incrementRelation(ReducedRelation reducedRelation){
         Integer count = reducedRelationIntegerMap.get(reducedRelation);
         if (count == null) {
             reducedRelationIntegerMap.put(reducedRelation, 1);

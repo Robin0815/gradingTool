@@ -6,22 +6,22 @@ package Control.Strategy.UseCaseStrategy.DTO;
 
 public class ErrorWrapper {
 
-    private Integer sucesses = 0;
-    private Integer fails = 0;
+    private int sucesses = 0;
+    private int fails = 0;
 
-    public Integer getFails() {
+    public int getFails() {
         return fails;
     }
 
-    public void setFails(Integer fails) {
+    public void setFails(int fails) {
         this.fails = fails;
     }
 
-    public Integer getSucesses() {
+    public int getSucesses() {
         return sucesses;
     }
 
-    public void setSucesses(Integer sucesses) {
+    public void setSucesses(int sucesses) {
         this.sucesses = sucesses;
     }
 
