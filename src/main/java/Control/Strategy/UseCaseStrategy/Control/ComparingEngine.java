@@ -18,7 +18,7 @@ import java.util.Map.Entry;
 public class ComparingEngine {
 
     private final TTest tester = new TTest();
-    private int passedSubmisions = 0;
+    private int passedSubmissions = 0;
     private int undecidedSubmissions = 0;
     private int failedSubmissions = 0;
 
@@ -86,7 +86,7 @@ public class ComparingEngine {
             System.out.println("UNDECIDED");
         } else {
             //return passed
-            passedSubmisions++;
+            passedSubmissions++;
             System.out.println("PASSED");
         }
     }
@@ -94,9 +94,9 @@ public class ComparingEngine {
 
     public ArrayList<Long> returnResults(){
         ArrayList<Long> results = new ArrayList<>();
-        results.add(Math.round((double) failedSubmissions/(failedSubmissions+undecidedSubmissions+passedSubmisions)*100));
-        results.add(Math.round((double) undecidedSubmissions/(failedSubmissions+undecidedSubmissions+passedSubmisions)*100));
-        results.add(Math.round((double) passedSubmisions/(failedSubmissions+undecidedSubmissions+passedSubmisions)*100));
+        results.add(Math.round((double) failedSubmissions/(failedSubmissions+undecidedSubmissions+passedSubmissions)*100));
+        results.add(Math.round((double) undecidedSubmissions/(failedSubmissions+undecidedSubmissions+passedSubmissions)*100));
+        results.add(Math.round((double) passedSubmissions/(failedSubmissions+undecidedSubmissions+passedSubmissions)*100));
         return results;
     }
 }

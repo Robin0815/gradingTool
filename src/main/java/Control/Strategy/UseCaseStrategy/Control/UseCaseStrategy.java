@@ -50,7 +50,7 @@ public class UseCaseStrategy implements Strategy {
         if(!(first && checksimilarity)){
             synchecker.createSyntaxFeedback(beta);
         }
-        this.first=false;
+        this.first = false;
         //Generating true or false for passed
         if (checksimilarity) {
             Solution solution = new Solution();
@@ -59,7 +59,7 @@ public class UseCaseStrategy implements Strategy {
             //Checking if solution is set
             if (tutorSolution == null) {
                 //Set solution
-                tutorSolution=solution;
+                tutorSolution = solution;
                 return;
             }
             //Comparing with solution (second delta)
@@ -67,7 +67,7 @@ public class UseCaseStrategy implements Strategy {
             //Generating true or false for passed
         }
         //Check if last diagram
-        if(this.numberOfSubmissions==0) {
+        if(this.numberOfSubmissions == 0) {
             //Generate Report
             ReportGenerator.createFeedbackOfResults(synchecker.returnResults());
             if (checksimilarity) {

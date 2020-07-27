@@ -14,8 +14,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SyntaxChecker {
-    private Map<ErrorTypes, ErrorWrapper> numberOfErrors = new HashMap<>();
-    private Map<ErrorTypes, ErrorWrapper> numberOfAllErrors = new HashMap<>();
+    private final Map<ErrorTypes, ErrorWrapper> numberOfErrors = new HashMap<>();
+    private final Map<ErrorTypes, ErrorWrapper> numberOfAllErrors = new HashMap<>();
     private Map<ReducedRelation, Integer> reducedRelationIntegerMap = new HashMap<>();
     private int passedSubmissions = 0;
     private int failedSubmissions = 0;
