@@ -40,6 +40,7 @@ public class UseCaseStrategy implements Strategy {
 
     @Override
     public void analyzeUML(List<UMLComponent> comps){
+        boolean passedsyn = true;
         this.numberOfSubmissions--;
         //Implemenatation for automatic correction here
         synchecker.prepareForNext();
@@ -48,11 +49,11 @@ public class UseCaseStrategy implements Strategy {
         checkComponent(comps);
         //Checking if not enough errors (first delta)
         if(!(first && checksimilarity)){
-            synchecker.createSyntaxFeedback(beta);
+            passedsyn = synchecker.createSyntaxFeedback(beta);
         }
         this.first = false;
         //Generating true or false for passed
-        if (checksimilarity) {
+        if (checksimilarity && passedsyn) {
             Solution solution = new Solution();
             solution.setNumberOfElements((HashMap<Elements, Integer>) numberOfElements);
             solution.setReducedRelationIntegerMap(synchecker.getReducedRelationIntegerMap());
