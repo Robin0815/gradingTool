@@ -133,10 +133,10 @@ public class UMLFactory {
         java.util.List<UMLComponent> list = new ArrayList<>();
         String[] a = panelAttr.split("\n");
         if (a[0].contains("<<interface>>")) {
-            stereotype = StereoType.interf();
+            stereotype = "interface";
             name = a[1];
         } else if (a[0].contains("<<abstract>>")) {
-            stereotype = StereoType.abstrac();
+            stereotype = "abstract";
             name = a[1];
         } else {
             name = a[0];
