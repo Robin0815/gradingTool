@@ -170,7 +170,7 @@ public class UMLFactory {
                     input.add(ab[ab.length - 1].replace(" ", ""));
                     if (!am.substring(am.indexOf(')')).contains(":")) {
                         list.add(new Constructor(visibility, input));
-                    }//am.substring(am.indexOf('('), am.indexOf(')')).contains(":") ? am.substring(am.indexOf(':') + 1, am.indexOf(')')) : am.substring(am.indexOf('('), am.indexOf(')'))
+                    }
                     else {
                         list.add(new Method(am.substring(1, am.indexOf('(')), input, am.substring(am.lastIndexOf(':') + 1), isStatic, visibility));
                     }
