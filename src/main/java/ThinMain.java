@@ -1,6 +1,4 @@
 import Control.Parser.Parser;
-import Control.Strategy.Strategy;
-import Control.Strategy.UseCaseStrategy.Control.UseCaseStrategy;
 import Model.UMLComponent;
 
 import java.io.File;
