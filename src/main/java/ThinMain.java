@@ -3,6 +3,7 @@ import Control.Strategy.Strategy;
 import Control.Strategy.UseCaseStrategy.Control.UseCaseStrategy;
 import Model.UMLComponent;
 
+import java.io.File;
 import java.util.List;
 
 public class ThinMain {
@@ -11,8 +12,10 @@ public class ThinMain {
         //System.out.println("Start");
 
         String file = "WorstUseCase.uxf";
+        File testFile = new File(file);
         Parser a = new Parser();
-        List<UMLComponent> l = a.parseFile(file);
+        List<UMLComponent> l = a.parseFile(testFile);
+        System.out.print(l.toString());
         //System.out.println(l.toString());
         /*for (int i = 0; i< l.size();i++){
             UMLComponent tmp = l.get(i);
@@ -30,7 +33,7 @@ public class ThinMain {
                 }
             }
         }*/
-        Strategy strategy = new UseCaseStrategy(0.2,1);
-        strategy.analyzeUML(l);
+        //Strategy strategy = new UseCaseStrategy(0.2,1);
+        //strategy.analyzeUML(l);
     }
 }
