@@ -49,11 +49,11 @@ public class Class implements UMLComponent{
 
     @Override
     public String toString() {
-        return "Class{" +
+        return "\n"+"Class{" +
                 "name='" + name + '\'' +
                 ", stereotype='" + stereotype + '\'' +
                 ", elements=" + elements +
-                '}';
+                '}'+"\n";
     }
 
     @Override

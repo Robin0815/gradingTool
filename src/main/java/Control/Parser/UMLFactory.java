@@ -120,8 +120,8 @@ public class UMLFactory {
         start = new Point(x + x1, y + y1);
         end = new Point(x + x2, y + y2);
         //Relation erkennen
-        res.setStart(TempCompContainer.getInsance().contains(start).get(0));
-        res.setEnd(TempCompContainer.getInsance().contains(end).get(0));
+        res.setStart(TempCompContainer.getInsance().contains(start).isEmpty() ? null : TempCompContainer.getInsance().contains(start).get(0));
+        res.setEnd(TempCompContainer.getInsance().contains(end).isEmpty() ? null : TempCompContainer.getInsance().contains(end).get(0));
         return res;
     }
 

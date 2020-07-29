@@ -104,40 +104,38 @@ public class Parser {
                         if (a.isConnectable()) {
                             factory.makeTempComp(a, x, y, w, h);
                         }
-
-                        //Weitere Komponenten erkennen
-
-
-                        //Nur die Benötigten Elemente in die TempComp für die bestimmung der Assoziationen.
-
-                        //Relationen erst beim 2. durchlauf betrachten
-                        if (id.equals(IdType.relation()) && runt == 1) {
-                            String additional_attributes = eElement.getElementsByTagName("additional_attributes").item(0).getTextContent();
-                            a = factory.makeRelation(panel_attributes, additional_attributes, Integer.parseInt(x), Integer.parseInt(y));
-                            diaList.add(a);
-                        }
-
-                        //Alle nicht in IdType definierten Elemente als Unknown Element anlegen
-                        if (!(id.equals(IdType.note()) || id.equals(IdType.system()) || id.equals(IdType.umlclass()) || id.equals(IdType.actor()) || id.equals(IdType.usecase()) || id.equals(IdType.relation())) && runt == 1) {
-                            a = factory.makeUnknownElement();
-                            diaList.add(a);
-                        }
                     }
+                    //Weitere Komponenten erkennen
+
+
+                    //Nur die Benötigten Elemente in die TempComp für die bestimmung der Assoziationen.
+
+                    //Relationen erst beim 2. durchlauf betrachten
+                    if (id.equals(IdType.relation()) && runt == 1) {
+                        String additional_attributes = eElement.getElementsByTagName("additional_attributes").item(0).getTextContent();
+                        a = factory.makeRelation(panel_attributes, additional_attributes, Integer.parseInt(x), Integer.parseInt(y));
+                        diaList.add(a);
+                    }
+
+                    //Alle nicht in IdType definierten Elemente als Unknown Element anlegen
+                    if (!(id.equals(IdType.note()) || id.equals(IdType.system()) || id.equals(IdType.umlclass()) || id.equals(IdType.actor()) || id.equals(IdType.usecase()) || id.equals(IdType.relation())) && runt == 1) {
+                        a = factory.makeUnknownElement();
+                        diaList.add(a);
+                    }
+
                 }
             }
         }
 
-            return diaList;
-        }
+        return diaList;
+    }
 
 
-
-
-    private Document fileReader(File file)  throws ParserConfigurationException, IOException, SAXException {
+    private Document fileReader(File file) throws ParserConfigurationException, IOException, SAXException {
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-        Document doc = dBuilder.parse(file);
-        return doc;
+        return dBuilder.parse(file);
+
     }
 
 
