@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TempCompContainer {
-    private List<TempComp> compPos = new ArrayList<>();
+    private final List<TempComp> compPos = new ArrayList<>();
     private static TempCompContainer instance = null;
 
     private TempCompContainer(){
@@ -23,13 +23,13 @@ public class TempCompContainer {
         return instance;
     }
 
-    public List<TempComp> getCompPos() {
+    /*public List<TempComp> getCompPos() {
         return compPos;
     }
 
     public void setCompPos(List<TempComp> compPos) {
         this.compPos = compPos;
-    }
+    }*/
     public void addComp(TempComp a){
         compPos.add(a);
     }
