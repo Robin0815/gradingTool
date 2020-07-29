@@ -32,18 +32,17 @@ public class Parser {
         //UMLComponent dia;
         List<UMLComponent> diaList = new ArrayList<>();
 
-        Document doc = null;
+        Document doc;
         try {
             doc = fileReader(file);
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        } catch (SAXException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (ParserConfigurationException | SAXException | IOException e) {
+            System.out.println("Datei nicht gefunden, oder nicht als XML/UXF formatiert");
+            doc = null;
+            //e.printStackTrace();
         }
 
 
+        assert doc != null;
         doc.getDocumentElement().normalize();
             /*
             https://www.codeflow.site/de/article/java__how-to-read-xml-file-in-java-dom-parser Quelle für die XML Pars Funktionen

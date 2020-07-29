@@ -5,8 +5,8 @@ import Model.UMLComponent;
 import java.awt.*;
 
 public class TempComp {
-    private UMLComponent comp;
-    private Rectangle rec;
+    private final UMLComponent comp;
+    private final Rectangle rec;
 
     public TempComp(UMLComponent comp, int x, int y, int w, int h){
         this.comp = comp;
@@ -17,15 +17,15 @@ public class TempComp {
         return comp;
     }
 
-    public void setComp(UMLComponent comp) {
+    /*public void setComp(UMLComponent comp) {
         this.comp = comp;
-    }
+    }*/
 
     public Rectangle getRec() {
         return rec;
     }
 
-    public void setRec(Rectangle rec) {
+    /*public void setRec(Rectangle rec) {
         this.rec = rec;
-    }
+    }*/
 }
