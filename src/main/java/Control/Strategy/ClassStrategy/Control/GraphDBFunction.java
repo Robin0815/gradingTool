@@ -101,7 +101,7 @@ public class GraphDBFunction {
         for (int i = 0; i < lRelation.size(); i++) {
             Relation a = (Relation) lRelation.get(i);
             RelationDAO dao = new RelationDAO();
-            System.out.println(a.toString());
+            //System.out.println(a.toString());
             dao.create(a);
         }
 
@@ -112,7 +112,7 @@ public class GraphDBFunction {
         String res = "";
         try (Transaction tx = graphDb.beginTx();
              //Result result = tx.execute( "MATCH (a)-(n:Relation)-(b) Return type(n), a, b"))
-             Result result = tx.execute("MATCH (a)-[n:Relation]->(b) Return n,a,b")) {
+             Result result = tx.execute("MATCH ()-[b:Relation]->() Return b")) {
             while (result.hasNext()) {
                 Map<String, Object> row = result.next();
                 for (Map.Entry<String, Object> column : row.entrySet()) {
