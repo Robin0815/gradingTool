@@ -3,19 +3,22 @@ package Control.Strategy.ClassStrategy.Control;
 import Model.Attribut;
 import Model.Class;
 import Model.Method;
-import Model.UMLComponent;
 
 import java.util.Comparator;
 
-public class UMLComparator implements Comparator<Class> {
-    public int compare(Class, Class) {
+public class UMLComparator implements Comparator<Class>, Comparator<Method>, Comparator<Attribut> {
+    @Override
+    public int compare(Attribut o1, Attribut o2) {
         return 0;
     }
-    public int compare(Method, Method) {
+    @Override
+    public int compare(Class o1, Class o2) {
         return 0;
     }
-    public int compare(Attribut, Attribut) {
+    @Override
+    public int compare(Method o1, Method o2) {
         return 0;
     }
+
 
 }

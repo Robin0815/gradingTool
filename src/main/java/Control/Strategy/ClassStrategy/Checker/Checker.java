@@ -5,5 +5,5 @@ import Model.UMLComponent;
 import java.util.List;
 
 public interface Checker {
-    String checkUML(List<UMLComponent>);
+    String checkUML(List<UMLComponent> comps);
 }

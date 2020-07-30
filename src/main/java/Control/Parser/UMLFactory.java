@@ -109,6 +109,7 @@ public class UMLFactory {
     }
 
     public UMLComponent makeRelation(String panelAttr, String addAttr, int x, int y) {
+        //Relation erkennen
         Relation res = makeRelation(panelAttr);
         Point start;
         Point end;
@@ -119,7 +120,6 @@ public class UMLFactory {
         int y1 = (int) Double.parseDouble(s[s.length - 1]);
         start = new Point(x + x1, y + y1);
         end = new Point(x + x2, y + y2);
-        //Relation erkennen
         res.setStart(TempCompContainer.getInsance().contains(start).isEmpty() ? null : TempCompContainer.getInsance().contains(start).get(0));
         res.setEnd(TempCompContainer.getInsance().contains(end).isEmpty() ? null : TempCompContainer.getInsance().contains(end).get(0));
         return res;
