@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TempCompContainer {
-    private List<TempComp> compPos = new ArrayList<>();
+    private List<TempComp> compPos= new ArrayList<>();
     private static TempCompContainer instance = null;
 
     private TempCompContainer(){
@@ -32,7 +32,7 @@ public class TempCompContainer {
     public void setCompPos(List<TempComp> compPos) {
         this.compPos = compPos;
     }*/
-    public void addComp(TempComp a){
+    public void addComp( TempComp a){
         compPos.add(a);
     }
     public List<UMLComponent> contains(Point a){
@@ -41,11 +41,12 @@ public class TempCompContainer {
             Rectangle rec = tmp.getRec();
 
             if (a.getX() >= rec.getMinX()-5 & a.getX() <= rec.getMaxX()+5 & a.getY() >= rec.getMinY()-5 & a.getY() <= rec.getMaxY()+5) {
-                System.out.println(tmp.getComp().toString()+"\n"+
-                        " x: "+a.getX()+" y: "+a.getY()+" recMinX: "+rec.getMinX()+" recMinY: "+rec.getMinY()+" recMaxX: "+rec.getMaxX()+" recMaxY: "+rec.getMaxY());
+                //System.out.println(tmp.getComp().toString()+"\n"+
+               //         " x: "+a.getX()+" y: "+a.getY()+" recMinX: "+rec.getMinX()+" recMinY: "+rec.getMinY()+" recMaxX: "+rec.getMaxX()+" recMaxY: "+rec.getMaxY());
                 res.add(tmp.getComp());
             }
         }
+
         return res;
     }
     public List<UMLComponent> contains(Rectangle a){
