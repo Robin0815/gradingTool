@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.3.0">
-  <zoom_level>11</zoom_level>
+  <zoom_level>8</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>418</x>
-      <y>143</y>
-      <w>231</w>
-      <h>121</h>
+      <x>264</x>
+      <y>56</y>
+      <w>168</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 Client-Interface
@@ -18,10 +18,10 @@ Client-Interface
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>55</x>
-      <y>176</y>
-      <w>110</w>
-      <h>33</h>
+      <x>0</x>
+      <y>80</y>
+      <w>80</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>Client
 --
@@ -31,10 +31,10 @@ Client-Interface
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>143</x>
-      <y>165</y>
-      <w>308</w>
-      <h>44</h>
+      <x>64</x>
+      <y>72</y>
+      <w>224</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 </panel_attributes>
@@ -43,10 +43,10 @@ Client-Interface
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>418</x>
-      <y>429</y>
-      <w>231</w>
-      <h>121</h>
+      <x>264</x>
+      <y>264</y>
+      <w>216</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>Adapter
 --
@@ -60,10 +60,10 @@ Client-Interface
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>528</x>
-      <y>242</y>
-      <w>99</w>
-      <h>220</h>
+      <x>344</x>
+      <y>128</y>
+      <w>72</w>
+      <h>160</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.
 &lt;&lt;include&gt;&gt;</panel_attributes>
@@ -72,10 +72,10 @@ Client-Interface
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>902</x>
-      <y>143</y>
-      <w>231</w>
-      <h>121</h>
+      <x>616</x>
+      <y>56</y>
+      <w>168</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>Legacy
 --
@@ -87,10 +87,10 @@ Client-Interface
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>627</x>
-      <y>187</y>
-      <w>308</w>
-      <h>308</h>
+      <x>416</x>
+      <y>88</y>
+      <w>224</w>
+      <h>224</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 </panel_attributes>

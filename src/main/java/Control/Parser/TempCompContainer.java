@@ -10,6 +10,10 @@ public class TempCompContainer {
     private List<TempComp> compPos= new ArrayList<>();
     private static TempCompContainer instance = null;
 
+    public List<TempComp> getCompPos() {
+        return compPos;
+    }
+
     private TempCompContainer(){
     }
     public static TempCompContainer getInsance(){

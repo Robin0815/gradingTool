@@ -121,8 +121,28 @@ public class UMLFactory {
         start = new Point(x + x1, y + y1);
         end = new Point(x + x2, y + y2);
         System.out.println(start.toString()+end.toString());
-        res.setStart(TempCompContainer.getInsance().contains(start).isEmpty() ? null : TempCompContainer.getInsance().contains(start).get(0));
-        res.setEnd(TempCompContainer.getInsance().contains(end).isEmpty() ? null : TempCompContainer.getInsance().contains(end).get(0));
+        //res.setStart(TempCompContainer.getInsance().contains(start).isEmpty() ? null : TempCompContainer.getInsance().contains(start).get(0));
+        //res.setEnd(TempCompContainer.getInsance().contains(end).isEmpty() ? null : TempCompContainer.getInsance().contains(end).get(0));
+        List<TempComp> compPos = TempCompContainer.getInsance().getCompPos();
+        for (TempComp tmp : compPos) {
+            Rectangle rec = tmp.getRec();
+            /*Class cl = (Class) tmp.getComp();
+            System.out.println("Rechteck der Klasse: "+ cl.getName()+" "+rec.getMinX() + " "+rec.getMaxX() + " "+rec.getMinY() + " "+rec.getMaxY());
+            System.out.println("Start: "+start);
+            System.out.println("End: "+end);*/
+            /*if( rec.contains(start)){
+                res.setStart(tmp.getComp());
+            }
+            if(rec.contains(end)){
+                res.setEnd(tmp.getComp());
+            }*/
+            if (start.getX() >= rec.getMinX() & start.getX() <= rec.getMaxX() & start.getY() >= rec.getMinY() & start.getY() <= rec.getMaxY()) {
+                res.setStart(tmp.getComp());
+            }
+            if (end.getX() >= rec.getMinX() & end.getX() <= rec.getMaxX() & end.getY() >= rec.getMinY() & end.getY() <= rec.getMaxY()) {
+                res.setEnd(tmp.getComp());
+            }
+        }
         return res;
     }
 
