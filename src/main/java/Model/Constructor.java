@@ -23,11 +23,11 @@ public class Constructor implements UMLComponent{
         this.inputType.add(inputType);
     }
 
-    public String getVisability() {
+    public String getVisibility() {
         return visibility;
     }
 
-    public void setVisability(String visability) {
+    public void setVisibility(String visability) {
         this.visibility = visability;
     }
 

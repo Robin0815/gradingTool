@@ -1,30 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.3.0">
-  <zoom_level>9</zoom_level>
+  <zoom_level>11</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>585</x>
-      <y>306</y>
-      <w>189</w>
-      <h>99</h>
+      <x>418</x>
+      <y>143</y>
+      <w>231</w>
+      <h>121</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 Client-Interface
 --
-+operation(a : Input): Output
-_-static(a : Operation) : Bs_
-_+staticAttribut: Attrib_
-+operation2(): void</panel_attributes>
++operation(a : Input): Output</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>288</x>
-      <y>333</y>
-      <w>90</w>
-      <h>27</h>
+      <x>55</x>
+      <y>176</y>
+      <w>110</w>
+      <h>33</h>
     </coordinates>
     <panel_attributes>Client
 --
@@ -34,22 +31,22 @@ _+staticAttribut: Attrib_
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>360</x>
-      <y>324</y>
-      <w>243</w>
-      <h>36</h>
+      <x>143</x>
+      <y>165</y>
+      <w>308</w>
+      <h>44</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-&lt;&lt;use&gt;&gt;</panel_attributes>
-    <additional_attributes>250.0;20.0;10.0;20.0</additional_attributes>
+</panel_attributes>
+    <additional_attributes>260.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>585</x>
-      <y>540</y>
-      <w>189</w>
-      <h>99</h>
+      <x>418</x>
+      <y>429</y>
+      <w>231</w>
+      <h>121</h>
     </coordinates>
     <panel_attributes>Adapter
 --
@@ -63,10 +60,10 @@ _+staticAttribut: Attrib_
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>675</x>
-      <y>387</y>
-      <w>81</w>
-      <h>180</h>
+      <x>528</x>
+      <y>242</y>
+      <w>99</w>
+      <h>220</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.
 &lt;&lt;include&gt;&gt;</panel_attributes>
@@ -75,10 +72,10 @@ _+staticAttribut: Attrib_
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>981</x>
-      <y>306</y>
-      <w>189</w>
-      <h>99</h>
+      <x>902</x>
+      <y>143</y>
+      <w>231</w>
+      <h>121</h>
     </coordinates>
     <panel_attributes>Legacy
 --
@@ -90,13 +87,13 @@ _+staticAttribut: Attrib_
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>756</x>
-      <y>342</y>
-      <w>252</w>
-      <h>252</h>
+      <x>627</x>
+      <y>187</y>
+      <w>308</w>
+      <h>308</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-&lt;&lt;use&gt;&gt;</panel_attributes>
+</panel_attributes>
     <additional_attributes>260.0;10.0;130.0;10.0;130.0;260.0;10.0;260.0</additional_attributes>
   </element>
 </diagram>

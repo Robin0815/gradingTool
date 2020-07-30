@@ -53,12 +53,12 @@ public class Method implements UMLComponent {
         isStatic = aStatic;
     }
 
-    public String getVisability() {
+    public String getVisibility() {
         return visibility;
     }
 
-    public void setVisability(String visability) {
-        this.visibility = visability;
+    public void setVisibility(String visibility) {
+        this.visibility = visibility;
     }
 
     @Override

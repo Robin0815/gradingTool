@@ -39,9 +39,10 @@
     <dependency>
       <groupId>org.neo4j</groupId>
       <artifactId>neo4j</artifactId>
-      <version>3.5.19</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.neo4j/neo4j-ogm -->
+    <!--<version>3.5.19</version>-->
+      <version>4.1.1</version>
+  </dependency>
+  <!-- https://mvnrepository.com/artifact/org.neo4j/neo4j-ogm -->
     <dependency>
       <groupId>org.neo4j</groupId>
       <artifactId>neo4j-ogm</artifactId>
