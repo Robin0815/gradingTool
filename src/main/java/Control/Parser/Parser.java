@@ -125,7 +125,7 @@ public class Parser {
                 }
             }
         }
-
+        TempCompContainer.getInsance().destruct();
         return diaList;
     }
 

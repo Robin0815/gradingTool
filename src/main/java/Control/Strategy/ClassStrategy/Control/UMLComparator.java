@@ -6,7 +6,7 @@ import Model.Method;
 
 import java.util.Comparator;
 
-public class UMLComparator implements Comparator<Class>, Comparator<Method>, Comparator<Attribut> {
+/*public class UMLComparator implements Comparator<Class>, Comparator<Method>, Comparator<Attribut> {
     @Override
     public int compare(Attribut o1, Attribut o2) {
         return 0;
@@ -21,4 +21,4 @@ public class UMLComparator implements Comparator<Class>, Comparator<Method>, Com
     }
 
 
-}
+}*/
