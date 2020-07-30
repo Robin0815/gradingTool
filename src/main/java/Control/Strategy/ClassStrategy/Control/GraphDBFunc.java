@@ -1,4 +1,4 @@
-package Control.Strategy.ClassStrategy;
+package Control.Strategy.ClassStrategy.Control;
 
 
 import org.neo4j.graphdb.GraphDatabaseService;
@@ -23,7 +23,7 @@ public class GraphDBFunc {
 
         Class.createRelationshipTo(Class2, RelationshipType.withName("Associattion"));
 
-        graphDb.toString();
+        System.out.println(graphDb.toString());
     }
 
 

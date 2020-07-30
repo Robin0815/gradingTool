@@ -4,7 +4,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>630</x>
+      <x>585</x>
       <y>306</y>
       <w>189</w>
       <h>99</h>
@@ -21,7 +21,7 @@ _+staticAttribut: Attrib_
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>333</x>
+      <x>288</x>
       <y>333</y>
       <w>90</w>
       <h>27</h>
@@ -34,7 +34,7 @@ _+staticAttribut: Attrib_
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>405</x>
+      <x>360</x>
       <y>324</y>
       <w>243</w>
       <h>36</h>
@@ -46,7 +46,7 @@ _+staticAttribut: Attrib_
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>630</x>
+      <x>585</x>
       <y>540</y>
       <w>189</w>
       <h>99</h>
@@ -63,7 +63,7 @@ _+staticAttribut: Attrib_
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>720</x>
+      <x>675</x>
       <y>387</y>
       <w>81</w>
       <h>180</h>
@@ -75,7 +75,7 @@ _+staticAttribut: Attrib_
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1026</x>
+      <x>981</x>
       <y>306</y>
       <w>189</w>
       <h>99</h>
@@ -90,7 +90,7 @@ _+staticAttribut: Attrib_
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>801</x>
+      <x>756</x>
       <y>342</y>
       <w>252</w>
       <h>252</h>

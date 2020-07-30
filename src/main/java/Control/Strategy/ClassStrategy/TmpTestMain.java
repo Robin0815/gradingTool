@@ -1,10 +1,6 @@
 package Control.Strategy.ClassStrategy;
 
-import Control.Parser.Parser;
-import Model.UMLComponent;
-
-import java.io.File;
-import java.util.List;
+import Control.Strategy.ClassStrategy.Control.GraphDBFunc;
 
 public class TmpTestMain {
     public static void main(String[] args) {

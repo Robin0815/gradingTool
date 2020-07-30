@@ -46,12 +46,15 @@ public class TestUseCase {
         Strategy strategy = new UseCaseStrategy(0.2,0.4,0.7,4);
         strategy.analyzeUML(l);
         file = "WorstUseCase.uxf";
+        testFile = new File(file);
         l = a.parseFile(testFile);
         strategy.analyzeUML(l);
         file = "SimilarUseCase.uxf";
+        testFile = new File(file);
         l = a.parseFile(testFile);
         strategy.analyzeUML(l);
         file = "DifferentStructureUseCase.uxf";
+        testFile = new File(file);
         l = a.parseFile(testFile);
         strategy.analyzeUML(l);
         assertTrue(true);
@@ -65,6 +68,7 @@ public class TestUseCase {
         Strategy strategy = new UseCaseStrategy(0.2,0.1,0.4,2);
         strategy.analyzeUML(l);
         file = "GoodUseCase.uxf";
+        testFile = new File(file);
         l = a.parseFile(testFile);
         strategy.analyzeUML(l);
         assertTrue(true);
@@ -78,6 +82,7 @@ public class TestUseCase {
         Strategy strategy = new UseCaseStrategy(0.2,0.1,0.7,2);
         strategy.analyzeUML(l);
         file = "SimilarUseCase.uxf";
+        testFile = new File(file);
         l = a.parseFile(testFile);
         strategy.analyzeUML(l);
         assertTrue(true);
@@ -91,6 +96,7 @@ public class TestUseCase {
         Strategy strategy = new UseCaseStrategy(0.2,0.01,0.2,2);
         strategy.analyzeUML(l);
         file = "DifferentStructureUseCase.uxf";
+        testFile = new File(file);
         l = a.parseFile(testFile);
         strategy.analyzeUML(l);
         assertTrue(true);
