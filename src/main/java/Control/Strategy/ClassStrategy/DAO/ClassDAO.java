@@ -1,31 +1,35 @@
 package Control.Strategy.ClassStrategy.DAO;
 
+import Control.Strategy.ClassStrategy.Control.GraphDBFunc;
 import Model.Attribut;
 import Model.Class;
 import Model.Constructor;
 import Model.Method;
+import org.neo4j.dbms.DatabaseManagementSystemSettings;
+import org.neo4j.graphdb.GraphDatabaseService;
 
 public class ClassDAO {
-    /*public void create(Class){
+    private GraphDatabaseService graphDB = GraphDBFunc.getInstance().getGraphDb();
+    public void create(Class a){
 
     }
     public Class read(){
 
         return null;
     }
-    public void update(Class){
+    public void update(Class a){
 
     }
-    public Class delete(Class){
+    public Class delete(Class a){
 
         return null;
     }
 
     //-----Attribut erzeugung
-    private void createAttrib(Attribut){
+    private void createAttrib(Attribut a){
 
     }
-    private Attribut deleteAttrib(Attribut){
+    private Attribut deleteAttrib(Attribut a){
 
         return null;
     }
@@ -34,10 +38,10 @@ public class ClassDAO {
         return null;
     }
     //-----Method erzeugung
-    private void createMethod(Method){
+    private void createMethod(Method a){
 
     }
-    private Method deleteMethod(Method){
+    private Method deleteMethod(Method a){
 
         return null;
     }
@@ -46,15 +50,15 @@ public class ClassDAO {
         return null;
     }
     //-----Constructor erzeugung
-    private void createConstructor(Constructor){
+    private void createConstructor(Constructor a){
 
     }
-    private Constructor deleteConstructor(Constructor){
+    private Constructor deleteConstructor(Constructor a){
 
         return null;
     }
     private Constructor readConstructor(){
 
         return null;
-    }*/
+    }
 }

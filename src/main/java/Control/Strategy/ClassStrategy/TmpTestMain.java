@@ -28,7 +28,7 @@ public class TmpTestMain {
             }
 
         }
-        GraphDBFunc func = new GraphDBFunc();
+        GraphDBFunc func = GraphDBFunc.getInstance();
         func.test();
 
 

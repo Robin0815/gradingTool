@@ -3,7 +3,9 @@
  */
 package Model;
 
-public class Attribut implements UMLComponent{
+import java.io.Serializable;
+
+public class Attribut implements UMLComponent {
     private String name;
     private String outputType;
     private String visibility;

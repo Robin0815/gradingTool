@@ -3,9 +3,10 @@
  */
 package Model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Class implements UMLComponent{
+public class Class implements UMLComponent {
     private String name;
     private String stereotype;
     private List<UMLComponent> elements;
