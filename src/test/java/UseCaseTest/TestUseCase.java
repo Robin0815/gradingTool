@@ -37,6 +37,7 @@ public class TestUseCase {
         strategy.analyzeUML(l);
         assertTrue(true);
     }
+
     @Test
     public void testMultiple(){
         String file = "GoodUseCase.uxf";
@@ -59,6 +60,7 @@ public class TestUseCase {
         strategy.analyzeUML(l);
         assertTrue(true);
     }
+
     @Test
     public void testSame(){
         String file = "GoodUseCase.uxf";
@@ -73,13 +75,14 @@ public class TestUseCase {
         strategy.analyzeUML(l);
         assertTrue(true);
     }
+
     @Test
     public void testSimilar(){
         String file = "GoodUseCase.uxf";
         File testFile = new File(file);
         Parser a = new Parser();
         List<UMLComponent> l = a.parseFile(testFile);
-        Strategy strategy = new UseCaseStrategy(0.2,0.1,0.7,2);
+        Strategy strategy = new UseCaseStrategy(0.2,0.6,0.7,2);
         strategy.analyzeUML(l);
         file = "SimilarUseCase.uxf";
         testFile = new File(file);
@@ -87,15 +90,31 @@ public class TestUseCase {
         strategy.analyzeUML(l);
         assertTrue(true);
     }
+
     @Test
     public void testDifferentStructure(){
         String file = "GoodUseCase.uxf";
         File testFile = new File(file);
         Parser a = new Parser();
         List<UMLComponent> l = a.parseFile(testFile);
-        Strategy strategy = new UseCaseStrategy(0.2,0.01,0.2,2);
+        Strategy strategy = new UseCaseStrategy(0.2,0.99,0.99,2);
         strategy.analyzeUML(l);
         file = "DifferentStructureUseCase.uxf";
+        testFile = new File(file);
+        l = a.parseFile(testFile);
+        strategy.analyzeUML(l);
+        assertTrue(true);
+    }
+
+    @Test
+    public void testOtherUC(){
+        String file = "GoodUseCase.uxf";
+        File testFile = new File(file);
+        Parser a = new Parser();
+        List<UMLComponent> l = a.parseFile(testFile);
+        Strategy strategy = new UseCaseStrategy(0.2,0.7,0.8,2);
+        strategy.analyzeUML(l);
+        file = "BahnUseCase.uxf";
         testFile = new File(file);
         l = a.parseFile(testFile);
         strategy.analyzeUML(l);

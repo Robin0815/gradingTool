@@ -69,12 +69,7 @@ public class SyntaxChecker {
 
 
     private void incrementRelation(ReducedRelation reducedRelation){
-        Integer count = reducedRelationIntegerMap.get(reducedRelation);
-        if (count == null) {
-            reducedRelationIntegerMap.put(reducedRelation, 1);
-        } else {
-            reducedRelationIntegerMap.put(reducedRelation, count + 1);
-        }
+        reducedRelationIntegerMap.merge(reducedRelation, 1, Integer::sum);
     }
 
 
@@ -337,7 +332,7 @@ public class SyntaxChecker {
         }
     }
 
-    public void applyRules(UMLComponent component){
+    public void applyRules(){
         incrementFails(ErrorTypes.UNKNOWNELEMENT);
     }
 }

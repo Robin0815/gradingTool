@@ -6,16 +6,17 @@ package Control.Strategy.UseCaseStrategy.Control;
 
 import Control.Strategy.Strategy;
 import Control.Strategy.UseCaseStrategy.DTO.Solution;
-import Model.Elements;
 import Model.*;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class UseCaseStrategy implements Strategy {
 
     private Map<Elements, Integer> numberOfElements = new HashMap<>();
     private final SyntaxChecker synchecker = new SyntaxChecker();
-    private final ComparingEngine comparingEngine = new ComparingEngine();
+    private final SimilarityChecker similarityChecker = new SimilarityChecker();
     private boolean first = true;
     private final boolean checksimilarity;
     private double beta = 0.2;
@@ -64,7 +65,7 @@ public class UseCaseStrategy implements Strategy {
                 return;
             }
             //Comparing with solution (second delta)
-            comparingEngine.compareSolutions(tutorSolution, solution, alpha, delta);
+            similarityChecker.compareSolutions(tutorSolution, solution, alpha, delta);
             //Generating true or false for passed
         }
         //Check if last diagram
@@ -72,19 +73,14 @@ public class UseCaseStrategy implements Strategy {
             //Generate Report
             ReportGenerator.createFeedbackOfResults(synchecker.returnResults());
             if (checksimilarity) {
-                ReportGenerator.createFeedbackOfResults(comparingEngine.returnResults());
+                ReportGenerator.createFeedbackOfResults(similarityChecker.returnResults());
             }
             ReportGenerator.createReportSyntaxErrors(synchecker.getNumberOfAllErrors());
         }
     }
 
     private void incrementElement(Elements element){
-        Integer count = numberOfElements.get(element);
-        if (count == null) {
-            numberOfElements.put(element, 1);
-        } else {
-            numberOfElements.put(element, count + 1);
-        }
+        numberOfElements.merge(element, 1, Integer::sum);
     }
 
     private void checkComponent(UMLComponent component){
@@ -111,7 +107,7 @@ public class UseCaseStrategy implements Strategy {
         } else if (component.id() == Elements.CONDITIONRELATION) {
             synchecker.applyRules((ConditionRelation) component);
         } else {
-            synchecker.applyRules(component);
+            synchecker.applyRules();
         }
         if (checksimilarity){
             incrementElement(component.id());

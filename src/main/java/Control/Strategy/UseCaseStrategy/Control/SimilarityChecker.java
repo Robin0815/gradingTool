@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-public class ComparingEngine {
+public class SimilarityChecker {
 
     private final TTest tester = new TTest();
     private int passedSubmissions = 0;
