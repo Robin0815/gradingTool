@@ -38,7 +38,7 @@ public class TempCompContainer {
         for (TempComp tmp : compPos) {
             Rectangle rec = tmp.getRec();
 
-            if (a.getX() >= rec.getMinX() & a.getX() <= rec.getMaxX() & a.getY() >= rec.getMinY() & a.getY() <= rec.getMaxY()) {
+            if (a.getX() >= rec.getMinX()-2 & a.getX() <= rec.getMaxX()+2 & a.getY() >= rec.getMinY()-2 & a.getY() <= rec.getMaxY()+2) {
                 res.add(tmp.getComp());
             }
         }
