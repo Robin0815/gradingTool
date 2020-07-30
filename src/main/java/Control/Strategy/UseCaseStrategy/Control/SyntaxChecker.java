@@ -52,7 +52,6 @@ public class SyntaxChecker {
     }
 
     private void createReducedRealtion(Relation relation){
-        System.out.println(relation.toString());
         ReducedRelation reducedRelation = new ReducedRelation();
         reducedRelation.setId(relation.id());
         if(relation.getStart() != null){
