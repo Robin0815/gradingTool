@@ -2,7 +2,7 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <excludeFromCompile>
-      <directory url="file://$PROJECT_DIR$/src/main/java/Control/Strategy/ClassStrategy" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/src/main/java/Control/Strategy/UseCaseStrategy" includeSubdirectories="true" />
     </excludeFromCompile>
     <annotationProcessing>
       <profile name="Maven default annotation processors profile" enabled="true">
