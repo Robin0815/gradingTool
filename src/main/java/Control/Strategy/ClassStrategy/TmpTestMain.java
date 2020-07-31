@@ -1,6 +1,7 @@
 package Control.Strategy.ClassStrategy;
 
 import Control.Parser.Parser;
+import Control.Strategy.ClassStrategy.Checker.PatternChecker;
 import Control.Strategy.ClassStrategy.Control.GraphDBFunction;
 import Model.Elements;
 import Model.UMLComponent;
@@ -18,10 +19,14 @@ public class TmpTestMain {
         List<UMLComponent> l = a.parseFile(testFile);
         //System.out.print(l.toString());
 
-
         GraphDBFunction func = GraphDBFunction.getInstance();
         func.setUp(l);
         System.out.println(func.toString());
+
+        PatternChecker p = new PatternChecker();
+        p.checkUML(l);
+
+
 
 
     }

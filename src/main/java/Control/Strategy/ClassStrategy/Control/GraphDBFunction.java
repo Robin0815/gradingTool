@@ -98,10 +98,11 @@ public class GraphDBFunction {
             ClassDAO dao = new ClassDAO();
             dao.create(a);
         }
+        RelationDAO relDAO = new RelationDAO();
         for (int i = 0; i < lRelation.size(); i++) {
             Relation a = (Relation) lRelation.get(i);
-            RelationDAO dao = new RelationDAO();
-            dao.create(a);
+            //System.out.println(a.toString());
+            relDAO.create(a);
         }
 
 
@@ -111,12 +112,13 @@ public class GraphDBFunction {
         String res = "";
         try (Transaction tx = graphDb.beginTx();
              //Result result = tx.execute( "MATCH (a)-[n]->(b) Return type(n), a, b")){
-             Result result = tx.execute("MATCH (n)-[r]->() Return n, r")) {
+             Result result = tx.execute("MATCH (a)-[r]->(b) Return a.Name, type(r), b.Name")) {
             while (result.hasNext()) {
                 Map<String, Object> row = result.next();
                 for (Map.Entry<String, Object> column : row.entrySet()) {
-                    Node nod = (Node) column.getValue();
-                    res += column.getKey() + " : " + nod.getProperty("Name") + ";";
+                    /*Node nod = (Node) column.getValue();
+                    res += column.getKey() + " : " + nod.getProperty("Name") + ";";*/
+                    res += column.getKey() + " : " + column.getValue() + ";";
                 }
                 res += "\n";
             }

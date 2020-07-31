@@ -15,32 +15,16 @@ public class RelationDAO {
     private GraphDatabaseService graphDb = GraphDBFunction.getInstance().getGraphDb();
 
     public void create(Relation a) {
-        Result result = null;
-        Class c;
+        /*Class c;
         c = (Class) a.getStart();
         String start = c.getName();
         c = (Class) a.getEnd();
         String end = c.getName();
-        try {
-            Transaction tx = graphDb.beginTx();
-            //Result result = tx.execute( "MATCH (a)-[n]->(b) Return type(n), a, b")){
-            result = tx.execute("MATCH (n:Class) Return n UNION MATCH (n:Interface) Return n UNION MATCH (n:Abstract) Return n");
-        } catch (QueryExecutionException exc) {
-            exc.printStackTrace();
-        }
-        assert result != null;
-        List<Node> nodeList = new ArrayList<>();
-        try (Transaction tx = graphDb.beginTx()) {
-            while (result.hasNext()) {
-                Map<String, Object> row = result.next();
-                for (Map.Entry<String, Object> column : row.entrySet()) {
-                    Node node = (Node) column.getValue();
-                    nodeList.add(node);
-                }
-            }
+        List<Node> nodeList = getNode();
             Node nodeStart = null;
             Node nodeEnd = null;
             for (Node node : nodeList) {
+                System.out.println(node.getProperty("Name"));
                 if (node.getProperty("Name").equals(start)) {
                     nodeStart = node;
                 }
@@ -49,7 +33,9 @@ public class RelationDAO {
                 }
             }
             assert nodeStart != null && nodeEnd != null;
-            if (a.id().equals(Elements.ASSOCIATION2)) {
+        try (Transaction tx = graphDb.beginTx()) {
+            nodeStart.createRelationshipTo(nodeEnd, RelationshipType.withName("Relation"));
+            /*if (a.id().equals(Elements.ASSOCIATION2)) {
                 nodeStart.createRelationshipTo(nodeEnd, RelationshipType.withName("Association"));
             }
             if (a.id().equals(Elements.DEPENDENCY)) {
@@ -67,10 +53,11 @@ public class RelationDAO {
             if (a.id().equals(Elements.INHERITANCE)) {
                 nodeStart.createRelationshipTo(nodeEnd, RelationshipType.withName("Inheritance"));
             }
+            tx.commit();}*/
 
 
 
-/*
+
         try (Transaction tx = graphDb.beginTx()) {
 
             Class c;
@@ -78,17 +65,57 @@ public class RelationDAO {
             String s= c.getName();
             c= (Class) a.getEnd();
             String e=c.getName();
-            System.out.println(a.id());
+            //System.out.println(a.id());
             Map<String, Object> params= new HashMap<>();
             params.put("start", s);
             params.put("end", e);
-            String res = "MATCH (a), (b) WHERE a.Name = $start AND b.Name = $end CREATE (a)-[r:Relation]->(b)";
+            String res = null;
+            if (a.id().equals(Elements.ASSOCIATION2)) {
+                res = "MATCH (a {Name: $start}), (b {Name: $end}) CREATE (a)-[r:Association]->(b)";
+            }
+            if (a.id().equals(Elements.DEPENDENCY)) {
+                res = "MATCH (a {Name: $start}), (b {Name: $end}) CREATE (a)-[r:Dependency]->(b)";
+            }
+            if (a.id().equals(Elements.IMPLEMENTS)) {
+                res = "MATCH (a {Name: $start}), (b {Name: $end}) CREATE (a)-[r:Implements]->(b)";
+            }
+            if (a.id().equals(Elements.AGGREGATION)) {
+                res = "MATCH (a {Name: $start}), (b {Name: $end}) CREATE (a)-[r:Aggregation]->(b)";
+            }
+            if (a.id().equals(Elements.COMPOSITION)) {
+                res = "MATCH (a {Name: $start}), (b {Name: $end}) CREATE (a)-[r:Composition]->(b)";
+            }
+            if (a.id().equals(Elements.INHERITANCE)) {
+                res = "MATCH (a {Name: $start}), (b {Name: $end}) CREATE (a)-[r:Inheritance]->(b)";
+            }
             tx.execute(res, params);
-
-        }*/
-
+            tx.commit();
 
         }
 
+
+
+
+    }
+    public List<Node> getNode(){
+        Result result = null;
+        try {
+            Transaction tx = graphDb.beginTx();
+            //Result result = tx.execute( "MATCH (a)-[n]->(b) Return type(n), a, b")){
+            result = tx.execute("MATCH (n:Class) Return n UNION MATCH (n:Interface) Return n UNION MATCH (n:Abstract) Return n");
+        } catch (QueryExecutionException exc) {
+            exc.printStackTrace();
+        }
+        assert result != null;
+        List<Node> nodeList = new ArrayList<>();
+
+        while (result.hasNext()) {
+            Map<String, Object> row = result.next();
+            for (Map.Entry<String, Object> column : row.entrySet()) {
+                Node node = (Node) column.getValue();
+                nodeList.add(node);
+            }
+        }
+        return nodeList;
     }
 }
