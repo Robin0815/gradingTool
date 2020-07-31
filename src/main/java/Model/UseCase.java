@@ -4,7 +4,7 @@
 
 package Model;
 
-public class UseCase implements UMLComponent {
+public class UseCase implements UseCaseSystemElements {
     private String name;
 
     public void setName(String name) {

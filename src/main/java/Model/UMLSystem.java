@@ -7,7 +7,7 @@ package Model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UMLSystem implements UMLComponent{
+public class UMLSystem implements UseCaseSystemElements{
     private String name;
     private List<UMLComponent> containedElements = new ArrayList<>();
 
