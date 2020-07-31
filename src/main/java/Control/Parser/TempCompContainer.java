@@ -66,6 +66,8 @@ public class TempCompContainer {
             Elements id = comp.id();
             if(id == Elements.UMLSYSTEM || id == Elements.NOTE || id == Elements.USECASE || id == Elements.EXTENSIONPOINT){
                 res.add((UseCaseSystemElement) comp);
+            } else {
+                System.out.println("Akteur im System entfernt!");
             }
         }
         return res;
