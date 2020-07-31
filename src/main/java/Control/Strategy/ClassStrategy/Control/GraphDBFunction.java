@@ -111,11 +111,12 @@ public class GraphDBFunction {
         String res = "";
         try (Transaction tx = graphDb.beginTx();
              //Result result = tx.execute( "MATCH (a)-[n]->(b) Return type(n), a, b")){
-             Result result = tx.execute("MATCH ()-[r]->() Return r")) {
+             Result result = tx.execute("MATCH (n)-[r]->() Return n, r")) {
             while (result.hasNext()) {
                 Map<String, Object> row = result.next();
                 for (Map.Entry<String, Object> column : row.entrySet()) {
-                    res += column.getKey() + " : " + column.getValue() + ";";
+                    Node nod = (Node) column.getValue();
+                    res += column.getKey() + " : " + nod.getProperty("Name") + ";";
                 }
                 res += "\n";
             }
