@@ -1,6 +1,8 @@
 package Control.Parser;
 
+import Model.Elements;
 import Model.UMLComponent;
+import Model.UseCaseSystemElement;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -53,6 +55,17 @@ public class TempCompContainer {
 
             if (a.contains(rec)) {
                 res.add(tmp.getComp());
+            }
+        }
+        return res;
+    }
+    public List<UseCaseSystemElement> containsSys(Rectangle a){
+        List<UMLComponent> tmpres = this.contains(a);
+        List<UseCaseSystemElement> res = new ArrayList<>();
+        for (UMLComponent comp : tmpres) {
+            Elements id = comp.id();
+            if(id == Elements.UMLSYSTEM || id == Elements.NOTE || id == Elements.USECASE || id == Elements.EXTENSIONPOINT){
+                res.add((UseCaseSystemElement) comp);
             }
         }
         return res;

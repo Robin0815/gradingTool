@@ -4,7 +4,7 @@
 
 package Model;
 
-public class UseCase implements UseCaseSystemElements {
+public class UseCase implements UseCaseSystemElement {
     private String name;
 
     public void setName(String name) {
