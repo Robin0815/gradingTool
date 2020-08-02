@@ -136,7 +136,7 @@ public class UMLFactory {
             if(rec.contains(end)){
                 res.setEnd(tmp.getComp());
             }*/
-            if (start.getX() >= rec.getMinX() & start.getX() <= rec.getMaxX() & start.getY() >= rec.getMinY() & start.getY() <= rec.getMaxY()) {
+            if (start.getX() >= rec.getMinX()-5 & start.getX() <= rec.getMaxX()+5 & start.getY() >= rec.getMinY()-5 & start.getY() <= rec.getMaxY()+5) {
                 res.setStart(tmp.getComp());
             }
             if (end.getX() >= rec.getMinX() & end.getX() <= rec.getMaxX() & end.getY() >= rec.getMinY() & end.getY() <= rec.getMaxY()) {

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.3.0">
-  <zoom_level>8</zoom_level>
+  <zoom_level>10</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>296</x>
-      <y>264</y>
-      <w>168</w>
-      <h>88</h>
+      <x>330</x>
+      <y>190</y>
+      <w>210</w>
+      <h>110</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 Client-Interface
@@ -18,10 +18,10 @@ Client-Interface
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>32</x>
-      <y>288</y>
-      <w>80</w>
-      <h>24</h>
+      <x>0</x>
+      <y>230</y>
+      <w>100</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>Client
 --
@@ -31,22 +31,22 @@ Client-Interface
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>96</x>
-      <y>280</y>
-      <w>224</w>
-      <h>32</h>
+      <x>80</x>
+      <y>220</y>
+      <w>290</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 </panel_attributes>
-    <additional_attributes>260.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>270.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>296</x>
-      <y>472</y>
-      <w>216</w>
-      <h>88</h>
+      <x>330</x>
+      <y>450</y>
+      <w>270</w>
+      <h>110</h>
     </coordinates>
     <panel_attributes>Adapter
 --
@@ -60,10 +60,10 @@ Client-Interface
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>376</x>
-      <y>336</y>
-      <w>72</w>
-      <h>160</h>
+      <x>430</x>
+      <y>280</y>
+      <w>90</w>
+      <h>200</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.
 &lt;&lt;include&gt;&gt;</panel_attributes>
@@ -72,10 +72,10 @@ Client-Interface
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>648</x>
-      <y>264</y>
-      <w>168</w>
-      <h>88</h>
+      <x>770</x>
+      <y>190</y>
+      <w>210</w>
+      <h>110</h>
     </coordinates>
     <panel_attributes>Legacy
 --
@@ -87,13 +87,119 @@ Client-Interface
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>448</x>
-      <y>296</y>
-      <w>224</w>
-      <h>224</h>
+      <x>520</x>
+      <y>230</y>
+      <w>280</w>
+      <h>280</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 </panel_attributes>
     <additional_attributes>260.0;10.0;130.0;10.0;130.0;260.0;10.0;260.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1090</x>
+      <y>380</y>
+      <w>210</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+Client-Interface2
+--
++operation(a : Input): Output</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>760</x>
+      <y>410</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>Client2
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>840</x>
+      <y>400</y>
+      <w>280</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+</panel_attributes>
+    <additional_attributes>260.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1090</x>
+      <y>640</y>
+      <w>270</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>Adapter2
+--
++operation(a : Input): Output
+-conversionIn(a : Input): Old-input
+-conversionOut(a : Old-output): Output
+-adap : Legacy
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1190</x>
+      <y>470</y>
+      <w>90</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.
+&lt;&lt;include&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;180.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1530</x>
+      <y>380</y>
+      <w>210</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>Legacy2
+--
++operation(a : Old-input): Old-output
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1280</x>
+      <y>420</y>
+      <w>280</w>
+      <h>280</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+</panel_attributes>
+    <additional_attributes>260.0;10.0;130.0;10.0;130.0;260.0;10.0;260.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>820</x>
+      <y>290</y>
+      <w>60</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>40.0;10.0;10.0;120.0</additional_attributes>
   </element>
 </diagram>
