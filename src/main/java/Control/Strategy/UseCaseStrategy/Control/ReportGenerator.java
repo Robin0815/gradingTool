@@ -45,7 +45,7 @@ public class ReportGenerator {
         synResponse += "-------------------------------------------------------------------------------------------------------\n";
         errorWrapper = errormap.get(ErrorTypes.ACTORSCONTAINED);
         if (errorWrapper != null){
-            synResponse += "Akteure wurden zu " + errorWrapper.getPercentage() +"% innerhalb von Systemen plaziert.\n";
+            synResponse += "Elemente die in Use Case Systemen enthalten sind, sind zu " + errorWrapper.getPercentage() +"% Akteure.\n";
         }
         synResponse += "-------------------------------------------------------------------------------------------------------\n";
         errorWrapper = errormap.get(ErrorTypes.EMPTYNOTE);
@@ -87,13 +87,17 @@ public class ReportGenerator {
         if (errorWrapper != null){
             synResponse += "Extends haben zu " + errorWrapper.getPercentage() +"% nicht nur Use Cases verbunden.\n";
         }
+        errorWrapper = errormap.get(ErrorTypes.WRONGBASEUSECASE);
+        if (errorWrapper != null){
+            synResponse += "Extends Beziehungen wurde zu " + errorWrapper.getPercentage() +"% falsch herum verbunden.\n";
+        }
         errorWrapper = errormap.get(ErrorTypes.NOTSAMETYPEINCLUDES);
         if (errorWrapper != null){
             synResponse += "Includes haben zu " + errorWrapper.getPercentage() +"% nicht nur Use Cases verbunden.\n";
         }
         errorWrapper = errormap.get(ErrorTypes.NOTSAMETYPEGENERALIZATION);
         if (errorWrapper != null){
-            synResponse += "Generalisierungen/Spezialisierungen haben zu " + errorWrapper.getPercentage() +"% nicht nur Typgleiche Elemente verbunden.\n";
+            synResponse += "Generalisierungen/Spezialisierungen haben zu " + errorWrapper.getPercentage() +"% nicht nur typgleiche Elemente verbunden.\n";
         }
         synResponse += "-------------------------------------------------------------------------------------------------------\n";
         errorWrapper = errormap.get(ErrorTypes.BINARYCONDITIONRELATION);

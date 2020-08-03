@@ -63,7 +63,7 @@ public class UMLFactory {
                 res.setName(tmpstring);
             }
             Rectangle sy = new Rectangle(x,y,w,h);
-            res.setContainedElements(TempCompContainer.getInsance().contains(sy));
+            res.setContainedElements(TempCompContainer.getInsance().containsSys(sy));
             return res;
         }
         return null;

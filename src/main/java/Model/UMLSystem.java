@@ -7,9 +7,9 @@ package Model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UMLSystem implements UMLComponent{
+public class UMLSystem implements UseCaseSystemElement{
     private String name;
-    private List<UMLComponent> containedElements = new ArrayList<>();
+    private List<UseCaseSystemElement> containedElements = new ArrayList<>();
 
     public String getName() {
         return name;
@@ -19,20 +19,12 @@ public class UMLSystem implements UMLComponent{
         this.name = name;
     }
 
-    public List<UMLComponent> getContainedElements() {
+    public List<UseCaseSystemElement> getContainedElements() {
         return containedElements;
     }
 
-    public void setContainedElements(List<UMLComponent> containedElements) {
+    public void setContainedElements(List<UseCaseSystemElement> containedElements) {
         this.containedElements = containedElements;
-    }
-
-    public void addContainedElement(UMLComponent element) {
-        this.containedElements.add(element);
-    }
-
-    public void removeContainedElement(UMLComponent element) {
-        this.containedElements.remove(element);
     }
 
     @Override

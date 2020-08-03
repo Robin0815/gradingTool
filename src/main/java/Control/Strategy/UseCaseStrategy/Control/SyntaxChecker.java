@@ -306,6 +306,14 @@ public class SyntaxChecker {
             incrementFails(ErrorTypes.NOTSAMETYPEEXTENDS);
             incrementFails(ErrorTypes.TOTALERRORS);
         }
+        //Check if base use case has extension piont
+        if(extend.getStart().id()==Elements.EXTENSIONPOINT){
+            incrementSucesses(ErrorTypes.WRONGBASEUSECASE);
+            incrementSucesses(ErrorTypes.TOTALERRORS);
+        } else {
+            incrementFails(ErrorTypes.WRONGBASEUSECASE);
+            incrementFails(ErrorTypes.TOTALERRORS);
+        }
     }
 
     public void applyRules(ConditionRelation conditionRelation){

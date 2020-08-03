@@ -7,7 +7,7 @@ package Model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExtensionPoint implements UMLComponent {
+public class ExtensionPoint implements UseCaseSystemElement{
     private String name;
     private List<String> extpoints = new ArrayList<>();
 

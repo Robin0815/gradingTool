@@ -82,7 +82,7 @@ public class TestUseCase {
         File testFile = new File(file);
         Parser a = new Parser();
         List<UMLComponent> l = a.parseFile(testFile);
-        Strategy strategy = new UseCaseStrategy(0.2,0.6,0.7,2);
+        Strategy strategy = new UseCaseStrategy(0.2,0.3,0.5,2);
         strategy.analyzeUML(l);
         file = "SimilarUseCase.uxf";
         testFile = new File(file);
@@ -112,7 +112,7 @@ public class TestUseCase {
         File testFile = new File(file);
         Parser a = new Parser();
         List<UMLComponent> l = a.parseFile(testFile);
-        Strategy strategy = new UseCaseStrategy(0.2,0.7,0.8,2);
+        Strategy strategy = new UseCaseStrategy(0.2,0.5,0.8,2);
         strategy.analyzeUML(l);
         file = "BahnUseCase.uxf";
         testFile = new File(file);

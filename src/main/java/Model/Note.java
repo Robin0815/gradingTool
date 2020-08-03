@@ -4,7 +4,7 @@
 
 package Model;
 
-public class Note implements UMLComponent{
+public class Note implements UseCaseSystemElement{
     String text;
 
     public String getText() {
