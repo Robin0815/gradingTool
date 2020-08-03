@@ -4,7 +4,7 @@
 
 package Model;
 
-public class Note implements UseCaseSystemElement{
+public class Note extends ConnectableComponent{
     String text;
 
     public String getText() {

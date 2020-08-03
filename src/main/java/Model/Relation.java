@@ -5,22 +5,22 @@ package Model;
 
 public abstract class Relation implements UMLComponent{
     private final String id = "Relation";
-    private UMLComponent start = null;
-    private UMLComponent end = null;
+    private ConnectableComponent start = null;
+    private ConnectableComponent end = null;
 
-    public UMLComponent getStart() {
+    public ConnectableComponent getStart() {
         return start;
     }
 
-    public void setStart(UMLComponent start) {
+    public void setStart(ConnectableComponent start) {
         this.start = start;
     }
 
-    public UMLComponent getEnd() {
+    public ConnectableComponent getEnd() {
         return end;
     }
 
-    public void setEnd(UMLComponent end) {
+    public void setEnd(ConnectableComponent end) {
         this.end = end;
     }
 

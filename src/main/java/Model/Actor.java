@@ -4,7 +4,7 @@
 
 package Model;
 
-public class Actor implements UMLComponent {
+public class Actor extends ConnectableComponent {
     private String name;
 
     public void setName(String name) {

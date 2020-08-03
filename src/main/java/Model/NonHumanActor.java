@@ -1,6 +1,6 @@
 package Model;
 
-public class NonHumanActor implements UMLComponent{
+public class NonHumanActor extends ConnectableComponent{
     private String name;
 
     public String getName() {

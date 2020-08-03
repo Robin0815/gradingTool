@@ -1,5 +1,6 @@
 package Control.Parser;
 
+import Model.ConnectableComponent;
 import Model.UMLComponent;
 
 import java.awt.*;
@@ -13,8 +14,8 @@ public class TempComp {
         rec = new Rectangle(x,y,w,h);
     }
 
-    public UMLComponent getComp() {
-        return comp;
+    public ConnectableComponent getComp() {
+        return (ConnectableComponent) comp;
     }
 
     /*public void setComp(UMLComponent comp) {
