@@ -39,7 +39,7 @@
     <bpmn:userTask id="Activity_00po3eb" name="Input tolerance for syntax fails" camunda:assignee="demo">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="alpha" label="Geben sie die prozentuale Toleranz für Syntaxfehler ein (0 bis 100)" type="long" defaultValue="20">
+          <camunda:formField id="alpha" label="Geben sie die prozentuale Toleranz für Syntaxfehler ein (0 bis 100)" type="long">
             <camunda:validation>
               <camunda:constraint name="min" config="0" />
               <camunda:constraint name="max" config="100" />
@@ -92,7 +92,7 @@
       <bpmn:incoming>Flow_10guilf</bpmn:incoming>
       <bpmn:outgoing>Flow_00j3lg6</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:serviceTask id="Activity_165tt4w" name="Execute grading tool" camunda:class="Control.Camunda.UseCaseGradingApp">
+    <bpmn:serviceTask id="Activity_165tt4w" name="Execute grading tool" camunda:class="Control.Camunda.UseCaseDelegate">
       <bpmn:incoming>Flow_13tsido</bpmn:incoming>
       <bpmn:outgoing>Flow_10guilf</bpmn:outgoing>
     </bpmn:serviceTask>
