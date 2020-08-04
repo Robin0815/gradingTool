@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1hv6o8m" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.1.1">
+  <bpmn:process id="Process_07bxl27" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_1k4pcx5</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:endEvent id="Event_0t1k7ca">
+      <bpmn:incoming>Flow_00j3lg6</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:exclusiveGateway id="Gateway_12ueu8c">
+      <bpmn:extensionElements>
+        <camunda:executionListener expression="" event="start" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_14g79gu</bpmn:incoming>
+      <bpmn:outgoing>Flow_0wag6a2</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0t84o3b</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_0wag6a2" sourceRef="Gateway_12ueu8c" targetRef="Activity_1oz0qhr">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{checksimilarity}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:exclusiveGateway id="Gateway_0a6msld">
+      <bpmn:incoming>Flow_0kxt4gv</bpmn:incoming>
+      <bpmn:incoming>Flow_0t84o3b</bpmn:incoming>
+      <bpmn:outgoing>Flow_13tsido</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_13tsido" sourceRef="Gateway_0a6msld" targetRef="Activity_165tt4w" />
+    <bpmn:sequenceFlow id="Flow_10guilf" sourceRef="Activity_165tt4w" targetRef="Activity_0zo7goi" />
+    <bpmn:sequenceFlow id="Flow_00j3lg6" sourceRef="Activity_0zo7goi" targetRef="Event_0t1k7ca" />
+    <bpmn:sequenceFlow id="Flow_0kxt4gv" sourceRef="Activity_1oz0qhr" targetRef="Gateway_0a6msld" />
+    <bpmn:userTask id="Activity_0dy4xni" name="Select if solution should be compared" camunda:assignee="demo">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="checksimilarity" label="Sollen die Abgaben mit einer Musterlösung verglichen werden?" type="boolean" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1k4pcx5</bpmn:incoming>
+      <bpmn:outgoing>Flow_0l0xhs5</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="Activity_00po3eb" name="Input tolerance for syntax fails" camunda:assignee="demo">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="alpha" label="Geben sie die prozentuale Toleranz für Syntaxfehler ein (0 bis 100)" type="long" defaultValue="20">
+            <camunda:validation>
+              <camunda:constraint name="min" config="0" />
+              <camunda:constraint name="max" config="100" />
+              <camunda:constraint name="required" />
+            </camunda:validation>
+          </camunda:formField>
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0l0xhs5</bpmn:incoming>
+      <bpmn:outgoing>Flow_14g79gu</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_0t84o3b" sourceRef="Gateway_12ueu8c" targetRef="Gateway_0a6msld">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{not checksimilarity}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:userTask id="Activity_1oz0qhr" name="Input variables for similarity check" camunda:assignee="demo">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="beta" label="Ab welchen prozentualen Niveau an Ähnlichkeit sollen Abgaben nicht mehr als Durchgefallen bewertet werden" type="long">
+            <camunda:validation>
+              <camunda:constraint name="min" config="0" />
+              <camunda:constraint name="max" config="100" />
+              <camunda:constraint name="required" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="delta" label="Ab welchen prozentualen Niveau an Ähnlichkeit sollen Abgaben nicht mehr als  Undecided bewertet werden" type="long">
+            <camunda:validation>
+              <camunda:constraint name="min" config="0" />
+              <camunda:constraint name="max" config="100" />
+              <camunda:constraint name="required" />
+            </camunda:validation>
+          </camunda:formField>
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0wag6a2</bpmn:incoming>
+      <bpmn:outgoing>Flow_0kxt4gv</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_1k4pcx5" sourceRef="StartEvent_1" targetRef="Activity_0dy4xni" />
+    <bpmn:sequenceFlow id="Flow_0l0xhs5" sourceRef="Activity_0dy4xni" targetRef="Activity_00po3eb" />
+    <bpmn:sequenceFlow id="Flow_14g79gu" sourceRef="Activity_00po3eb" targetRef="Gateway_12ueu8c" />
+    <bpmn:userTask id="Activity_0zo7goi" name="Print report" camunda:assignee="demo">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="Report" label="Der aktuelle Prozess lieferte folgenden Report:" type="string">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_10guilf</bpmn:incoming>
+      <bpmn:outgoing>Flow_00j3lg6</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:serviceTask id="Activity_165tt4w" name="Execute grading tool" camunda:class="Control.Camunda.UseCaseGradingApp">
+      <bpmn:incoming>Flow_13tsido</bpmn:incoming>
+      <bpmn:outgoing>Flow_10guilf</bpmn:outgoing>
+    </bpmn:serviceTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_07bxl27">
+      <bpmndi:BPMNEdge id="Flow_14g79gu_di" bpmnElement="Flow_14g79gu">
+        <di:waypoint x="500" y="170" />
+        <di:waypoint x="535" y="170" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0l0xhs5_di" bpmnElement="Flow_0l0xhs5">
+        <di:waypoint x="360" y="170" />
+        <di:waypoint x="400" y="170" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1k4pcx5_di" bpmnElement="Flow_1k4pcx5">
+        <di:waypoint x="215" y="170" />
+        <di:waypoint x="260" y="170" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0t84o3b_di" bpmnElement="Flow_0t84o3b">
+        <di:waypoint x="560" y="145" />
+        <di:waypoint x="560" y="80" />
+        <di:waypoint x="780" y="80" />
+        <di:waypoint x="780" y="145" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0kxt4gv_di" bpmnElement="Flow_0kxt4gv">
+        <di:waypoint x="720" y="170" />
+        <di:waypoint x="755" y="170" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_00j3lg6_di" bpmnElement="Flow_00j3lg6">
+        <di:waypoint x="1090" y="170" />
+        <di:waypoint x="1132" y="170" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_10guilf_di" bpmnElement="Flow_10guilf">
+        <di:waypoint x="950" y="170" />
+        <di:waypoint x="990" y="170" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_13tsido_di" bpmnElement="Flow_13tsido">
+        <di:waypoint x="805" y="170" />
+        <di:waypoint x="850" y="170" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0wag6a2_di" bpmnElement="Flow_0wag6a2">
+        <di:waypoint x="585" y="170" />
+        <di:waypoint x="620" y="170" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="582" y="230" width="13" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="152" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0t1k7ca_di" bpmnElement="Event_0t1k7ca">
+        <dc:Bounds x="1132" y="152" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_12ueu8c_di" bpmnElement="Gateway_12ueu8c" isMarkerVisible="true">
+        <dc:Bounds x="535" y="145" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0a6msld_di" bpmnElement="Gateway_0a6msld" isMarkerVisible="true">
+        <dc:Bounds x="755" y="145" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1x8qmfw_di" bpmnElement="Activity_0dy4xni">
+        <dc:Bounds x="260" y="130" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0p1liny_di" bpmnElement="Activity_00po3eb">
+        <dc:Bounds x="400" y="130" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_001q6hf_di" bpmnElement="Activity_1oz0qhr">
+        <dc:Bounds x="620" y="130" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0ryga4c_di" bpmnElement="Activity_0zo7goi">
+        <dc:Bounds x="990" y="130" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1b3al1o_di" bpmnElement="Activity_165tt4w">
+        <dc:Bounds x="850" y="130" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
