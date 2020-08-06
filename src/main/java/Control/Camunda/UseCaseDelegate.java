@@ -27,13 +27,14 @@ public class UseCaseDelegate implements JavaDelegate {
                 + ", executionId=" + execution.getId()
                 + " \n\n");
 
-        String file = "src/main/resources/Solutions/GoodUseCase.uxf";
+        String homeDir = System.getProperty("user.home");
+        String file = homeDir +"/Korrektur/GoodUseCase.uxf";//"src/main/resources/Solutions/GoodUseCase.uxf";
         File testFile = new File(file);
         Parser a = new Parser();
         List<UMLComponent> l = a.parseFile(testFile);
         Strategy strategy = new UseCaseStrategy(0.2,0.1,0.4,2);
         strategy.analyzeUML(l);
-        file = "src/main/resources/Solutions/GoodUseCase.uxf";
+        file = homeDir +"/Korrektur/GoodUseCase.uxf";//"src/main/resources/Solutions/GoodUseCase.uxf";
         testFile = new File(file);
         l = a.parseFile(testFile);
         strategy.analyzeUML(l);
