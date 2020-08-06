@@ -32,10 +32,22 @@ public class UseCaseDelegate implements JavaDelegate {
         File KorrekturDir =  new File(homeDir +"\\Documents\\Korrektur");
         File[] filesList = KorrekturDir.listFiles();
 
+        double beta = ((Long) execution.getVariable("beta"))/(double)100;
+        System.out.println(beta);
+        boolean checksimilarity = (Boolean) execution.getVariable("checksimilarity");
+        System.out.println(checksimilarity);
         assert filesList != null;
         Parser a = new Parser();
-        Strategy strategy = new UseCaseStrategy(0.2, filesList.length);
-
+        Strategy strategy;
+        if(!checksimilarity) {
+            strategy = new UseCaseStrategy(beta, filesList.length);
+        } else {
+            double alpha = ((Long) execution.getVariable("alpha"))/(double)100;
+            double delta = ((Long) execution.getVariable("delta"))/(double)100;
+            System.out.println(alpha);
+            System.out.println(delta);
+            strategy = new UseCaseStrategy(beta,alpha,delta, filesList.length);
+        }
         for (File file : filesList){
             List<UMLComponent> list = a.parseFile(file);
             strategy.analyzeUML(list);
