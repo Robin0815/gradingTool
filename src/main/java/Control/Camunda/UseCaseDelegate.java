@@ -29,7 +29,20 @@ public class UseCaseDelegate implements JavaDelegate {
 
         String homeDir = System.getProperty("user.home");
         homeDir = homeDir.replace("\\", "\\\\");
-        String file = homeDir + "\\Documents\\Korrektur\\GoodUseCase.uxf";
+        File KorrekturDir =  new File(homeDir +"\\Documents\\Korrektur");
+        File[] filesList = KorrekturDir.listFiles();
+
+        assert filesList != null;
+        Parser a = new Parser();
+        Strategy strategy = new UseCaseStrategy(0.2, filesList.length);
+
+        for (File file : filesList){
+            List<UMLComponent> list = a.parseFile(file);
+            strategy.analyzeUML(list);
+        }
+
+
+        /*String file = homeDir + "\\Documents\\Korrektur\\GoodUseCase.uxf";
         File testFile = new File(file);
         Parser a = new Parser();
         List<UMLComponent> l = a.parseFile(testFile);
@@ -39,5 +52,7 @@ public class UseCaseDelegate implements JavaDelegate {
         testFile = new File(file);
         l = a.parseFile(testFile);
         strategy.analyzeUML(l);
+        */
+
     }
 }
