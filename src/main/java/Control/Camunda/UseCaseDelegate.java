@@ -33,19 +33,13 @@ public class UseCaseDelegate implements JavaDelegate {
         File[] filesList = KorrekturDir.listFiles();
 
         double beta = ((Long) execution.getVariable("beta"))/(double)100;
-        System.out.println(beta);
         boolean checksimilarity = (Boolean) execution.getVariable("checksimilarity");
-        System.out.println(checksimilarity);
         assert filesList != null;
         Parser a = new Parser();
-        Strategy strategy;
-        if(!checksimilarity) {
-            strategy = new UseCaseStrategy(beta, filesList.length);
-        } else {
+        UseCaseStrategy strategy = new UseCaseStrategy(beta, filesList.length);
+        if (checksimilarity) {
             double alpha = ((Long) execution.getVariable("alpha"))/(double)100;
             double delta = ((Long) execution.getVariable("delta"))/(double)100;
-            System.out.println(alpha);
-            System.out.println(delta);
             strategy = new UseCaseStrategy(beta,alpha,delta, filesList.length);
         }
         for (File file : filesList){
@@ -53,7 +47,7 @@ public class UseCaseDelegate implements JavaDelegate {
             strategy.analyzeUML(list);
         }
 
-
+        execution.setVariable("Report", strategy.getReport());
         /*String file = homeDir + "\\Documents\\Korrektur\\GoodUseCase.uxf";
         File testFile = new File(file);
         Parser a = new Parser();

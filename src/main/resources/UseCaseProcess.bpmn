@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1hv6o8m" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.1.1">
-  <bpmn:process id="Process_07bxl27" isExecutable="true">
+  <bpmn:process id="Grade_UML_UseCase" isExecutable="true">
     <bpmn:startEvent id="StartEvent_1">
       <bpmn:outgoing>Flow_1k4pcx5</bpmn:outgoing>
     </bpmn:startEvent>
@@ -79,16 +79,7 @@
     <bpmn:sequenceFlow id="Flow_1k4pcx5" sourceRef="StartEvent_1" targetRef="Activity_0dy4xni" />
     <bpmn:sequenceFlow id="Flow_0l0xhs5" sourceRef="Activity_0dy4xni" targetRef="Activity_00po3eb" />
     <bpmn:sequenceFlow id="Flow_14g79gu" sourceRef="Activity_00po3eb" targetRef="Gateway_12ueu8c" />
-    <bpmn:userTask id="Activity_0zo7goi" name="Print report" camunda:assignee="demo">
-      <bpmn:extensionElements>
-        <camunda:formData>
-          <camunda:formField id="Report" label="Der aktuelle Prozess lieferte folgenden Report:" type="string">
-            <camunda:validation>
-              <camunda:constraint name="readonly" />
-            </camunda:validation>
-          </camunda:formField>
-        </camunda:formData>
-      </bpmn:extensionElements>
+    <bpmn:userTask id="Activity_0zo7goi" name="Print report" camunda:formKey="embedded:app:report.html" camunda:assignee="demo">
       <bpmn:incoming>Flow_10guilf</bpmn:incoming>
       <bpmn:outgoing>Flow_00j3lg6</bpmn:outgoing>
     </bpmn:userTask>
@@ -98,7 +89,7 @@
     </bpmn:serviceTask>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
-    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_07bxl27">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Grade_UML_UseCase">
       <bpmndi:BPMNEdge id="Flow_14g79gu_di" bpmnElement="Flow_14g79gu">
         <di:waypoint x="500" y="170" />
         <di:waypoint x="535" y="170" />

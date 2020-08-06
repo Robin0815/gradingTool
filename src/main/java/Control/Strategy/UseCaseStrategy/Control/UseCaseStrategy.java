@@ -24,6 +24,7 @@ public class UseCaseStrategy implements Strategy {
     private double delta = 0.4;
     private int numberOfSubmissions = 0;
     private Solution tutorSolution;
+    private String report = "";
 
     public UseCaseStrategy(double beta, int numberOfSubmissions){
         this.beta = beta;
@@ -37,6 +38,10 @@ public class UseCaseStrategy implements Strategy {
         this.delta = delta;
         this.numberOfSubmissions= numberOfSubmissions;
         this.checksimilarity = true;
+    }
+
+    public String getReport(){
+        return report;
     }
 
     @Override
@@ -71,11 +76,11 @@ public class UseCaseStrategy implements Strategy {
         //Check if last diagram
         if(this.numberOfSubmissions == 0) {
             //Generate Report
-            ReportGenerator.createFeedbackOfResults(synchecker.returnResults());
+            report = ReportGenerator.createFeedbackOfResults(synchecker.returnResults());
             if (checksimilarity) {
-                ReportGenerator.createFeedbackOfResults(similarityChecker.returnResults());
+                report += ReportGenerator.createFeedbackOfResults(similarityChecker.returnResults());
             }
-            ReportGenerator.createReportSyntaxErrors(synchecker.getNumberOfAllErrors());
+            report += ReportGenerator.createReportSyntaxErrors(synchecker.getNumberOfAllErrors());
         }
     }
 

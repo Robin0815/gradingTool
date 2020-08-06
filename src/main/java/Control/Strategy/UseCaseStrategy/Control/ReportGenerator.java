@@ -11,7 +11,8 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class ReportGenerator {
-    public static void createReportSyntaxErrors(Map<ErrorTypes, ErrorWrapper> errormap){
+
+    public static String createReportSyntaxErrors(Map<ErrorTypes, ErrorWrapper> errormap){
         ErrorWrapper errorWrapper;
         String synResponse = "SYNTAX/SEMANTIK ANALYSE\n" +
                 "-------------------------------------------------------------------------------------------------------\n";
@@ -108,10 +109,10 @@ public class ReportGenerator {
         if (errorWrapper != null){
             synResponse += "Beziehungen um Conditions anzuhängen haben zu " + errorWrapper.getPercentage() +"% nicht Notizen verbunden.\n";
         }
-        System.out.println(synResponse);
+        return synResponse;
     }
 
-    public static void createFeedbackOfResults(ArrayList<Long> results){
+    public static String createFeedbackOfResults(ArrayList<Long> results){
         if(results.size()==3) {
             String reportResults = "REPORT ZUM VERGLEICH MIT DER MUSTERLÖSUNG\n" +
                     "-------------------------------------------------------------------------------------------------------\n";
@@ -119,16 +120,16 @@ public class ReportGenerator {
             reportResults += results.get(1) + "% der Abgaben müssen manuell geprüft werden.\n";
             reportResults += results.get(0) + "% der Abgaben wurden mit Durchgefallen bewertet.\n";
             reportResults += "-------------------------------------------------------------------------------------------------------\n";
-            System.out.println(reportResults);
+            return reportResults;
         } else if(results.size()==2) {
             String reportResults = "REPORT ZUR SYNTAXÜBERPRÜFUNG\n" +
                     "-------------------------------------------------------------------------------------------------------\n";
             reportResults += results.get(1) + "% der Abgaben wurden mit Bestanden bewertet.\n";
             reportResults += results.get(0) + "% der Abgaben wurden mit Durchgefallen bewertet.\n";
             reportResults += "-------------------------------------------------------------------------------------------------------\n";
-            System.out.println(reportResults);
+            return reportResults;
         } else {
-            System.out.println("Something went wrong");
+            return "Something went wrong";
         }
     }
 }
