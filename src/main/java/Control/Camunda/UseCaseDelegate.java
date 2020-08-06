@@ -28,7 +28,7 @@ public class UseCaseDelegate implements JavaDelegate {
                 + " \n\n");
 
         String homeDir = System.getProperty("user.home");
-        String file = homeDir +"/Korrektur/GoodUseCase.uxf";//"src/main/resources/Solutions/GoodUseCase.uxf";
+        String file = homeDir +"Documents/Korrektur/GoodUseCase.uxf";//"src/main/resources/Solutions/GoodUseCase.uxf";
         File testFile = new File(file);
         Parser a = new Parser();
         List<UMLComponent> l = a.parseFile(testFile);
