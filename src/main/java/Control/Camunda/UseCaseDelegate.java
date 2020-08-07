@@ -34,7 +34,6 @@ public class UseCaseDelegate implements JavaDelegate {
             List<UMLComponent> list = a.parseFile(file);
             strategy.analyzeUML(list);
         }
-
         execution.setVariable("Report", strategy.getReport());
     }
 }
