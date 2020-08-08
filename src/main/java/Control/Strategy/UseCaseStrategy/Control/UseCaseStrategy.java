@@ -25,6 +25,7 @@ public class UseCaseStrategy implements Strategy {
     private int numberOfSubmissions = 0;
     private Solution tutorSolution;
     private String report = "";
+    private String status = "Nicht bestanden";
 
     public UseCaseStrategy(double beta, int numberOfSubmissions){
         this.beta = beta;
@@ -57,6 +58,13 @@ public class UseCaseStrategy implements Strategy {
         if(!(first && checksimilarity)){
             passedsyn = synchecker.createSyntaxFeedback(beta);
         }
+
+        if(passedsyn){
+            this.status="Bestanden";
+        } else {
+            this.status="Nicht Bestanden";
+        }
+
         this.first = false;
         //Generating true or false for passed
         if (checksimilarity && passedsyn) {
@@ -70,7 +78,7 @@ public class UseCaseStrategy implements Strategy {
                 return;
             }
             //Comparing with solution (second delta)
-            similarityChecker.compareSolutions(tutorSolution, solution, alpha, delta);
+            this.status = similarityChecker.compareSolutions(tutorSolution, solution, alpha, delta);
             //Generating true or false for passed
         }
         //Check if last diagram
@@ -123,5 +131,9 @@ public class UseCaseStrategy implements Strategy {
         for (UMLComponent comp: comps) {
             checkComponent(comp);
         }
+    }
+
+    public String getStatus(){
+        return this.status;
     }
 }

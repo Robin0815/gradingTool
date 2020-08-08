@@ -22,10 +22,10 @@ public class SimilarityChecker {
     private int undecidedSubmissions = 0;
     private int failedSubmissions = 0;
 
-    public void compareSolutions(Solution tutorsolution, Solution studentsolution, double alpha, double delta){
+    public String compareSolutions(Solution tutorsolution, Solution studentsolution, double alpha, double delta){
         double konfElements = getSimilarityNumberOfElements(tutorsolution.getNumberOfElements(),studentsolution.getNumberOfElements());
         double konfRelations = getSimilarityRelations(tutorsolution.getReducedRelationIntegerMap(),studentsolution.getReducedRelationIntegerMap());
-        createFeedback(konfElements,konfRelations,alpha,delta);
+        return createFeedback(konfElements,konfRelations,alpha,delta);
     }
 
     private double getSimilarityNumberOfElements(HashMap<Elements, Integer> map1, HashMap<Elements, Integer> map2){
@@ -75,19 +75,19 @@ public class SimilarityChecker {
 
     }
 
-    private void createFeedback(double konfElements, double konfRelations, double alpha, double delta){
+    private String createFeedback(double konfElements, double konfRelations, double alpha, double delta){
         if (konfElements < alpha || konfRelations < alpha) {
             //return failed
             failedSubmissions++;
-            System.out.println("FAILED");
+            return "Nicht bestanden";
         } else if (konfElements < delta || konfRelations < delta) {
             //return undecided
             undecidedSubmissions++;
-            System.out.println("UNDECIDED");
+            return "UNDECIDED";
         } else {
             //return passed
             passedSubmissions++;
-            System.out.println("PASSED");
+            return "Bestanden";
         }
     }
 
