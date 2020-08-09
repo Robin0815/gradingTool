@@ -80,6 +80,11 @@
     <bpmn:sequenceFlow id="Flow_0l0xhs5" sourceRef="Activity_0dy4xni" targetRef="Activity_00po3eb" />
     <bpmn:sequenceFlow id="Flow_14g79gu" sourceRef="Activity_00po3eb" targetRef="Gateway_12ueu8c" />
     <bpmn:userTask id="Activity_0zo7goi" name="Print report" camunda:formKey="embedded:app:report.html" camunda:assignee="demo">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="Report" type="string" />
+        </camunda:formData>
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_10guilf</bpmn:incoming>
       <bpmn:outgoing>Flow_00j3lg6</bpmn:outgoing>
     </bpmn:userTask>
