@@ -14,6 +14,7 @@ public class TmpTestMain {
 
     public static void main(String[] args) {
 
+
         String file = "Adapter-UML.uxf";
         File testFile = new File(file);
         Parser a = new Parser();
