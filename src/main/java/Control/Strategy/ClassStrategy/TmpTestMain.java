@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TmpTestMain {
+
     public static void main(String[] args) {
 
         String file = "Adapter-UML.uxf";
