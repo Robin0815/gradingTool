@@ -45,17 +45,23 @@ public class GraphDBFunction {
                 new File("data/db"));
     */
     private GraphDatabaseService graphDb;
+    private GraphDatabaseService graphDb2;
     private DatabaseManagementService managementService;
+    private DatabaseManagementService managementService2;
 
     public GraphDatabaseService getGraphDb() {
         return graphDb;
     }
+    public GraphDatabaseService getGraphDb2() {
+        return graphDb2;
+    }
 
-    private static void registerShutdownHook(final DatabaseManagementService managementService) {
+    private static void registerShutdownHook(final DatabaseManagementService managementService, final DatabaseManagementService managementService2) {
         Runtime.getRuntime().addShutdownHook((new Thread() {
             @Override
             public void run() {
                 managementService.shutdown();
+                managementService2.shutdown();
                 try {
                     FileUtils.deleteDirectory(new File("data"));
                 } catch (IOException e) {
@@ -77,8 +83,10 @@ public class GraphDBFunction {
     */
     public void setUp(List<UMLComponent> comps) {
         managementService = new DatabaseManagementServiceBuilder(new File("data/db")).build();
+        managementService2 = new DatabaseManagementServiceBuilder(new File("data/db2")).build();
         graphDb = managementService.database("neo4j");
-        registerShutdownHook(managementService);
+        graphDb2 = managementService2.database("neo4j");
+        registerShutdownHook(managementService, managementService2);
 
         List<UMLComponent> lClass = new ArrayList<>();
         List<UMLComponent> lRelation = new ArrayList<>();
