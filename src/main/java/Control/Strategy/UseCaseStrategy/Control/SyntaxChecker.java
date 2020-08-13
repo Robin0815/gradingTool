@@ -342,5 +342,6 @@ public class SyntaxChecker {
 
     public void applyRules(){
         incrementFails(ErrorTypes.UNKNOWNELEMENT);
+        incrementFails(ErrorTypes.TOTALERRORS);
     }
 }

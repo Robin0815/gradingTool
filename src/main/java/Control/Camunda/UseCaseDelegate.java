@@ -4,7 +4,6 @@ import Control.Parser.Parser;
 import Control.Strategy.UseCaseStrategy.Control.UseCaseStrategy;
 import Model.UMLComponent;
 import com.opencsv.CSVWriter;
-import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOCase;
 import org.apache.commons.io.filefilter.SuffixFileFilter;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
@@ -28,10 +27,13 @@ public class UseCaseDelegate implements JavaDelegate {
         File KorrekturDir = new File(homeDir + "\\Documents\\Korrektur");
         KorrekturDir.getParentFile().mkdirs();
         File[] filesList = KorrekturDir.listFiles((FileFilter) new SuffixFileFilter(".uxf", IOCase.INSENSITIVE));
+        assert filesList != null;
+        Arrays.sort(filesList);
 
         double beta = ((Long) execution.getVariable("beta")) / (double) 100;
         boolean checksimilarity = (Boolean) execution.getVariable("checksimilarity");
-        assert filesList != null;
+        boolean first = true;
+
         Parser a = new Parser();
         UseCaseStrategy strategy = new UseCaseStrategy(beta, filesList.length);
         if (checksimilarity) {
@@ -51,11 +53,15 @@ public class UseCaseDelegate implements JavaDelegate {
                 csvlist.add(file.getName());
                 csvlist.add(strategy.getStatus());
                 String[] nextLine = csvlist.toArray(new String[0]);
-                writer.writeNext(nextLine);
+                if(!(first && checksimilarity)) {
+                    writer.writeNext(nextLine);
+                }
+                first = false;
             }
             writer.close();
         } catch (Exception e) {
             System.out.println("Something went wrong when writing the csv file");
+            e.printStackTrace();
         }
         execution.setVariable("Report", strategy.getReport());
     }
