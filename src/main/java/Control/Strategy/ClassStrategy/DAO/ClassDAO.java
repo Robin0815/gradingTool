@@ -45,8 +45,8 @@ public class ClassDAO {
                     d.setProperty("Static", k.isStatic());
                     d.setProperty("OutPut", k.getOutputType());
                     if (k.getInputType() != null && !k.getInputType().equals("")) {
-                        String input = "";
-                        for (int h = 0; h < k.getInputType().size(); h++) {
+                        String input = k.getInputType().get(0);
+                        for (int h = 1; h < k.getInputType().size(); h++) {
                             input = input + ", " + k.getInputType().get(h);
                         }
                         d.setProperty("InPut", input);

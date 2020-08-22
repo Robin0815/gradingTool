@@ -186,7 +186,7 @@ public class UMLFactory {
                     String[] ab = (am.substring(am.indexOf('(') + 1, am.indexOf(')')).split(":"));
                     for (int p = 1; p < ab.length - 1; p++) {
                         //System.out.println(ab[p]);
-                        input.add(ab[p].replace(" ", "").substring(0, ab[p].indexOf(',')));
+                        input.add(ab[p].replace(" ", "").substring(0, ab[p].indexOf(',')+1));
                     }
                     input.add(ab[ab.length - 1].replace(" ", ""));
                     if (!am.substring(am.indexOf(')')).contains(":")) {

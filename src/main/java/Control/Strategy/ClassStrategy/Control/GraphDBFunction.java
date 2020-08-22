@@ -120,7 +120,7 @@ public class GraphDBFunction {
         String res = "";
         try (Transaction tx = graphDb.beginTx();
              //Result result = tx.execute( "MATCH (a)-[n]->(b) Return type(n), a, b")){
-             Result result = tx.execute("MATCH (a)-[r]->(b) Return a.Name, type(r), b.Name")) {
+             Result result = tx.execute("MATCH (a)-[r]->(b)  Return a.Name, type(r), b.Name, b.OutPut")) {
             while (result.hasNext()) {
                 Map<String, Object> row = result.next();
                 for (Map.Entry<String, Object> column : row.entrySet()) {
