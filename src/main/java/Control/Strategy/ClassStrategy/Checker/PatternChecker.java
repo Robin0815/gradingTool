@@ -18,7 +18,7 @@ public class PatternChecker implements Checker{
 
         String res = "\n";
         try (Transaction tx = graphDb.beginTx();
-             Result result = tx.execute(PatternQueries.adapterQuerry2())) {
+             Result result = tx.execute(PatternQueries.adapterQuery2())) {
             while (result.hasNext()) {
                 Map<String, Object> row = result.next();
                 for (Map.Entry<String, Object> column : row.entrySet()) {
