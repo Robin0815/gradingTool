@@ -25,20 +25,35 @@ public class PatternQueries {
     }
 
     public static String singletonQuery2(){
-        return "Match" +
+        return "Match (c:Class)-[:contains]->(x:Constructor)" +
+                "Match (c:Class)-[:contains]->(b:Method)" +
+                "Match (c:Class)-[:contains]->(d:Attribute)" +
+                "Where x.Visibility = '-' and b.OutPut = c.Name and b.Static = 'true' and d.OutPut = c.Name and d.Static = 'true'" +
+                " " +
                 "Return count(*) as AnzSingleton2";
     }
     public static String singletonQuery1(){
-        return "Match" +
+        return "Match (c:Class)-[:contains]->(x:Constructor)" +
+                "Match (c:Class)-[:contains]->(b:Method)" +
+                "Match (c:Class)-[:contains]->(d:Attribute)" +
+                "Where x.Visibility = '-' and b.Static = 'true'  and d.Static = 'true'" +
+                " " +
                 "Return count(*) as AnzSingleton1";
 
     }
     public static String strategyQuery2(){
-        return "Match" +
+        return "Match (client:Class)-[:Association]->(strat:Interface)" +
+                "Match (client:Class)-[:Association]->(kont:Class)" +
+                "Match (kont:Class)-[:Aggregation]->(strat:Interface)" +
+                "Match (rstart1:Class)-[:Implements]->(strat:Interface)" +
+                "Match (rstart2:Class)-[:Implements]->(strat:Interface)" +
                 "Return count(*) as AnzStrategy2";
     }
     public static String strategyQuery1(){
-        return "Match" +
+        return "Match (client:Class)-[:Association]->(strat:Interface)" +
+                "Match (client:Class)-[:Association]->(kont:Class)" +
+                "Match (kont:Class)-[:Aggregation]->(strat:Interface)" +
+                "Match (rstart1:Class)-[:Implements]->(strat:Interface)" +
                 "Return count(*) as AnzStrategy1";
     }
 }

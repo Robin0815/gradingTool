@@ -30,10 +30,10 @@ public class ClassDAO {
             for (int i = 0; i < l.size(); i++) {
                 if (l.get(i).id().equals(Elements.ATTRIBUT)) {
                     Attribut k = (Attribut) l.get(i);
-                    Node d = tx.createNode(Label.label("Attribut"));
+                    Node d = tx.createNode(Label.label("Attribute"));
                     d.setProperty("Name", k.getName());
                     d.setProperty("Visibility", k.getVisibility());
-                    d.setProperty("Static", k.isStatic());
+                    d.setProperty("Static", ""+k.isStatic());
                     d.setProperty("OutPut", k.getOutputType());
                     c.createRelationshipTo(d, RelationshipType.withName("contains"));
                 }
@@ -42,7 +42,7 @@ public class ClassDAO {
                     Node d = tx.createNode(Label.label("Method"));
                     d.setProperty("Name", k.getName());
                     d.setProperty("Visibility", k.getVisibility());
-                    d.setProperty("Static", k.isStatic());
+                    d.setProperty("Static", ""+k.isStatic());
                     d.setProperty("OutPut", k.getOutputType());
                     if (k.getInputType() != null && !k.getInputType().equals("")) {
                         String input = k.getInputType().get(0);

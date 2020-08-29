@@ -23,7 +23,7 @@ public class TmpTestMain {
 
         GraphDBFunction func = GraphDBFunction.getInstance();
         func.setUp(l);
-        System.out.println(func.toString());
+        //System.out.println(func.toString());
 
         PatternChecker p = new PatternChecker();
         p.checkUML(l);
