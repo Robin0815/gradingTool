@@ -12,8 +12,9 @@ import java.util.Map;
 
 public class PatternChecker implements Checker{
     @Override
-    public String checkUML(List<UMLComponent> comps) {
+    public boolean checkUML(List<UMLComponent> comps) {
         GraphDBFunction func = GraphDBFunction.getInstance();
+        func.setUp(comps);
         GraphDatabaseService graphDb = func.getGraphDb();
 
         String res = "\n";
@@ -32,6 +33,6 @@ public class PatternChecker implements Checker{
         System.out.println(res);
 
 
-        return "ausgeführt";
+        return true;
     }
 }

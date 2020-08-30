@@ -6,7 +6,7 @@ import java.util.List;
 
 public class SimilarityChecker implements Checker{
     @Override
-    public String checkUML(List<UMLComponent> comps) {
-        return null;
+    public boolean checkUML(List<UMLComponent> comps) {
+        return true;
     }
 }

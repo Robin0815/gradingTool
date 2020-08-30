@@ -21,8 +21,7 @@ public class TmpTestMain {
         List<UMLComponent> l = a.parseFile(testFile);
         //System.out.print(l.toString());
 
-        GraphDBFunction func = GraphDBFunction.getInstance();
-        func.setUp(l);
+
         //System.out.println(func.toString());
 
         PatternChecker p = new PatternChecker();
