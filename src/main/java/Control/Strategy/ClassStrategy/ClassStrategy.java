@@ -1,5 +1,6 @@
 package Control.Strategy.ClassStrategy;
 
+import Control.Strategy.ClassStrategy.Checker.Checker;
 import Control.Strategy.ClassStrategy.Checker.PatternChecker;
 import Control.Strategy.ClassStrategy.Checker.SimilarityChecker;
 import Control.Strategy.ClassStrategy.Checker.SyntaxChecker;
@@ -8,6 +9,7 @@ import Control.Strategy.ClassStrategy.Control.GraphDBFunction;
 import Control.Strategy.Strategy;
 import Model.UMLComponent;
 
+import java.awt.*;
 import java.util.List;
 
 public class ClassStrategy implements Strategy {
@@ -18,10 +20,11 @@ public class ClassStrategy implements Strategy {
         PatternChecker pattern = new PatternChecker();
         SimilarityChecker similarity = new SimilarityChecker();
         FeedbackGenerator feedback = FeedbackGenerator.getInstance();
-
-        syntax.checkUML(comps);
-        pattern.checkUML(comps);
-        similarity.checkUML(comps);
+        if (syntax.checkUML(comps)){
+            if(pattern.checkUML(comps)){
+                similarity.checkUML(comps);
+            }
+        }
 
         result = feedback.getRes();
 

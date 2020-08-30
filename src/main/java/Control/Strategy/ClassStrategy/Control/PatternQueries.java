@@ -1,7 +1,19 @@
 package Control.Strategy.ClassStrategy.Control;
 
-public class PatternQueries {
+import java.util.ArrayList;
+import java.util.List;
 
+public class PatternQueries {
+    public static List<String> allQuery(){
+        List<String> res = new ArrayList<>();
+        res.add(adapterQuery1());
+        res.add(adapterQuery2());
+        res.add(singletonQuery1());
+        res.add(singletonQuery2());
+        res.add(strategyQuery1());
+        res.add(strategyQuery2());
+        return res;
+    }
     public static String adapterQuery2(){
         return "Match (a:Class)-[:Association]->(b:Interface)" +
                 "Match (c:Class)-[:Implements]->(b:Interface)" +
