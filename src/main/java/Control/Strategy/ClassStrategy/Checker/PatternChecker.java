@@ -1,5 +1,6 @@
 package Control.Strategy.ClassStrategy.Checker;
 
+import Control.Strategy.ClassStrategy.Control.FeedbackGenerator;
 import Control.Strategy.ClassStrategy.Control.GraphDBFunction;
 import Control.Strategy.ClassStrategy.Control.PatternQueries;
 import Model.UMLComponent;
@@ -13,41 +14,142 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class PatternChecker implements Checker{
-    Map<String, Integer> pMap;
+public class PatternChecker implements Checker {
+    private int complianceLevel = 1;
+    private boolean passed = false;
 
     @Override
     public boolean checkUML(List<UMLComponent> comps) {
         GraphDatabaseService graphDb = crateData(comps);
         String dbRes = runQuery(graphDb);
-        System.out.println(dbRes);
-        return true;
+        String res = evaluateQuery(dbRes);
+        FeedbackGenerator feedBack = FeedbackGenerator.getInstance();
+        feedBack.addRes(res);
+        return passed;
     }
-    private Map<String, Integer> usedPattern(){
+
+    private String evaluateQuery(String dbRes) {
+        String res = "--------------------------------------------------\nAuswertung der Pattern Compliance:\n--------------------------------------------------\n";
+        String[] queryResultPerLine = dbRes.split("\n");
+        boolean adapterOK = false;
+        boolean singletonOK = false;
+        boolean strategyOK = false;
+        int adapter = 0;
+        int singleton = 0;
+        int strategy = 0;
+        for (String line : queryResultPerLine) {
+            if (complianceLevel == 2) {
+                if (line.contains("AnzAdapter2")) {
+                    adapter = Integer.parseInt(line.substring(line.indexOf(':') + 2, line.indexOf(';')));
+                    adapterOK = usedPattern().get("Adapter").equals(adapter);
+
+                }
+                if (line.contains("AnzSingleton2")) {
+                    singleton = Integer.parseInt(line.substring(line.indexOf(':') + 2, line.indexOf(';')));
+                    singletonOK = usedPattern().get("Singleton").equals(singleton);
+
+                }
+                if (line.contains("AnzStrategy2")) {
+                    strategy = Integer.parseInt(line.substring(line.indexOf(':') + 2, line.indexOf(';')));
+                    strategyOK = usedPattern().get("Strategy").equals(strategy);
+
+                }
+
+            } else {
+                if (line.contains("AnzAdapter1")) {
+                    adapter = Integer.parseInt(line.substring(line.indexOf(':') + 2, line.indexOf(';')));
+                    adapterOK = usedPattern().get("Adapter").equals(adapter);
+
+                }
+                if (line.contains("AnzSingleton1")) {
+                    singleton = Integer.parseInt(line.substring(line.indexOf(':') + 2, line.indexOf(';')));
+                    singletonOK = usedPattern().get("Singleton").equals(singleton);
+
+                }
+                if (line.contains("AnzStrategy1")) {
+                    strategy = Integer.parseInt(line.substring(line.indexOf(':') + 2, line.indexOf(';')));
+                    strategyOK = usedPattern().get("Strategy").equals(strategy);
+                }
+
+            }
+
+        }
+
+        if (!adapterOK) {
+            res += "Fehler beim Adapter Pattern gefunden, es sind : " + adapter + " gefunden worden und : " + usedPattern().get("Adapter") + " verlangt\n";
+        }
+        if (adapterOK) {
+            res += "Es sind : " + adapter + " korrekte Adapter Pattern gefunden worden und : " + usedPattern().get("Adapter") + " verlangt worden\n";
+        }
+        if (!singletonOK) {
+            res += "Fehler beim Singleton Pattern gefunden, es sind : " + singleton + " gefunden worden und : " + usedPattern().get("Singleton") + " verlangt\n";
+        }
+        if (singletonOK) {
+            res += "Es sind : " + singleton + " korrekte Singleton Pattern gefunden worden und : " + usedPattern().get("Singleton") + " verlangt worden\n";
+        }
+        if (!strategyOK) {
+            res += "Fehler beim Strategy Pattern gefunden, es sind : " + strategy + " gefunden worden und : " + usedPattern().get("Strategy") + " verlangt\n";
+        }
+        if (strategyOK) {
+            res += "Es sind: " + strategy + " korrekte Strategy Pattern gefunden worden und : " + usedPattern().get("Strategy") + " verlangt worden\n";
+        }
+        /*while (dbRes.hasNext()) {
+            Map<String, Object> row = dbRes.next();
+            for (Map.Entry<String, Object> column : row.entrySet()) {
+                //res += column.getKey() + " : " + column.getValue() + ";";
+                if (column.getKey().contains("AnzAdapter")){
+                    amountOfPattern += Integer.parseInt(column.getValue().toString());
+                    if(column.getValue().equals(usedPattern().get("Adapter") )){
+                        res += "Adapter Pattern Korrekt\n";
+                    }else{res+= "Adapter Pattern Fehler\n";}
+                }
+                if (column.getKey().contains("AnzSingleton")){
+
+                }
+                if (column.getKey().contains("AnzStrategy")){
+
+                }
+            }
+        }*/
+        passed = adapterOK & singletonOK & strategyOK;
+        if (passed) {
+            res += "Keine Fehler gefunden\n--------------------------------------------------\nPattern Test erfolgreich abgeschlossen\n--------------------------------------------------\n";
+        }
+        if (!passed) {
+            res += "\n--------------------------------------------------\nPattern Test fehlgeschlagen\n--------------------------------------------------\n";
+        }
+        return res;
+    }
+
+    private Map<String, Integer> usedPattern() {
         Map<String, Integer> res = new HashMap<>();
-        res.put("Adapter",1);
-        res.put("Singleton",0);
+        res.put("Adapter", 1);
+        res.put("Singleton", 1);
         res.put("Strategy", 0);
         return res;
     }
-    private GraphDatabaseService crateData(List<UMLComponent> comps){
+
+    private GraphDatabaseService crateData(List<UMLComponent> comps) {
         GraphDBFunction func = GraphDBFunction.getInstance();
         func.setUp(comps);
         return func.getGraphDb();
     }
-    private String runQuery(GraphDatabaseService graphDb){
+
+    private String runQuery(GraphDatabaseService graphDb) {
         String res = "";
         for (String query : PatternQueries.allQuery())
-        try (Transaction tx = graphDb.beginTx();
-             Result result = tx.execute(query)) {
-            while (result.hasNext()) {
-                Map<String, Object> row = result.next();
-                for (Map.Entry<String, Object> column : row.entrySet()) {
-                    res += column.getKey() + " : " + column.getValue() + ";";
+            try (Transaction tx = graphDb.beginTx();
+                 Result result = tx.execute(query)) {
+                while (result.hasNext()) {
+                    Map<String, Object> row = result.next();
+                    for (Map.Entry<String, Object> column : row.entrySet()) {
+                        res += column.getKey() + " : " + column.getValue() + ";";
+                    }
+                    res += "\n";
                 }
-                res += "\n";
+
             }
-        }
+        //return null;
         return res;
     }
 

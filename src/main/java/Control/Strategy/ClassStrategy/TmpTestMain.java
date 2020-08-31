@@ -2,6 +2,8 @@ package Control.Strategy.ClassStrategy;
 
 import Control.Parser.Parser;
 import Control.Strategy.ClassStrategy.Checker.PatternChecker;
+import Control.Strategy.ClassStrategy.Checker.SyntaxChecker;
+import Control.Strategy.ClassStrategy.Control.FeedbackGenerator;
 import Control.Strategy.ClassStrategy.Control.GraphDBFunction;
 import Model.Elements;
 import Model.UMLComponent;
@@ -23,10 +25,11 @@ public class TmpTestMain {
 
 
         //System.out.println(func.toString());
-
+        SyntaxChecker s = new SyntaxChecker();
         PatternChecker p = new PatternChecker();
+        s.checkUML(l);
         p.checkUML(l);
-
+        System.out.println(FeedbackGenerator.getInstance().getRes());
 
 
 

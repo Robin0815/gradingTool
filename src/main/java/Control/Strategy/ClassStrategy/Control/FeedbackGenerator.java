@@ -19,9 +19,15 @@ public class FeedbackGenerator {
     }
 
 
-    private String res = "Automatisierte Bewertung von UMLKlassendiagrammen:\n ------------------------------------------------";
+    private String res = "Bewertung UMLKlassendiagramm:\n--------------------------------------------------\n";
 
     public String getRes() {
         return res;
+    }
+    public void addRes(String a){
+        res += a;
+    }
+    public void reset(){
+        res = "Bewertung UMLKlassendiagramm:\n--------------------------------------------------\n";
     }
 }

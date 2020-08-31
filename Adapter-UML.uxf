@@ -5,7 +5,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>330</x>
-      <y>100</y>
+      <y>60</y>
       <w>210</w>
       <h>110</h>
     </coordinates>
@@ -19,7 +19,7 @@ Client-Interface
     <id>UMLClass</id>
     <coordinates>
       <x>0</x>
-      <y>140</y>
+      <y>100</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -32,7 +32,7 @@ Client-Interface
     <id>Relation</id>
     <coordinates>
       <x>80</x>
-      <y>130</y>
+      <y>90</y>
       <w>290</w>
       <h>40</h>
     </coordinates>
@@ -44,7 +44,7 @@ Client-Interface
     <id>UMLClass</id>
     <coordinates>
       <x>330</x>
-      <y>360</y>
+      <y>320</y>
       <w>270</w>
       <h>110</h>
     </coordinates>
@@ -61,7 +61,7 @@ Client-Interface
     <id>Relation</id>
     <coordinates>
       <x>430</x>
-      <y>190</y>
+      <y>150</y>
       <w>90</w>
       <h>200</h>
     </coordinates>
@@ -73,7 +73,7 @@ Client-Interface
     <id>UMLClass</id>
     <coordinates>
       <x>770</x>
-      <y>100</y>
+      <y>60</y>
       <w>210</w>
       <h>110</h>
     </coordinates>
@@ -88,7 +88,7 @@ Client-Interface
     <id>Relation</id>
     <coordinates>
       <x>520</x>
-      <y>140</y>
+      <y>100</y>
       <w>280</w>
       <h>280</h>
     </coordinates>
@@ -100,7 +100,7 @@ Client-Interface
     <id>UMLClass</id>
     <coordinates>
       <x>900</x>
-      <y>320</y>
+      <y>280</y>
       <w>190</w>
       <h>110</h>
     </coordinates>
@@ -108,18 +108,20 @@ Client-Interface
 --
 _+getInstance():Single_
 -Single()
-_-instance : String_</panel_attributes>
+_-instance : Single_</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <id>Relation</id>
+    <id>UMLClass</id>
     <coordinates>
-      <x>950</x>
-      <y>170</y>
-      <w>140</w>
-      <h>210</h>
+      <x>740</x>
+      <y>450</y>
+      <w>190</w>
+      <h>110</h>
     </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;120.0;190.0</additional_attributes>
+    <panel_attributes>Single
+--
+</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>
