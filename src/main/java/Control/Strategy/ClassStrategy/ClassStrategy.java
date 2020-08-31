@@ -22,11 +22,16 @@ public class ClassStrategy implements Strategy {
         FeedbackGenerator feedback = FeedbackGenerator.getInstance();
         if (syntax.checkUML(comps)){
             if(pattern.checkUML(comps)){
-                similarity.checkUML(comps);
+                if(similarity.checkUML(comps)) {
+                    feedback.addRes("\nAlle Tests bestanden\n");
+                }else{
+                    feedback.addRes("\nNicht alle Tests bestanden\n");
+                }
             }
         }
 
         result = feedback.getRes();
+        //System.out.println(result);
 
     }
     public String getResult(){

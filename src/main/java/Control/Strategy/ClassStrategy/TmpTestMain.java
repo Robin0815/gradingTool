@@ -25,10 +25,8 @@ public class TmpTestMain {
 
 
         //System.out.println(func.toString());
-        SyntaxChecker s = new SyntaxChecker();
-        PatternChecker p = new PatternChecker();
-        s.checkUML(l);
-        p.checkUML(l);
+        ClassStrategy classStrategy = new ClassStrategy();
+        classStrategy.analyzeUML(l);
         System.out.println(FeedbackGenerator.getInstance().getRes());
 
 
