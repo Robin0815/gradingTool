@@ -32,7 +32,7 @@ public class SyntaxChecker implements Checker{
         if(re1 & re2){
             res2 += "Syntax Check erfolgreich\n";
         }else{
-            res2 += "Syntax Check fehlgeschlagen, nochmal Versuchen ohne Grundsätzliche Fehler\n";
+            res2 += "Syntax Check fehlgeschlagen\n";
         }
         FeedbackGenerator.getInstance().addRes(res1+res2);
         return re1 && re2;
@@ -75,10 +75,10 @@ public class SyntaxChecker implements Checker{
             }
         }
         if(re){
-            res1+= "Die Klassen sind von der Form korrekt\n--------------------------------------------------\n";
+            res1+= "Die Klassen sind von der Form korrekt\n\n";
         }else{
             res1+= "Die Klassen sind von der Form fehlerhaft und müssen überarbeitet werden, \n" +
-                    "Kontrollieren sie die Bennenung und die Verwendung der korrekten Syntax\n--------------------------------------------------\n";
+                    "Kontrollieren sie die Bennenung und die Verwendung der korrekten Syntax\n\n";
         }
 
         return re;
@@ -89,14 +89,14 @@ public class SyntaxChecker implements Checker{
         for (Relation relation : comps){
             try {
                 if (relation.getEnd() == null || relation.getStart() == null) {
-                    res2 += "Nicht Binaere Relation gefunden :" + relation.toString();
+                    res2 += "Nicht Binaere Relation gefunden : \n" + relation.toString()+"\n";
                     res = false;
                 }else{
                 if (relation.id().equals(Elements.INHERITANCE)) {
                     if (relation.getEnd().id().equals(Elements.CLASS)) {
                         Class a = (Class) relation.getEnd();
                         if (a.getStereotype().equals("interface")) {
-                            res2 += "Es wird von einem Interface geerbt";
+                            res2 += "Es wird von einem Interface geerbt\n";
                             res = false;
                         }
                     }
@@ -105,20 +105,20 @@ public class SyntaxChecker implements Checker{
                     if (relation.getEnd().id().equals(Elements.CLASS)) {
                         Class a = (Class) relation.getEnd();
                         if (a.getStereotype() == null ? true : a.getStereotype().equals("abstract")) {
-                            res2 += "Es wird eine Klasse mit 'implements' genutzt";
+                            res2 += "Es wird eine Klasse mit 'implements' genutzt\n";
                             res = false;
                         }
                     }
                 }}
             }catch(Exception e){
                 res = false;
-                res2 += "Fehler beim Relationen Testen";
+                res2 += "Fehler beim Relationen Testen\n";
             }
         }
         if(res){
             res2+= "Die Relationen sind von der Form korrekt\n";
         }else{
-            res2+= "Die Relationen sind nicht Korrekt,\nbitte prüfen sie die Relationen auf einen gültigen Start und End Punkt.\n";
+            res2+= "Die Relationen sind nicht Korrekt,\nBitte prüfen sie die Relationen auf einen gültigen Start und End Punkt.\n";
         }
         res2+= "--------------------------------------------------\n";
         return res;

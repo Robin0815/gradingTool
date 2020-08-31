@@ -21,10 +21,6 @@ public class TmpTestMain {
         File testFile = new File(file);
         Parser a = new Parser();
         List<UMLComponent> l = a.parseFile(testFile);
-        //System.out.print(l.toString());
-
-
-        //System.out.println(func.toString());
         ClassStrategy classStrategy = new ClassStrategy();
         classStrategy.analyzeUML(l);
         System.out.println(FeedbackGenerator.getInstance().getRes());

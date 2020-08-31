@@ -14,18 +14,21 @@ import java.util.List;
 
 public class ClassStrategy implements Strategy {
     private String result;
+    private boolean passed = false;
     @Override
     public void analyzeUML(List<UMLComponent> comps) {
         SyntaxChecker syntax = new SyntaxChecker();
-        PatternChecker pattern = new PatternChecker();
-        SimilarityChecker similarity = new SimilarityChecker();
+        PatternChecker pattern = new PatternChecker(1,0,0);
+        SimilarityChecker similarity = new SimilarityChecker("Compare");
         FeedbackGenerator feedback = FeedbackGenerator.getInstance();
+        feedback.reset();
         if (syntax.checkUML(comps)){
             if(pattern.checkUML(comps)){
                 if(similarity.checkUML(comps)) {
                     feedback.addRes("\nAlle Tests bestanden\n");
+                    passed = true;
                 }else{
-                    feedback.addRes("\nNicht alle Tests bestanden\n");
+                    feedback.addRes("\nNicht bestanden\n");
                 }
             }
         }
