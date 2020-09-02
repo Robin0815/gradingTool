@@ -17,6 +17,7 @@ public class TmpTestMain {
     public static void main(String[] args) {
 
         delegate("NennEsSelbstRichtig.uxf");
+        delegate("uml-Olli.uxf");
 
 
 

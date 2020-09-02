@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-//Code von Herrn Kowollik genutzt, abgeändert für eigene Zwecke
+//Die Datei einlese Logik von Herrn Kowollik genutzt
 
 @Named("CCmain")
 public class ClassDelegate implements JavaDelegate {
@@ -49,7 +49,7 @@ public class ClassDelegate implements JavaDelegate {
                 List<String> csvlist = new ArrayList<String>();
                 csvlist.add(file.getName());
                 csvlist.add(strategy.passed());
-                csvlist.add(strategy.getResult());
+                csvlist.add("\""+strategy.getResult()+"\"");
                 String[] nextLine = csvlist.toArray(new String[0]);
                 writer.writeNext(nextLine);
 
