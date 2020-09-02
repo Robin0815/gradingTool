@@ -34,7 +34,7 @@ public class ClassDelegate implements JavaDelegate {
         int adap = (int)((long) execution.getVariable("adapter"));
         int sing = (int)((long) execution.getVariable("singleton"));
         int stra = (int)((long) execution.getVariable("strategy"));
-        String mode = (String) execution.getVariable("similarityType");
+        String mode = (String) (execution.getVariable("similarityType") == null ? "": execution.getVariable("similarityType"));
         Parser a = new Parser();
 
         try {
