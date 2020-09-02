@@ -1,3 +1,7 @@
+/*
+@author mkowol2s
+ */
+
 package Control.Camunda;
 
 import Control.Parser.Parser;

@@ -4,6 +4,7 @@
 
 package UseCaseTest;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import Control.Parser.Parser;
@@ -22,9 +23,9 @@ public class TestUseCase {
         File testFile = new File(file);
         Parser a = new Parser();
         List<UMLComponent> l = a.parseFile(testFile);
-        Strategy strategy = new UseCaseStrategy(0.2,1);
+        UseCaseStrategy strategy = new UseCaseStrategy(0.2,1);
         strategy.analyzeUML(l);
-        assertTrue(true);
+        assertEquals("Nicht Bestanden", strategy.getStatus());
     }
 
     @Test
@@ -33,9 +34,9 @@ public class TestUseCase {
         File testFile = new File(file);
         Parser a = new Parser();
         List<UMLComponent> l = a.parseFile(testFile);
-        Strategy strategy = new UseCaseStrategy(0.2,1);
+        UseCaseStrategy strategy = new UseCaseStrategy(0.2,1);
         strategy.analyzeUML(l);
-        assertTrue(true);
+        assertEquals("Bestanden", strategy.getStatus());
     }
 
     @Test
@@ -44,21 +45,23 @@ public class TestUseCase {
         File testFile = new File(file);
         Parser a = new Parser();
         List<UMLComponent> l = a.parseFile(testFile);
-        Strategy strategy = new UseCaseStrategy(0.2,0.4,0.7,4);
+        UseCaseStrategy strategy = new UseCaseStrategy(0.2,0.4,0.7,4);
         strategy.analyzeUML(l);
         file = "WorstUseCase.uxf";
         testFile = new File(file);
         l = a.parseFile(testFile);
         strategy.analyzeUML(l);
+        assertEquals("Nicht Bestanden", strategy.getStatus());
         file = "SimilarUseCase.uxf";
         testFile = new File(file);
         l = a.parseFile(testFile);
         strategy.analyzeUML(l);
+        assertEquals("UNDECIDED", strategy.getStatus());
         file = "DifferentStructureUseCase.uxf";
         testFile = new File(file);
         l = a.parseFile(testFile);
         strategy.analyzeUML(l);
-        assertTrue(true);
+        assertEquals("Bestanden", strategy.getStatus());
     }
 
     @Test
@@ -67,13 +70,13 @@ public class TestUseCase {
         File testFile = new File(file);
         Parser a = new Parser();
         List<UMLComponent> l = a.parseFile(testFile);
-        Strategy strategy = new UseCaseStrategy(0.2,0.1,0.4,2);
+        UseCaseStrategy strategy = new UseCaseStrategy(0.2,0.1,0.4,2);
         strategy.analyzeUML(l);
         file = "GoodUseCase.uxf";
         testFile = new File(file);
         l = a.parseFile(testFile);
         strategy.analyzeUML(l);
-        assertTrue(true);
+        assertEquals("Bestanden", strategy.getStatus());
     }
 
     @Test
@@ -82,13 +85,13 @@ public class TestUseCase {
         File testFile = new File(file);
         Parser a = new Parser();
         List<UMLComponent> l = a.parseFile(testFile);
-        Strategy strategy = new UseCaseStrategy(0.2,0.3,0.5,2);
+        UseCaseStrategy strategy = new UseCaseStrategy(0.2,0.3,0.5,2);
         strategy.analyzeUML(l);
         file = "SimilarUseCase.uxf";
         testFile = new File(file);
         l = a.parseFile(testFile);
         strategy.analyzeUML(l);
-        assertTrue(true);
+        assertEquals("Bestanden", strategy.getStatus());
     }
 
     @Test
@@ -97,13 +100,13 @@ public class TestUseCase {
         File testFile = new File(file);
         Parser a = new Parser();
         List<UMLComponent> l = a.parseFile(testFile);
-        Strategy strategy = new UseCaseStrategy(0.2,0.99,0.99,2);
+        UseCaseStrategy strategy = new UseCaseStrategy(0.2,0.99,0.99,2);
         strategy.analyzeUML(l);
         file = "DifferentStructureUseCase.uxf";
         testFile = new File(file);
         l = a.parseFile(testFile);
         strategy.analyzeUML(l);
-        assertTrue(true);
+        assertEquals("Bestanden", strategy.getStatus());
     }
 
     @Test
@@ -118,6 +121,6 @@ public class TestUseCase {
         testFile = new File(file);
         l = a.parseFile(testFile);
         strategy.analyzeUML(l);
-        assertTrue(true);
+        assertEquals("UNDECIDED", strategy.getStatus());
     }
 }
