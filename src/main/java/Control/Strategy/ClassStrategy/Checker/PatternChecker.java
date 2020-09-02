@@ -19,7 +19,7 @@ public class PatternChecker implements Checker {
     private boolean passed = false;
     private Map<String, Integer> usedPattern;
     public PatternChecker(int adap, int sing, int stra){
-        usedPattern = usedPatternMet(adap,sing,stra);
+        usedPattern = usedPatternMethod(adap,sing,stra);
     }
     @Override
     public boolean checkUML(List<UMLComponent> comps) {
@@ -28,6 +28,7 @@ public class PatternChecker implements Checker {
         String res = evaluateQuery(dbRes);
         FeedbackGenerator feedBack = FeedbackGenerator.getInstance();
         feedBack.addRes(res);
+        GraphDBFunction.getInstance().shutdown();
         return passed;
     }
 
@@ -124,11 +125,11 @@ public class PatternChecker implements Checker {
         return res;
     }
 
-    private Map<String, Integer> usedPatternMet(int adap, int sing, int stra) {
+    private Map<String, Integer> usedPatternMethod(int adap, int sing, int stra) {
         Map<String, Integer> res = new HashMap<>();
-        res.put("Adapter", 1);
-        res.put("Singleton", 0);
-        res.put("Strategy", 0);
+        res.put("Adapter", adap);
+        res.put("Singleton", sing);
+        res.put("Strategy", stra);
         return res;
     }
 
@@ -152,6 +153,7 @@ public class PatternChecker implements Checker {
                 }
 
             }
+
         //return null;
         return res;
     }

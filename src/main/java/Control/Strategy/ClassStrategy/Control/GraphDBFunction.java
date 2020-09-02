@@ -70,7 +70,15 @@ public class GraphDBFunction {
             }
         }));
     }
-
+    public void shutdown(){
+        managementService.shutdown();
+        managementService2.shutdown();
+        try {
+            FileUtils.deleteDirectory(new File("data"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     /*
         public void deleteGraphDb() {
             graphDb.shutdown();

@@ -50,12 +50,12 @@ public class SimilarityChecker implements Checker{
         boolean re = true;
         if(mode.equals("Cypher")){
 
-        }
+        }else{
         if(mode.equals("Compare")){
             String homeDir = System.getProperty("user.home");
             homeDir = homeDir.replace("\\", "\\\\");
             //Musterloesung im home Verzeichnis unter /Korrektur/Ablegen
-            File correctionFile = new File(homeDir + "\\Documents\\Korrektur\\Musterloesung.uxf");
+            File correctionFile = new File(homeDir + "\\Documents\\KorrekturMusterloesung\\Musterloesung.uxf");
             Parser a = new Parser();
             List<UMLComponent> musterList = a.parseFile(correctionFile);
 
@@ -64,39 +64,39 @@ public class SimilarityChecker implements Checker{
             createComparisonSet(comps, realClass, realRelation, realAttribut, realMethod, realConstructor);
 
             abweichungClass = (double)Math.abs(realClass.size() - musterClass.size())/musterClass.size();
-            res += "Die prozentuale Abweichung ziwschen der Anzahl an Klassen in Musterlösung und Abgegebnen Lösung ist : " +
+            res += "Die prozentuale Abweichung ziwschen der Anzahl an Klassen in Musterlösung und abgegebner Lösung ist : " +
                     ""+abweichungClass+"\n";
             abweichungRelation = (double)Math.abs(realRelation.size() - musterRelation.size())/ musterRelation.size() ;
-            res += "Die prozentuale Abweichung ziwschen der Anzahl an Relationen in Musterlösung und Abgegebnen Lösung ist : " +
+            res += "Die prozentuale Abweichung ziwschen der Anzahl an Relationen in Musterlösung und abgegebner Lösung ist : " +
                     ""+abweichungRelation+"\n";
             abweichungAttribut = (double)Math.abs(realAttribut.size() -musterAttribut.size())/ musterAttribut.size();
-            res += "Die prozentuale Abweichung ziwschen der Anzahl an Attributen in Musterlösung und Abgegebnen Lösung ist : " +
+            res += "Die prozentuale Abweichung ziwschen der Anzahl an Attributen in Musterlösung und abgegebner Lösung ist : " +
                     ""+abweichungAttribut+"\n";
             abweichungMethod = (double)Math.abs(realMethod.size() -musterMethod.size())/musterMethod.size();
-            res += "Die prozentuale Abweichung ziwschen der Anzahl an Methoden in Musterlösung und Abgegebnen Lösung ist : " +
+            res += "Die prozentuale Abweichung ziwschen der Anzahl an Methoden in Musterlösung und abgegebner Lösung ist : " +
                     ""+abweichungMethod+"\n";
             abweichungConstructor = (double)Math.abs(realConstructor.size() -musterConstructor.size())/musterConstructor.size();
-            res += "Die prozentuale Abweichung ziwschen der Anzahl an Konstruktoren in Musterlösung und Abgegebnen Lösung ist : " +
+            res += "Die prozentuale Abweichung ziwschen der Anzahl an Konstruktoren in Musterlösung und abgegebner Lösung ist : " +
                     ""+abweichungConstructor+"\n";
             double abweichung = (abweichungClass*2 + abweichungRelation*2 + abweichungAttribut + abweichungMethod + abweichungConstructor) / 5;
             if(abweichung > konv){
                 re = false;
                 res+= "--------------------------------------------------\n" +
-                        "Die abgegbene Loesung weicht zu sehr von der Musterloesung ab, Abweichung : "+abweichung+"\n" +
+                        "Die abgegbene Loesung weicht zu sehr von der Musterlösung ab, Abweichung : "+abweichung+"\n" +
                         "--------------------------------------------------\n";
             }else{
                 re = true;
                 res+= "--------------------------------------------------\n" +
-                        "Die abgegbene Loesung hat genug Ähnlichkeit mit der Musterloesung, Abweichung : "+abweichung+"\n" +
+                        "Die abgegbene Loesung hat genug Ähnlichkeit mit der Musterlösung, Abweichung : "+abweichung+"\n" +
                         "--------------------------------------------------\n";
             }
 
             FeedbackGenerator.getInstance().addRes(res);
             return re;
-        }
+        }}
 
-
-        return false;
+        res += "Kein Vergleich mit einer Musterlösung verlangt";
+        return true;
     }
 
     private void createComparisonSet(List<UMLComponent> comps, List<Class> realClass, List<Relation> realRelation, List<Attribut> realAttribut, List<Method> realMethod, List<Constructor> realConstructor) {

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_0x7g4fz" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.1.1">
+  <bpmn:process id="Grade_UML_Class_Diagram" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_0h189sf</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_0h189sf" sourceRef="StartEvent_1" targetRef="Activity_0g5elqr" />
+    <bpmn:userTask id="Activity_0g5elqr" name="Select the SimilarityChecker Type" camunda:assignee="demo">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="similarityType" label="Mit welchem verfahren soll der Vergleich mit einer Musterloesung durchgeführt werden" type="string" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0h189sf</bpmn:incoming>
+      <bpmn:outgoing>Flow_0rsomh9</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_0rsomh9" sourceRef="Activity_0g5elqr" targetRef="Activity_12izmsl" />
+    <bpmn:userTask id="Activity_12izmsl" name="Define the Number of wanted Pattern" camunda:assignee="demo">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="adapter" label="Wie oft soll das Adapter Pattern in der Loesung vorkommen" type="long" />
+          <camunda:formField id="singleton" label="Wie oft soll das Singleton Pattern in der Loesung vorkommen" type="long" />
+          <camunda:formField id="strategy" label="Wie oft soll das Strategy Pattern in der Loesung vorkommen" type="long" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0rsomh9</bpmn:incoming>
+      <bpmn:outgoing>Flow_1a2gzpa</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_1a2gzpa" sourceRef="Activity_12izmsl" targetRef="Activity_0qur8o8" />
+    <bpmn:serviceTask id="Activity_0qur8o8" name="Run ClassStrategy" camunda:class="Control.Camunda.ClassDelegate">
+      <bpmn:incoming>Flow_1a2gzpa</bpmn:incoming>
+      <bpmn:outgoing>Flow_0clj0xz</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="Event_16648dw">
+      <bpmn:incoming>Flow_0clj0xz</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0clj0xz" sourceRef="Activity_0qur8o8" targetRef="Event_16648dw" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Grade_UML_Class_Diagram">
+      <bpmndi:BPMNEdge id="Flow_0h189sf_di" bpmnElement="Flow_0h189sf">
+        <di:waypoint x="215" y="117" />
+        <di:waypoint x="270" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0rsomh9_di" bpmnElement="Flow_0rsomh9">
+        <di:waypoint x="370" y="117" />
+        <di:waypoint x="430" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1a2gzpa_di" bpmnElement="Flow_1a2gzpa">
+        <di:waypoint x="530" y="117" />
+        <di:waypoint x="590" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0clj0xz_di" bpmnElement="Flow_0clj0xz">
+        <di:waypoint x="690" y="117" />
+        <di:waypoint x="752" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1sa1kjc_di" bpmnElement="Activity_0g5elqr">
+        <dc:Bounds x="270" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1c96to5_di" bpmnElement="Activity_12izmsl">
+        <dc:Bounds x="430" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0eopkwb_di" bpmnElement="Activity_0qur8o8">
+        <dc:Bounds x="590" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_16648dw_di" bpmnElement="Event_16648dw">
+        <dc:Bounds x="752" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
