@@ -42,7 +42,7 @@
           <camunda:formField id="beta" label="Geben sie die prozentuale Toleranz für Syntaxfehler ein (0 bis 100)" type="long">
             <camunda:validation>
               <camunda:constraint name="min" config="0" />
-              <camunda:constraint name="max" config="100" />
+              <camunda:constraint name="max" config="101" />
               <camunda:constraint name="required" />
             </camunda:validation>
           </camunda:formField>
@@ -57,17 +57,17 @@
     <bpmn:userTask id="Activity_1oz0qhr" name="Input variables for similarity check" camunda:assignee="demo">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="alpha" label="Ab welchen prozentualen Niveau an Ähnlichkeit sollen Abgaben nicht mehr als Durchgefallen bewertet werden" type="long">
+          <camunda:formField id="alpha" label="Ab welchen prozentualen Niveau an Ähnlichkeit sollen Abgaben nicht mehr als Durchgefallen bewertet werden? (0 bis 100)" type="long">
             <camunda:validation>
               <camunda:constraint name="min" config="0" />
-              <camunda:constraint name="max" config="100" />
+              <camunda:constraint name="max" config="101" />
               <camunda:constraint name="required" />
             </camunda:validation>
           </camunda:formField>
-          <camunda:formField id="delta" label="Ab welchen prozentualen Niveau an Ähnlichkeit sollen Abgaben nicht mehr als  Undecided bewertet werden" type="long">
+          <camunda:formField id="delta" label="Ab welchen prozentualen Niveau an Ähnlichkeit sollen Abgaben nicht mehr als  Undecided bewertet werden? (0 bis 100)" type="long">
             <camunda:validation>
               <camunda:constraint name="min" config="0" />
-              <camunda:constraint name="max" config="100" />
+              <camunda:constraint name="max" config="101" />
               <camunda:constraint name="required" />
             </camunda:validation>
           </camunda:formField>
