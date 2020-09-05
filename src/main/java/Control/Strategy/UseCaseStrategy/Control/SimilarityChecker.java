@@ -79,7 +79,7 @@ public class SimilarityChecker {
         if (konfElements < alpha || konfRelations < alpha) {
             //return failed
             failedSubmissions++;
-            return "Nicht bestanden";
+            return "Nicht Bestanden";
         } else if (konfElements < delta || konfRelations < delta) {
             //return undecided
             undecidedSubmissions++;

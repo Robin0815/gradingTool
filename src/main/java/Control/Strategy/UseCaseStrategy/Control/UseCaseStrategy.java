@@ -25,7 +25,7 @@ public class UseCaseStrategy implements Strategy {
     private int numberOfSubmissions = 0;
     private Solution tutorSolution;
     private String report = "";
-    private String status = "Nicht bestanden";
+    private String status = "Nicht Bestanden";
 
     public UseCaseStrategy(double beta, int numberOfSubmissions){
         this.beta = beta;
