@@ -149,4 +149,38 @@ teaches to &gt;</panel_attributes>
     <panel_attributes>Class Relations</panel_attributes>
     <additional_attributes/>
   </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>610</x>
+      <y>80</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>SimpleClass</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>360</x>
+      <y>80</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>SimpleClass</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>900</x>
+      <y>80</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>/AbstractClass/
+</panel_attributes>
+    <additional_attributes/>
+  </element>
 </diagram>

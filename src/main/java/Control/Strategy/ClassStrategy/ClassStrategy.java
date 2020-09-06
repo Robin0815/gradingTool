@@ -44,7 +44,7 @@ public class ClassStrategy implements Strategy {
             }else{
                 if(similarity.checkUML(comps)){
                     feedback.addRes("\nPattern Test nicht bestanden, trotzdem gute Ähnlichkeit zu der Musterlösung\n");
-                    passed = true;
+                    //passed = true;
                 }else{
                     feedback.addRes("\nNicht bestanden\n");
                 }
@@ -57,6 +57,9 @@ public class ClassStrategy implements Strategy {
     }
     public String getResult(){
         return result;
+    }
+    public boolean getPassed(){
+        return passed;
     }
     public String passed(){
         if(passed){
