@@ -85,7 +85,7 @@ public class SimilarityChecker implements Checker{
                         "Die abgegbene Loesung weicht zu sehr von der Musterlösung ab, Abweichung : "+abweichung+"\n" +
                         "--------------------------------------------------\n";
             }else{
-                re = true;
+                //re = true;
                 res+= "--------------------------------------------------\n" +
                         "Die abgegbene Loesung hat genug Ähnlichkeit mit der Musterlösung, Abweichung : "+abweichung+"\n" +
                         "--------------------------------------------------\n";
@@ -95,7 +95,7 @@ public class SimilarityChecker implements Checker{
             return re;
         }}
 
-        res += "Kein Vergleich mit einer Musterlösung verlangt";
+        //res += "Kein Vergleich mit einer Musterlösung verlangt";
         return true;
     }
 

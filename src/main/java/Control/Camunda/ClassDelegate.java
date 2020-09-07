@@ -46,7 +46,7 @@ public class ClassDelegate implements JavaDelegate {
                 List<UMLComponent> list = a.parseFile(file);
                 strategy.analyzeUML(list);
 
-                List<String> csvlist = new ArrayList<String>();
+                List<String> csvlist = new ArrayList<>();
                 csvlist.add(file.getName());
                 csvlist.add(strategy.passed());
                 csvlist.add("\""+strategy.getResult()+"\"");

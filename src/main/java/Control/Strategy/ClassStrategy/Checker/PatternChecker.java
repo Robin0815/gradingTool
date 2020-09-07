@@ -4,12 +4,10 @@ import Control.Strategy.ClassStrategy.Control.FeedbackGenerator;
 import Control.Strategy.ClassStrategy.Control.GraphDBFunction;
 import Control.Strategy.ClassStrategy.Control.PatternQueries;
 import Model.UMLComponent;
-import org.neo4j.cypher.internal.expressions.In;
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.graphdb.Result;
 import org.neo4j.graphdb.Transaction;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
