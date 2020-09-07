@@ -1,24 +1,21 @@
 package Control.Strategy.ClassStrategy;
 
-import Control.Strategy.ClassStrategy.Checker.Checker;
 import Control.Strategy.ClassStrategy.Checker.PatternChecker;
 import Control.Strategy.ClassStrategy.Checker.SimilarityChecker;
 import Control.Strategy.ClassStrategy.Checker.SyntaxChecker;
 import Control.Strategy.ClassStrategy.Control.FeedbackGenerator;
-import Control.Strategy.ClassStrategy.Control.GraphDBFunction;
 import Control.Strategy.Strategy;
 import Model.UMLComponent;
 
-import java.awt.*;
 import java.util.List;
 
 public class ClassStrategy implements Strategy {
     private String result;
     private boolean passed = false;
-    private String mode;
-    private int adap;
-    private int sing;
-    private int stra;
+    private final String mode;
+    private final int adap;
+    private final int sing;
+    private final int stra;
 
     public ClassStrategy(String mode,int adap, int sing, int stra){
         this.mode = mode;
