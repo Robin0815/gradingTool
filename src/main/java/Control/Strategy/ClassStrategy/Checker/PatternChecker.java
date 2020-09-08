@@ -24,8 +24,7 @@ public class PatternChecker implements Checker {
         GraphDatabaseService graphDb = crateData(comps);
         String dbRes = runQuery(graphDb);
         String res = evaluateQuery(dbRes);
-        FeedbackGenerator feedBack = FeedbackGenerator.getInstance();
-        feedBack.addRes(res);
+        FeedbackGenerator.getInstance().addRes(res);
         GraphDBFunction.getInstance().shutdown();
         return passed;
     }
