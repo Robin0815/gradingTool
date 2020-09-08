@@ -13,12 +13,13 @@ import java.util.List;
 import java.util.Map;
 
 public class PatternChecker implements Checker {
-    private int complianceLevel = 1;
     private boolean passed = false;
-    private Map<String, Integer> usedPattern;
-    public PatternChecker(int adap, int sing, int stra){
-        usedPattern = usedPatternMethod(adap,sing,stra);
+    private final Map<String, Integer> usedPattern;
+
+    public PatternChecker(int adap, int sing, int stra) {
+        usedPattern = usedPatternMethod(adap, sing, stra);
     }
+
     @Override
     public boolean checkUML(List<UMLComponent> comps) {
         GraphDatabaseService graphDb = crateData(comps);
@@ -39,43 +40,20 @@ public class PatternChecker implements Checker {
         int singleton = 0;
         int strategy = 0;
         for (String line : queryResultPerLine) {
-            if (complianceLevel == 2) {
-                if (line.contains("AnzAdapter2")) {
-                    adapter = Integer.parseInt(line.substring(line.indexOf(':') + 2, line.indexOf(';')));
-                    adapterOK = usedPattern.get("Adapter").equals(adapter);
-
-                }
-                if (line.contains("AnzSingleton2")) {
-                    singleton = Integer.parseInt(line.substring(line.indexOf(':') + 2, line.indexOf(';')));
-                    singletonOK = usedPattern.get("Singleton").equals(singleton);
-
-                }
-                if (line.contains("AnzStrategy2")) {
-                    strategy = Integer.parseInt(line.substring(line.indexOf(':') + 2, line.indexOf(';')));
-                    strategyOK = usedPattern.get("Strategy").equals(strategy);
-
-                }
-
-            } else {
-                if (line.contains("AnzAdapter1")) {
-                    adapter = Integer.parseInt(line.substring(line.indexOf(':') + 2, line.indexOf(';')));
-                    adapterOK = usedPattern.get("Adapter").equals(adapter);
-
-                }
-                if (line.contains("AnzSingleton1")) {
-                    singleton = Integer.parseInt(line.substring(line.indexOf(':') + 2, line.indexOf(';')));
-                    singletonOK = usedPattern.get("Singleton").equals(singleton);
-
-                }
-                if (line.contains("AnzStrategy1")) {
-                    strategy = Integer.parseInt(line.substring(line.indexOf(':') + 2, line.indexOf(';')));
-                    strategyOK = usedPattern.get("Strategy").equals(strategy);
-                }
-
+            int complianceLevel = 1;
+            if (line.contains("AnzAdapter" + complianceLevel)) {
+                adapter = getAnzPattern(line);
+                adapterOK = usedPattern.get("Adapter").equals(adapter);
             }
-
+            if (line.contains("AnzSingleton" + complianceLevel)) {
+                singleton = getAnzPattern(line);
+                singletonOK = usedPattern.get("Singleton").equals(singleton);
+            }
+            if (line.contains("AnzStrategy" + complianceLevel)) {
+                strategy = getAnzPattern(line);
+                strategyOK = usedPattern.get("Strategy").equals(strategy);
+            }
         }
-
         if (!adapterOK) {
             res += "Fehler beim Adapter Pattern gefunden, es sind : " + adapter + " gefunden worden und : " + usedPattern.get("Adapter") + " verlangt\n";
         }
@@ -94,24 +72,6 @@ public class PatternChecker implements Checker {
         if (strategyOK) {
             res += "Es sind: " + strategy + " korrekte Strategy Pattern gefunden worden und : " + usedPattern.get("Strategy") + " verlangt worden\n";
         }
-        /*while (dbRes.hasNext()) {
-            Map<String, Object> row = dbRes.next();
-            for (Map.Entry<String, Object> column : row.entrySet()) {
-                //res += column.getKey() + " : " + column.getValue() + ";";
-                if (column.getKey().contains("AnzAdapter")){
-                    amountOfPattern += Integer.parseInt(column.getValue().toString());
-                    if(column.getValue().equals(usedPattern().get("Adapter") )){
-                        res += "Adapter Pattern Korrekt\n";
-                    }else{res+= "Adapter Pattern Fehler\n";}
-                }
-                if (column.getKey().contains("AnzSingleton")){
-
-                }
-                if (column.getKey().contains("AnzStrategy")){
-
-                }
-            }
-        }*/
         passed = adapterOK & singletonOK & strategyOK;
         if (passed) {
             res += "Keine Fehler gefunden\n--------------------------------------------------\nPattern Test erfolgreich abgeschlossen\n--------------------------------------------------\n";
@@ -120,6 +80,10 @@ public class PatternChecker implements Checker {
             res += "\n--------------------------------------------------\nPattern Test fehlgeschlagen\n--------------------------------------------------\n";
         }
         return res;
+    }
+
+    private int getAnzPattern(String line) {
+        return Integer.parseInt(line.substring(line.indexOf(':') + 2, line.indexOf(';')));
     }
 
     private Map<String, Integer> usedPatternMethod(int adap, int sing, int stra) {
@@ -148,13 +112,9 @@ public class PatternChecker implements Checker {
                     }
                     res += "\n";
                 }
-
             }
-
-        //return null;
         return res;
     }
-
 }
 
 /*    public boolean checkUML(List<UMLComponent> comps) {
