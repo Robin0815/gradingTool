@@ -41,7 +41,6 @@ public class SyntaxChecker implements Checker {
 
     private boolean checkConnectableComp(List<Class> comps) {
         boolean re = true;
-        //List<UMLComponent> comps2 = new ArrayList<>(comps);
         for (int i = 0; i < comps.size(); i++) {
             for (int j = 0; j < comps.size(); j++) {
                 if (i != j && comps.get(i).getName().equals(comps.get(j).getName())) {
@@ -62,6 +61,10 @@ public class SyntaxChecker implements Checker {
                         res1 += "Name eines Attributs vergessen\n";
                         re = false;
                     }
+                    if(!(component2.getVisibility().equals("-")||component2.getVisibility().equals("+")||component2.getVisibility().equals("#"))){
+                        res1 += "Visibility eines Attributes Falsch\n";
+                        re = false;
+                    }
                 }
                 if (component.id().equals(Elements.METHOD)) {
                     Method component2 = (Method) component;
@@ -69,8 +72,13 @@ public class SyntaxChecker implements Checker {
                         res1 += "Name einer Methode vergessen\n";
                         re = false;
                     }
+                    if(!(component2.getVisibility().equals("-")||component2.getVisibility().equals("+")||component2.getVisibility().equals("#"))){
+                        res1 += "Visibility einer Methode Falsch\n";
+                        re = false;
+                    }
                 }
-                if (!component.id().equals(Elements.METHOD) & !component.id().equals(Elements.ATTRIBUT) & !component.id().equals(Elements.CONSTRUCTOR)) {
+                if (!component.id().equals(Elements.METHOD) & !component.id().equals(Elements.ATTRIBUT) &
+                        !component.id().equals(Elements.CONSTRUCTOR)) {
                     res1 += "Unbekanntes Element in der Klasse : " + a.getName() + " : " + component.toString() + "\n";
                     re = false;
                 }
@@ -107,7 +115,7 @@ public class SyntaxChecker implements Checker {
                     if (relation.id().equals(Elements.IMPLEMENTS)) {
                         if (relation.getEnd().id().equals(Elements.CLASS)) {
                             Class a = (Class) relation.getEnd();
-                            if (a.getStereotype() == null ? true : a.getStereotype().equals("abstract")) {
+                            if (a.getStereotype() == null || a.getStereotype().equals("abstract")) {
                                 res2 += "Es wird eine Klasse mit 'implements' genutzt\n";
                                 res = false;
                             }
