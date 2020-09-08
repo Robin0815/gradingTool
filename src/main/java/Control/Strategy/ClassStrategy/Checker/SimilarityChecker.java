@@ -77,11 +77,8 @@ public class SimilarityChecker implements Checker {
         File correctionFile = new File(homeDir + "\\Documents\\KorrekturMusterloesung\\Musterloesung.uxf");
         Parser a = new Parser();
         List<UMLComponent> musterList = a.parseFile(correctionFile);
-
-
         createComparisonSet(musterList, musterClass, musterRelation, musterAttribut, musterMethod, musterConstructor);
         createComparisonSet(comps, realClass, realRelation, realAttribut, realMethod, realConstructor);
-
         abweichungClass = (double) Math.abs(realClass.size() - musterClass.size()) / musterClass.size();
         res += "Die prozentuale Abweichung ziwschen der Anzahl an Klassen in Musterlösung und abgegebner Lösung ist : " +
                 "" + abweichungClass + "\n";
@@ -104,13 +101,10 @@ public class SimilarityChecker implements Checker {
                     "Die abgegbene Loesung weicht zu sehr von der Musterlösung ab, Abweichung : " + abweichung + "\n" +
                     "--------------------------------------------------\n";
         } else {
-            //re = true;
             res += "--------------------------------------------------\n" +
                     "Die abgegbene Loesung hat genug Ähnlichkeit mit der Musterlösung, Abweichung : " + abweichung + "\n" +
                     "--------------------------------------------------\n";
         }
-
-
         return re;
     }
 
