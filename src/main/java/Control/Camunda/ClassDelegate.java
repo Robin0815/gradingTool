@@ -30,11 +30,19 @@ public class ClassDelegate implements JavaDelegate {
         File[] filesList = KorrekturDir.listFiles((FileFilter) new SuffixFileFilter(".uxf", IOCase.INSENSITIVE));
         assert filesList != null;
         Arrays.sort(filesList);
-
-        int adap = (int)((long) execution.getVariable("adapter"));
-        int sing = (int)((long) execution.getVariable("singleton"));
-        int stra = (int)((long) execution.getVariable("strategy"));
-        String mode = (String) (execution.getVariable("similarityType") == null ? "": execution.getVariable("similarityType"));
+        int adap;
+        int sing;
+        int stra;
+        try {
+            adap = (int) ((long) execution.getVariable("adapter"));
+            sing = (int) ((long) execution.getVariable("singleton"));
+            stra = (int) ((long) execution.getVariable("strategy"));
+        } catch (Exception e) {
+            adap = 0;
+            sing = 0;
+            stra = 0;
+        }
+        String mode = (String) (execution.getVariable("similarityType") == null ? "" : execution.getVariable("similarityType"));
         Parser a = new Parser();
 
         try {
@@ -42,20 +50,20 @@ public class ClassDelegate implements JavaDelegate {
             csvfile.getParentFile().mkdirs();
             CSVWriter writer = new CSVWriter(new FileWriter(csvfile));
             for (File file : filesList) {
-                ClassStrategy strategy = new ClassStrategy(mode,adap,sing,stra);
+                ClassStrategy strategy = new ClassStrategy(mode, adap, sing, stra);
                 List<UMLComponent> list = a.parseFile(file);
                 strategy.analyzeUML(list);
 
                 List<String> csvlist = new ArrayList<>();
                 csvlist.add(file.getName());
                 csvlist.add(strategy.passed());
-                csvlist.add("\""+strategy.getResult()+"\"");
+                csvlist.add("\"" + strategy.getResult() + "\"");
                 String[] nextLine = csvlist.toArray(new String[0]);
                 writer.writeNext(nextLine);
 
             }
             writer.close();
-        }catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("Something went wrong when writing the csv file");
             e.printStackTrace();
         }

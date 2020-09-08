@@ -11,6 +11,7 @@ import java.util.List;
 public class SyntaxChecker implements Checker{
     String res1 = "";
     String res2 = "";
+
     @Override
     public boolean checkUML(List<UMLComponent> comps) {
         List<Class> listClass= new ArrayList<>();
@@ -37,6 +38,7 @@ public class SyntaxChecker implements Checker{
         FeedbackGenerator.getInstance().addRes(res1+res2);
         return re1 && re2;
     }
+
     private boolean checkConnectableComp(List<Class> comps){
         boolean re = true;
         //List<UMLComponent> comps2 = new ArrayList<>(comps);
