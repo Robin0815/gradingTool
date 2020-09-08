@@ -61,7 +61,8 @@ public class SyntaxChecker implements Checker {
                         res1 += "Name eines Attributs vergessen\n";
                         re = false;
                     }
-                    if(!(component2.getVisibility().equals("-")||component2.getVisibility().equals("+")||component2.getVisibility().equals("#"))){
+                    if (!(component2.getVisibility().equals("-") || component2.getVisibility().equals("+") ||
+                            component2.getVisibility().equals("#"))) {
                         res1 += "Visibility eines Attributes Falsch\n";
                         re = false;
                     }
@@ -72,7 +73,8 @@ public class SyntaxChecker implements Checker {
                         res1 += "Name einer Methode vergessen\n";
                         re = false;
                     }
-                    if(!(component2.getVisibility().equals("-")||component2.getVisibility().equals("+")||component2.getVisibility().equals("#"))){
+                    if (!(component2.getVisibility().equals("-") || component2.getVisibility().equals("+") ||
+                            component2.getVisibility().equals("#"))) {
                         res1 += "Visibility einer Methode Falsch\n";
                         re = false;
                     }
