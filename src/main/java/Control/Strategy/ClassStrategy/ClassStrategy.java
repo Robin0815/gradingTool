@@ -23,6 +23,7 @@ public class ClassStrategy implements Strategy {
         this.sing = sing;
         this.stra = stra;
     }
+
     @Override
     public void analyzeUML(List<UMLComponent> comps) {
         SyntaxChecker syntax = new SyntaxChecker();
@@ -41,17 +42,13 @@ public class ClassStrategy implements Strategy {
             }else{
                 if(similarity.checkUML(comps)){
                     feedback.addRes("\nPattern Test nicht bestanden, trotzdem gute Ähnlichkeit zu der Musterlösung\n");
-                    //passed = true;
                 }else{
                     feedback.addRes("\nNicht bestanden\n");
                 }
             }
         }
-
-        result = feedback.getRes();
-        //System.out.println(result);
-
     }
+
     public String getResult(){
         return result;
     }
