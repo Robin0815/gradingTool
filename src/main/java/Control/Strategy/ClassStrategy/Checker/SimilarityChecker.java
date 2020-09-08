@@ -2,18 +2,24 @@ package Control.Strategy.ClassStrategy.Checker;
 
 import Control.Parser.Parser;
 import Control.Strategy.ClassStrategy.Control.FeedbackGenerator;
+import Control.Strategy.ClassStrategy.Control.GraphDBFunction;
+import Control.Strategy.ClassStrategy.Control.PatternQueries;
 import Model.*;
 import Model.Class;
+import org.neo4j.graphdb.GraphDatabaseService;
+import org.neo4j.graphdb.Result;
+import org.neo4j.graphdb.Transaction;
 
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class SimilarityChecker implements Checker {
 
     private String customCypher() {
-        return "Match " +
+        return "Match (a:Class)-[]->(b:Class)" +
                 "Return count(*) as Passed";
     }
 
@@ -62,12 +68,42 @@ public class SimilarityChecker implements Checker {
         return re;
     }
 
-    private boolean runNothing(){
+    private boolean runNothing() {
         res += "Kein Vergleich gewünscht\n--------------------------------------------------\n";
         return true;
     }
+
+    private GraphDatabaseService crateData(List<UMLComponent> comps) {
+        GraphDBFunction func = GraphDBFunction.getInstance();
+        func.setUp(comps);
+        return func.getGraphDb();
+    }
+
     private boolean runCypher(List<UMLComponent> comps) {
-        return true;
+        GraphDatabaseService graphDb = crateData(comps);
+        String queryRes = "";
+
+        try (Transaction tx = graphDb.beginTx();
+             Result result = tx.execute(customCypher())) {
+            while (result.hasNext()) {
+                Map<String, Object> row = result.next();
+                for (Map.Entry<String, Object> column : row.entrySet()) {
+                    queryRes += column.getKey() + " : " + column.getValue() + ";";
+                }
+                queryRes += "\n";
+            }
+            GraphDBFunction.getInstance().shutdown();
+            String[] queryResultPerLine = queryRes.split("\n");
+            for (String line : queryResultPerLine) {
+                if (line.contains("Passed")) {
+                    if (Integer.parseInt(line.substring(line.indexOf(':') + 2, line.indexOf(';'))) > 0) {
+                        res += "Cypher Vergleich erfolgreich\n--------------------------------------------------\n";
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
     }
 
     private boolean runCompare(List<UMLComponent> comps) {
@@ -108,7 +144,8 @@ public class SimilarityChecker implements Checker {
         return re;
     }
 
-    private void createComparisonSet(List<UMLComponent> comps, List<Class> realClass, List<Relation> realRelation, List<Attribut> realAttribut, List<Method> realMethod, List<Constructor> realConstructor) {
+    private void createComparisonSet
+            (List<UMLComponent> comps, List<Class> realClass, List<Relation> realRelation, List<Attribut> realAttribut, List<Method> realMethod, List<Constructor> realConstructor) {
         for (UMLComponent component : comps) {
             if (component.id().equals(Elements.CLASS)) {
                 realClass.add((Class) component);

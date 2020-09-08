@@ -24,10 +24,12 @@ public class FeedbackGenerator {
     public String getRes() {
         return res;
     }
-    public void addRes(String a){
+
+    public void addRes(String a) {
         res += a;
     }
-    public void reset(){
+
+    public void reset() {
         res = "Bewertung UMLKlassendiagramm:\n--------------------------------------------------\n";
     }
 }

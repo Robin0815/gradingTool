@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PatternQueries {
-    public static List<String> allQuery(){
+    public static List<String> allQuery() {
         List<String> res = new ArrayList<>();
         res.add(adapterQuery1());
         res.add(adapterQuery2());
@@ -14,7 +14,8 @@ public class PatternQueries {
         res.add(strategyQuery2());
         return res;
     }
-    public static String adapterQuery2(){
+
+    public static String adapterQuery2() {
         return "Match (a:Class)-[:Association]->(b:Interface)" +
                 "Match (c:Class)-[:Implements]->(b:Interface)" +
                 "Match (c:Class)-[:Association]->(d:Class)" +
@@ -26,9 +27,10 @@ public class PatternQueries {
                 "Where m.OutPut = x.OutPut and m.InPut = x.InPut and y.OutPut = z.InPut and q.InPut = z.OutPut" +
                 " " +
                 "Return count(*) as AnzAdapter2";
-                //"Return y.OutPut, z.InPut";
+        //"Return y.OutPut, z.InPut";
     }
-    public static String adapterQuery1(){
+
+    public static String adapterQuery1() {
         return "Match (a:Class)-[:Association]->(b:Interface)" +
                 "Match (c:Class)-[:Implements]->(b:Interface)" +
                 "Match (c:Class)-[:Association]->(d:Class)" +
@@ -36,7 +38,7 @@ public class PatternQueries {
         //"Return y.OutPut, z.InPut";
     }
 
-    public static String singletonQuery2(){
+    public static String singletonQuery2() {
         return "Match (c:Class)-[:contains]->(x:Constructor)" +
                 "Match (c:Class)-[:contains]->(b:Method)" +
                 "Match (c:Class)-[:contains]->(d:Attribute)" +
@@ -44,7 +46,8 @@ public class PatternQueries {
                 " " +
                 "Return count(*) as AnzSingleton2";
     }
-    public static String singletonQuery1(){
+
+    public static String singletonQuery1() {
         return "Match (c:Class)-[:contains]->(x:Constructor)" +
                 "Match (c:Class)-[:contains]->(b:Method)" +
                 "Match (c:Class)-[:contains]->(d:Attribute)" +
@@ -53,7 +56,8 @@ public class PatternQueries {
                 "Return count(*) as AnzSingleton1";
 
     }
-    public static String strategyQuery2(){
+
+    public static String strategyQuery2() {
         return "Match (client:Class)-[:Association]->(strat:Interface)" +
                 "Match (client:Class)-[:Association]->(kont:Class)" +
                 "Match (kont:Class)-[:Aggregation]->(strat:Interface)" +
@@ -61,7 +65,8 @@ public class PatternQueries {
                 "Match (rstart2:Class)-[:Implements]->(strat:Interface)" +
                 "Return count(*) as AnzStrategy2";
     }
-    public static String strategyQuery1(){
+
+    public static String strategyQuery1() {
         return "Match (client:Class)-[:Association]->(strat:Interface)" +
                 "Match (client:Class)-[:Association]->(kont:Class)" +
                 "Match (kont:Class)-[:Aggregation]->(strat:Interface)" +

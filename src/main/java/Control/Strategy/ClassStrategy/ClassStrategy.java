@@ -17,7 +17,7 @@ public class ClassStrategy implements Strategy {
     private final int sing;
     private final int stra;
 
-    public ClassStrategy(String mode,int adap, int sing, int stra){
+    public ClassStrategy(String mode, int adap, int sing, int stra) {
         this.mode = mode;
         this.adap = adap;
         this.sing = sing;
@@ -27,38 +27,41 @@ public class ClassStrategy implements Strategy {
     @Override
     public void analyzeUML(List<UMLComponent> comps) {
         SyntaxChecker syntax = new SyntaxChecker();
-        PatternChecker pattern = new PatternChecker(adap,sing,stra);
+        PatternChecker pattern = new PatternChecker(adap, sing, stra);
         SimilarityChecker similarity = new SimilarityChecker(mode);
         FeedbackGenerator feedback = FeedbackGenerator.getInstance();
         feedback.reset();
-        if (syntax.checkUML(comps)){
-            if(pattern.checkUML(comps)){
-                if(similarity.checkUML(comps)) {
+        if (syntax.checkUML(comps)) {
+            if (pattern.checkUML(comps)) {
+                if (similarity.checkUML(comps)) {
                     feedback.addRes("\nAlle Tests bestanden\n");
                     passed = true;
-                }else{
+                } else {
                     feedback.addRes("\nNicht bestanden\n");
                 }
-            }else{
-                if(similarity.checkUML(comps)){
+            } else {
+                if (similarity.checkUML(comps)) {
                     feedback.addRes("\nPattern Test nicht bestanden, trotzdem gute Ähnlichkeit zu der Musterlösung\n");
-                }else{
+                } else {
                     feedback.addRes("\nNicht bestanden\n");
                 }
             }
         }
+        result = feedback.getRes();
     }
 
-    public String getResult(){
+    public String getResult() {
         return result;
     }
-    public boolean getPassed(){
+
+    public boolean getPassed() {
         return passed;
     }
-    public String passed(){
-        if(passed){
+
+    public String passed() {
+        if (passed) {
             return "Bestanden";
-        }else{
+        } else {
             return "Nicht Bestanden";
         }
     }

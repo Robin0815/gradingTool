@@ -52,6 +52,7 @@ public class GraphDBFunction {
     public GraphDatabaseService getGraphDb() {
         return graphDb;
     }
+
     public GraphDatabaseService getGraphDb2() {
         return graphDb2;
     }
@@ -70,7 +71,8 @@ public class GraphDBFunction {
             }
         }));
     }
-    public void shutdown(){
+
+    public void shutdown() {
         managementService.shutdown();
         managementService2.shutdown();
         try {
@@ -79,6 +81,7 @@ public class GraphDBFunction {
             e.printStackTrace();
         }
     }
+
     /*
         public void deleteGraphDb() {
             graphDb.shutdown();

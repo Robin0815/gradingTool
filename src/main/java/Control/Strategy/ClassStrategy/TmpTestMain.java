@@ -20,17 +20,14 @@ public class TmpTestMain {
         delegate("uml-Olli.uxf");
 
 
-
-
-
     }
 
-    public static void delegate(String hi){
+    public static void delegate(String hi) {
         String file = hi;
         File testFile = new File(file);
         Parser a = new Parser();
         List<UMLComponent> l = a.parseFile(testFile);
-        ClassStrategy classStrategy = new ClassStrategy("Compare", 1,1,0);
+        ClassStrategy classStrategy = new ClassStrategy("Compare", 1, 1, 0);
         classStrategy.analyzeUML(l);
         System.out.println(FeedbackGenerator.getInstance().getRes());
     }
