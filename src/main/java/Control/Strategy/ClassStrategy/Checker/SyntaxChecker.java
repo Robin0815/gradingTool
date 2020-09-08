@@ -107,7 +107,7 @@ public class SyntaxChecker implements Checker {
                         if (relation.getEnd().id().equals(Elements.CLASS)) {
                             Class a = (Class) relation.getEnd();
                             if (a.getStereotype().equals("interface")) {
-                                res2 += "Es wird von einem Interface geerbt\n";
+                                res2 += "Es wird von einem Interface geerbt : \n" + relation.toString() + "\n";
                                 res = false;
                             }
                         }
@@ -116,7 +116,7 @@ public class SyntaxChecker implements Checker {
                         if (relation.getEnd().id().equals(Elements.CLASS)) {
                             Class a = (Class) relation.getEnd();
                             if (a.getStereotype() == null || a.getStereotype().equals("abstract")) {
-                                res2 += "Es wird eine Klasse mit 'implements' genutzt\n";
+                                res2 += "Es wird eine Klasse mit 'implements'  : \n" + relation.toString() + "\n";
                                 res = false;
                             }
                         }
