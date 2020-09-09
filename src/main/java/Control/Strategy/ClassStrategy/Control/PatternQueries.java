@@ -42,7 +42,8 @@ public class PatternQueries {
         return "Match (c:Class)-[:contains]->(x:Constructor)" +
                 "Match (c:Class)-[:contains]->(b:Method)" +
                 "Match (c:Class)-[:contains]->(d:Attribute)" +
-                "Where x.Visibility = '-' and b.OutPut = c.Name and b.Static = 'true' and d.OutPut = c.Name and d.Static = 'true'" +
+                "Where x.Visibility = '-' and b.OutPut = c.Name and b.Static = 'true' and d.OutPut = c.Name and " +
+                "d.Static = 'true'" +
                 " " +
                 "Return count(*) as AnzSingleton2";
     }

@@ -22,7 +22,7 @@ public class PatternChecker implements Checker {
 
     @Override
     public boolean checkUML(List<UMLComponent> comps) {
-        GraphDatabaseService graphDb = crateData(comps);
+        GraphDatabaseService graphDb = createData(comps);
         String dbRes = runQuery(graphDb);
         String res = evaluateQuery(dbRes);
         FeedbackGenerator.getInstance().addRes(res);
@@ -94,7 +94,7 @@ public class PatternChecker implements Checker {
         return res;
     }
 
-    private GraphDatabaseService crateData(List<UMLComponent> comps) {
+    private GraphDatabaseService createData(List<UMLComponent> comps) {
         GraphDBFunction func = GraphDBFunction.getInstance();
         func.setUp(comps);
         return func.getGraphDb();

@@ -102,6 +102,7 @@ public class SimilarityChecker implements Checker {
                     }
                 }
             }
+            res+="Cypher Vergleich fehlgeschlagen\n--------------------------------------------------\n";
             return false;
         }
     }
