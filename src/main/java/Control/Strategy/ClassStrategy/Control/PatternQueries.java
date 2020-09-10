@@ -16,7 +16,7 @@ public class PatternQueries {
     }
 
     public static String adapterQuery2() {
-        return "Match (a:Class)-[:Association]->(b:Interface)" +
+        return "Match (a:Class)-[:Association|:Dependency]->(b:Interface)" +
                 "Match (c:Class)-[:Implements]->(b:Interface)" +
                 "Match (c:Class)-[:Association]->(d:Class)" +
                 "Match (b:Interface)-[:contains]->(m:Method)" +
@@ -31,7 +31,7 @@ public class PatternQueries {
     }
 
     public static String adapterQuery1() {
-        return "Match (a:Class)-[:Association]->(b:Interface)" +
+        return "Match (a:Class)-[:Association|:Dependency]->(b:Interface)" +
                 "Match (c:Class)-[:Implements]->(b:Interface)" +
                 "Match (c:Class)-[:Association]->(d:Class)" +
                 "Return count(*) as AnzAdapter1";
