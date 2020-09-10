@@ -27,9 +27,9 @@ public class ClassDAO {
                 c = tx.createNode(Label.label("Unknown"));
             }
             List<UMLComponent> l = a.getElements();
-            for (int i = 0; i < l.size(); i++) {
-                if (l.get(i).id().equals(Elements.ATTRIBUT)) {
-                    Attribut k = (Attribut) l.get(i);
+            for (UMLComponent umlComponent : l) {
+                if (umlComponent.id().equals(Elements.ATTRIBUT)) {
+                    Attribut k = (Attribut) umlComponent;
                     Node d = tx.createNode(Label.label("Attribute"));
                     d.setProperty("Name", k.getName());
                     d.setProperty("Visibility", k.getVisibility());
@@ -37,8 +37,8 @@ public class ClassDAO {
                     d.setProperty("OutPut", k.getOutputType());
                     c.createRelationshipTo(d, RelationshipType.withName("contains"));
                 }
-                if (l.get(i).id().equals(Elements.METHOD)) {
-                    Method k = (Method) l.get(i);
+                if (umlComponent.id().equals(Elements.METHOD)) {
+                    Method k = (Method) umlComponent;
                     Node d = tx.createNode(Label.label("Method"));
                     d.setProperty("Name", k.getName());
                     d.setProperty("Visibility", k.getVisibility());
@@ -53,8 +53,8 @@ public class ClassDAO {
                     }
                     c.createRelationshipTo(d, RelationshipType.withName("contains"));
                 }
-                if (l.get(i).id().equals(Elements.CONSTRUCTOR)) {
-                    Constructor k = (Constructor) l.get(i);
+                if (umlComponent.id().equals(Elements.CONSTRUCTOR)) {
+                    Constructor k = (Constructor) umlComponent;
                     Node d = tx.createNode(Label.label("Constructor"));
                     d.setProperty("Name", c.getProperty("Name"));
                     d.setProperty("Visibility", k.getVisibility());

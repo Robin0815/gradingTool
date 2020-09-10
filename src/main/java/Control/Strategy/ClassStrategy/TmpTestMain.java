@@ -16,9 +16,9 @@ public class TmpTestMain {
 
     public static void main(String[] args) {
 
-        delegate("NennEsSelbstRichtig.uxf");
-        delegate("uml-Olli.uxf");
-
+        //delegate("NennEsSelbstRichtig.uxf");
+        //delegate("uml-Olli.uxf");
+        delegate("Adapter-UML.uxf");
 
     }
 
@@ -27,7 +27,7 @@ public class TmpTestMain {
         File testFile = new File(file);
         Parser a = new Parser();
         List<UMLComponent> l = a.parseFile(testFile);
-        ClassStrategy classStrategy = new ClassStrategy("Compare", 1, 1, 0);
+        ClassStrategy classStrategy = new ClassStrategy("Cypher", 1, 1, 0);
         classStrategy.analyzeUML(l);
         System.out.println(FeedbackGenerator.getInstance().getRes());
     }
