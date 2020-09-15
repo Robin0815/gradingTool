@@ -55,4 +55,16 @@ public class TestClass {
         classStrategy.analyzeUML(l);
         assertTrue(classStrategy.getPassed());
     }
+    @Test
+    public void testClassMuiltiple(){
+        String file = "Adapter-UML.uxf";
+        File testFile = new File(file);
+        Parser a = new Parser();
+        List<UMLComponent> l = a.parseFile(testFile);
+        ClassStrategy classStrategy = new ClassStrategy("Cypher", 1,1,0);
+        classStrategy.analyzeUML(l);
+        ClassStrategy classStrategy2 = new ClassStrategy("Compare", 1,1,0);
+        classStrategy2.analyzeUML(l);
+        assertTrue(classStrategy.getPassed());
+    }
 }
