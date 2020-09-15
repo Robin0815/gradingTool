@@ -21,7 +21,6 @@ public class RelationDAO {
             String s = c.getName();
             c = (Class) a.getEnd();
             String e = c.getName();
-            //System.out.println(a.id());
             Map<String, Object> params = new HashMap<>();
             params.put("start", s);
             params.put("end", e);
