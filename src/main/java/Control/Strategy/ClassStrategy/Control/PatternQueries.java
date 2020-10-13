@@ -61,7 +61,7 @@ public class PatternQueries {
     public static String strategyQuery2() {
         return "Match (client:Class)-[:Association]->(strat:Interface)" +
                 "Match (client:Class)-[:Association]->(kont:Class)" +
-                "Match (kont:Class)-[:Aggregation]->(strat:Interface)" +
+               
                 "Match (rstart1:Class)-[:Implements]->(strat:Interface)" +
                 "Match (rstart2:Class)-[:Implements]->(strat:Interface)" +
                 "Return count(*) as AnzStrategy2";

@@ -117,19 +117,19 @@ public class SimilarityChecker implements Checker {
         createComparisonSet(musterList, musterClass, musterRelation, musterAttribut, musterMethod, musterConstructor);
         createComparisonSet(comps, realClass, realRelation, realAttribut, realMethod, realConstructor);
         abweichungClass = (double) Math.abs(realClass.size() - musterClass.size()) / musterClass.size();
-        res += "Die prozentuale Abweichung ziwschen der Anzahl an Klassen in Musterlösung und abgegebner Lösung ist : " +
+        res += "Die prozentuale Abweichung zwischen der Anzahl an Klassen in Musterlösung und abgegebner Lösung ist : " +
                 "" + abweichungClass + "\n";
         abweichungRelation = (double) Math.abs(realRelation.size() - musterRelation.size()) / musterRelation.size();
-        res += "Die prozentuale Abweichung ziwschen der Anzahl an Relationen in Musterlösung und abgegebner Lösung ist : " +
+        res += "Die prozentuale Abweichung zwischen der Anzahl an Relationen in Musterlösung und abgegebner Lösung ist : " +
                 "" + abweichungRelation + "\n";
         abweichungAttribut = (double) Math.abs(realAttribut.size() - musterAttribut.size()) / musterAttribut.size();
-        res += "Die prozentuale Abweichung ziwschen der Anzahl an Attributen in Musterlösung und abgegebner Lösung ist : " +
+        res += "Die prozentuale Abweichung zwischen der Anzahl an Attributen in Musterlösung und abgegebner Lösung ist : " +
                 "" + abweichungAttribut + "\n";
         abweichungMethod = (double) Math.abs(realMethod.size() - musterMethod.size()) / musterMethod.size();
-        res += "Die prozentuale Abweichung ziwschen der Anzahl an Methoden in Musterlösung und abgegebner Lösung ist : " +
+        res += "Die prozentuale Abweichung zwischen der Anzahl an Methoden in Musterlösung und abgegebner Lösung ist : " +
                 "" + abweichungMethod + "\n";
         abweichungConstructor = (double) Math.abs(realConstructor.size() - musterConstructor.size()) / musterConstructor.size();
-        res += "Die prozentuale Abweichung ziwschen der Anzahl an Konstruktoren in Musterlösung und abgegebner Lösung ist : " +
+        res += "Die prozentuale Abweichung zwischen der Anzahl an Konstruktoren in Musterlösung und abgegebner Lösung ist : " +
                 "" + abweichungConstructor + "\n";
         double abweichung = (abweichungClass * 2 + abweichungRelation * 2 + abweichungAttribut + abweichungMethod + abweichungConstructor) / 5;
         if (abweichung > konv) {
